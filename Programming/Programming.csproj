@@ -46,7 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Enums\Color.cs" />
+    <Compile Include="Models\Enums\FormStudyStudent.cs" />
     <Compile Include="Models\Enums\Genre.cs" />
+    <Compile Include="Models\Enums\Season.cs" />
+    <Compile Include="Models\Enums\SmartphoneManufacturers.cs" />
     <Compile Include="Models\Enums\Weekday.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
