@@ -17,6 +17,9 @@ namespace Programming.Views.Forms
         public MainForm()
         {
             InitializeComponent();
+
+            SeasonCB.DataSource = Enum.GetValues(typeof(Season));
+
         }
 
         private void EnumListBox_SelectedValueChanged(object sender, EventArgs e)
@@ -50,7 +53,7 @@ namespace Programming.Views.Forms
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void WeekDayParseButtonClick(object sender, EventArgs e)
         {
             Weekday OutPut;
             if (Enum.TryParse(WeekDayTextBox.Text, true , out OutPut))
@@ -60,6 +63,29 @@ namespace Programming.Views.Forms
             else
             {
                 WeekDayText.Text = $"Нет такого дня недели!";
+            }
+        }
+
+        private void SeasonButton_Click(object sender, EventArgs e)
+        {
+            switch (SeasonCB.SelectedIndex)
+            {
+                case 0:
+                    BackColor = System.Drawing.Color.Yellow;
+                    MessageBox.Show("Ура! Солнце!", "Лето", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    break;
+                case 1:
+                    BackColor = System.Drawing.Color.Orange;
+                    MessageBox.Show("О нет! Листья падают!", "Осень", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    break; 
+                case 2:
+                    BackColor = System.Drawing.Color.Blue;
+                    MessageBox.Show("Бррр! Холодно!", "Зима", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    break;
+                case 3:
+                    BackColor = System.Drawing.Color.Green;
+                    MessageBox.Show("Ураа! Птички вернулись!", "Весна", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    break;
             }
         }
     }
