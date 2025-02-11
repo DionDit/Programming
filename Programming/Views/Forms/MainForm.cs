@@ -49,5 +49,18 @@ namespace Programming.Views.Forms
             EnumValue.Text = Convert.ToInt32(ValueListBox.SelectedValue).ToString();
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Weekday OutPut;
+            if (Enum.TryParse(WeekDayTextBox.Text, true , out OutPut))
+            {
+                WeekDayText.Text = $"Это день недели ({OutPut} = {Convert.ToInt32(OutPut)})";
+            }
+            else
+            {
+                WeekDayText.Text = $"Нет такого дня недели!";
+            }
+        }
     }
 }

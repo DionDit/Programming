@@ -37,9 +37,15 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.EnumValue = new System.Windows.Forms.TextBox();
+            this.WeekDayParseBox = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.WeekDayTextBox = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.WeekDayText = new System.Windows.Forms.Label();
             this.MainFormTab.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.Enumerations.SuspendLayout();
+            this.WeekDayParseBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainFormTab
@@ -49,16 +55,17 @@
             this.MainFormTab.Location = new System.Drawing.Point(0, 0);
             this.MainFormTab.Name = "MainFormTab";
             this.MainFormTab.SelectedIndex = 0;
-            this.MainFormTab.Size = new System.Drawing.Size(800, 450);
+            this.MainFormTab.Size = new System.Drawing.Size(800, 433);
             this.MainFormTab.TabIndex = 0;
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.WeekDayParseBox);
             this.tabPage1.Controls.Add(this.Enumerations);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(792, 424);
+            this.tabPage1.Size = new System.Drawing.Size(792, 407);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Enums";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -137,11 +144,60 @@
             this.EnumValue.Size = new System.Drawing.Size(100, 20);
             this.EnumValue.TabIndex = 5;
             // 
+            // WeekDayParseBox
+            // 
+            this.WeekDayParseBox.Controls.Add(this.WeekDayText);
+            this.WeekDayParseBox.Controls.Add(this.button1);
+            this.WeekDayParseBox.Controls.Add(this.WeekDayTextBox);
+            this.WeekDayParseBox.Controls.Add(this.label4);
+            this.WeekDayParseBox.Location = new System.Drawing.Point(8, 274);
+            this.WeekDayParseBox.Name = "WeekDayParseBox";
+            this.WeekDayParseBox.Size = new System.Drawing.Size(344, 125);
+            this.WeekDayParseBox.TabIndex = 3;
+            this.WeekDayParseBox.TabStop = false;
+            this.WeekDayParseBox.Text = "WeekDay Parsing";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(16, 34);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(115, 13);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Type value for parsing:";
+            // 
+            // WeekDayTextBox
+            // 
+            this.WeekDayTextBox.Location = new System.Drawing.Point(19, 50);
+            this.WeekDayTextBox.Name = "WeekDayTextBox";
+            this.WeekDayTextBox.Size = new System.Drawing.Size(212, 20);
+            this.WeekDayTextBox.TabIndex = 1;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(237, 48);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(81, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Parse";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // WeekDayText
+            // 
+            this.WeekDayText.AutoSize = true;
+            this.WeekDayText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.WeekDayText.ForeColor = System.Drawing.Color.Gray;
+            this.WeekDayText.Location = new System.Drawing.Point(16, 84);
+            this.WeekDayText.Name = "WeekDayText";
+            this.WeekDayText.Size = new System.Drawing.Size(0, 17);
+            this.WeekDayText.TabIndex = 3;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 433);
             this.Controls.Add(this.MainFormTab);
             this.Name = "MainForm";
             this.Text = "Programming Demo";
@@ -149,6 +205,8 @@
             this.tabPage1.ResumeLayout(false);
             this.Enumerations.ResumeLayout(false);
             this.Enumerations.PerformLayout();
+            this.WeekDayParseBox.ResumeLayout(false);
+            this.WeekDayParseBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -164,5 +222,10 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox EnumValue;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.GroupBox WeekDayParseBox;
+        private System.Windows.Forms.Label WeekDayText;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox WeekDayTextBox;
+        private System.Windows.Forms.Label label4;
     }
 }
