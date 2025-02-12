@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Contact.cs" />
+    <Compile Include="Models\Discipline.cs" />
     <Compile Include="Models\Enums\Color.cs" />
     <Compile Include="Models\Enums\FormStudyStudent.cs" />
     <Compile Include="Models\Enums\Genre.cs" />
@@ -55,6 +57,7 @@
     <Compile Include="Models\Film.cs" />
     <Compile Include="Models\Flight.cs" />
     <Compile Include="Models\Rectangle.cs" />
+    <Compile Include="Models\Song.cs" />
     <Compile Include="Models\Time.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

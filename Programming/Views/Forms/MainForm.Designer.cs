@@ -31,6 +31,7 @@
             this.MainFormTab = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.SeasonBox = new System.Windows.Forms.GroupBox();
+            this.SeasonCB = new System.Windows.Forms.ComboBox();
             this.SeasonButton = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.WeekDayParseBox = new System.Windows.Forms.GroupBox();
@@ -45,7 +46,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.EnumListBox = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.SeasonCB = new System.Windows.Forms.ComboBox();
             this.MainFormTab.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.SeasonBox.SuspendLayout();
@@ -87,6 +87,14 @@
             this.SeasonBox.TabIndex = 4;
             this.SeasonBox.TabStop = false;
             this.SeasonBox.Text = "Season Handle";
+            // 
+            // SeasonCB
+            // 
+            this.SeasonCB.FormattingEnabled = true;
+            this.SeasonCB.Location = new System.Drawing.Point(19, 49);
+            this.SeasonCB.Name = "SeasonCB";
+            this.SeasonCB.Size = new System.Drawing.Size(212, 21);
+            this.SeasonCB.TabIndex = 3;
             // 
             // SeasonButton
             // 
@@ -175,6 +183,7 @@
             // 
             this.EnumValue.Location = new System.Drawing.Point(358, 42);
             this.EnumValue.Name = "EnumValue";
+            this.EnumValue.ReadOnly = true;
             this.EnumValue.Size = new System.Drawing.Size(100, 20);
             this.EnumValue.TabIndex = 5;
             // 
@@ -229,14 +238,6 @@
             this.label1.Size = new System.Drawing.Size(107, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Choose enumaration:";
-            // 
-            // SeasonCB
-            // 
-            this.SeasonCB.FormattingEnabled = true;
-            this.SeasonCB.Location = new System.Drawing.Point(19, 49);
-            this.SeasonCB.Name = "SeasonCB";
-            this.SeasonCB.Size = new System.Drawing.Size(212, 21);
-            this.SeasonCB.TabIndex = 3;
             // 
             // MainForm
             // 
