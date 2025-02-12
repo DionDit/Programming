@@ -8,30 +8,86 @@ namespace Programming.Models
 {
     public class Time
     {
-		private int _hours;
+        #region Fields
+        /// <summary>
+        /// Часы
+        /// </summary>
+        private int _hours;
+        /// <summary>
+        /// Минуты
+        /// </summary>
+        private int _minutes;
+        /// <summary>
+        /// Секунды
+        /// </summary>
+        private int _seconds;
 
-		public int Hours
-		{
-			get { return _hours; }
-			set { _hours = value; }
-		}
+        #endregion
 
-		private int _minutes;
-
-		public int Minutes
-		{
-			get { return _minutes; }
-			set { _minutes = value; }
-		}
-
-		private int _seconds;
-
-		public int Seconds
-		{
-			get { return _seconds; }
-			set { _seconds = value; }
-		}
-
-
-	}
+        #region Properties
+        /// <summary>
+        /// Часы
+        /// </summary>
+        public int Hours
+        {
+            get
+            {
+                return _hours;
+            }
+            set
+            {
+                if (value > 0 && value <= 23)
+                {
+                    _hours = value;
+                }
+                else
+                {
+                    throw new ArgumentException("Невозможное значение часов");
+                }
+            }
+        }
+        /// <summary>
+        /// Минуты
+        /// </summary>
+        public int Minutes
+        {
+            get
+            {
+                return _minutes;
+            }
+            set
+            {
+                if (value > 0 && value <= 60)
+                {
+                    _minutes = value;
+                }
+                else
+                {
+                    throw new ArgumentException("Невозможное значение минут");
+                }
+            }
+        }
+        /// <summary>
+        /// Секунды
+        /// </summary>
+        public int Seconds
+        {
+            get
+            {
+                return _seconds;
+            }
+            set
+            {
+                if (value > 0 && value <= 60)
+                {
+                    _seconds = value;
+                }
+                else
+                {
+                    throw new ArgumentException("Невозможное значение минут");
+                }
+            }
+        }
+        #endregion
+    }
 }

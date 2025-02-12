@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Rectangle = Programming.Models.Rectangle;
 
 namespace Programming.Views.Forms
 {
@@ -17,9 +18,7 @@ namespace Programming.Views.Forms
         public MainForm()
         {
             InitializeComponent();
-
             SeasonCB.DataSource = Enum.GetValues(typeof(Season));
-
         }
 
         private void EnumListBox_SelectedValueChanged(object sender, EventArgs e)

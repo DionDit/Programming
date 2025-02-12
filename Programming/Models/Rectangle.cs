@@ -8,30 +8,79 @@ namespace Programming.Models
 {
     public class Rectangle
     {
-		private double _lenght;
+        #region Fields
+        // Длина
+        private double _lenght;
+        //Ширина
+        private double _width;
+        //Цвет
+        private string _color;
+        #endregion
 
-		public double Lenght
-		{
-			get { return _lenght; }
-			set { _lenght = value; }
-		}
-		private double _width;
-
-		public double Width
-		{
-			get { return _width; }
-			set { _width = value; }
-		}
-
-		private string _color;
-
-		public string Color
-		{
-			get { return _color; }
-			set { _color = value; }
-		}
-
-
-
-	}
+        #region Properties
+        /// <summary>
+        /// Длина
+        /// </summary>
+        public double Lenght
+        {
+            get
+            {
+                return _lenght;
+            }
+            set
+            {
+                if (value > 0)
+                {
+                    _lenght = value;
+                }
+                else
+                {
+                    throw new ArgumentException("Невозможное значение длины");
+                }
+            }
+        }
+        /// <summary>
+        /// Ширина
+        /// </summary>
+        public double Width
+        {
+            get
+            {
+                return _width;
+            }
+            set
+            {
+                if (value > 0)
+                {
+                    _width = value;
+                }
+                else
+                {
+                    throw new ArgumentException("Невозможное значение ширины");
+                }
+            }
+        }
+        /// <summary>
+        /// Цвет
+        /// </summary>
+        public string Color
+        {
+            get
+            {
+                return _color;
+            }
+            set
+            {
+                if (!string.IsNullOrWhiteSpace(value))
+                {
+                    _color = value;
+                }
+                else
+                {
+                    throw new ArgumentException("Невозможное значение цвета");
+                }
+            }
+        }
+        #endregion
+    }
 }

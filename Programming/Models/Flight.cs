@@ -8,29 +8,85 @@ namespace Programming.Models
 {
     public class Flight
     {
-		private string _departurePoint;
+        #region Fields
+        /// <summary>
+        /// Пункт вылета
+        /// </summary>
+        private string _departurePoint;
+        /// <summary>
+        /// Пункт назначения
+        /// </summary>
+        private string _destination;
+        /// <summary>
+        ///  Время полета в минутах
+        /// </summary>
+        private int _flightTime;
+        #endregion
 
-		public string DeparturePoint
-		{
-			get { return _departurePoint; }
-			set { _departurePoint = value; }
-		}
-
-		private string _destination;
-
-		public string Destination
+        #region Properties
+        /// <summary>
+        /// Пункт вылета
+        /// </summary>
+        public string DeparturePoint
         {
-			get { return _destination; }
-			set { _destination = value; }
-		}
-
-		private int _flightTime;
-
-		public int FlightTime
-		{
-			get { return _flightTime; }
-			set { _flightTime = value; }
-		}
-
+            get
+            {
+                return _departurePoint;
+            }
+            set
+            {
+                if (!string.IsNullOrWhiteSpace(value))
+                {
+                    _departurePoint = value;
+                }
+                else
+                {
+                    throw new ArgumentException("Недопустимое значение пункта вылета");
+                }
+            }
+        }
+        /// <summary>
+        /// Пункт назначения
+        /// </summary>
+        public string Destination
+        {
+            get
+            {
+                return _destination;
+            }
+            set
+            {
+                if (!string.IsNullOrWhiteSpace(value))
+                {
+                    _destination = value;
+                }
+                else
+                {
+                    throw new ArgumentException("Недопустимое значение пункта назначения");
+                }
+            }
+        }
+        /// <summary>
+        ///  Время полета в минутах
+        /// </summary>
+        public int FlightTime
+        {
+            get
+            {
+                return _flightTime;
+            }
+            set
+            {
+                if (value > 0)
+                {
+                    _flightTime = value;
+                }
+                else
+                {
+                    throw new ArgumentException("Недопустимое значение времени полета");
+                }
+            }
+        }
+        #endregion
 	}
 }
