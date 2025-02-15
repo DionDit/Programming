@@ -8,6 +8,17 @@ namespace Programming.Models
 {
     public class Rectangle
     {
+        public Rectangle(int Index, double Lenght, double Width, string Color)
+        {
+            this.Index = Index;
+            this.Lenght = Lenght;
+            this.Width = Width;
+            this.Color = Color;
+        }
+        public Rectangle()
+        {
+
+        }
         #region Fields
         /// <summary>
         /// Длина
@@ -89,18 +100,6 @@ namespace Programming.Models
             }
         }
         #endregion
-
-        public Rectangle(int Index ,double Lenght, double Width, string Color)
-        {
-            this.Index = Index;
-            this.Lenght = Lenght;
-            this.Width = Width;
-            this.Color = Color;
-        }
-        public Rectangle()
-        {
-            
-        }
 
         public override string ToString() => $"Rectangle {Index}";
     }

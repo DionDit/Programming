@@ -8,6 +8,16 @@ namespace Programming.Models
 {
     public class Discipline
     {
+        public Discipline(string Name, string TeacherLastName, int Assessment)
+        {
+            this.Name = Name;
+            this.TeacherLastName = TeacherLastName;
+            this.Assessment = Assessment;
+        }
+        public Discipline()
+        {
+
+        }
         #region Fields
         /// <summary>
         /// Название дисциплины
@@ -88,16 +98,5 @@ namespace Programming.Models
             }
         }
         #endregion
-
-        public Discipline(string Name, string TeacherLastName, int Assessment)
-        {
-            this.Name = Name;
-            this.TeacherLastName = TeacherLastName;
-            this.Assessment = Assessment;
-        }
-        public Discipline()
-        {
-            
-        }
     }
 }

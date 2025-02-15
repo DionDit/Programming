@@ -15,23 +15,37 @@ namespace Programming.Views.Forms
 {
     public partial class MainForm : Form
     {
-        private List<Rectangle> _rectangles;
-        private Rectangle _currentRectangle;
         public MainForm()
         {
             InitializeComponent();
             Random rnd = new Random();
             _rectangles = new List<Rectangle>();
+            _films = new List<Film>();
+
             for (int i = 0; i < 5; i++)
             {
                 int Index = i;
                 _rectangles.Add(new Rectangle(++Index, rnd.Next(1, 50), rnd.Next(1, 50), "Black"));
+                _films.Add(new Film($"Film {Index}", rnd.Next(1, 4), rnd.Next(1980, 2025), "Horror", Convert.ToDouble(rnd.Next(1, 11))));
+
             }
             RectanglesBox.DataSource = _rectangles;
+            FilmBox.DataSource = _films;
+            FilmBox.SelectedIndex = 0;
+            FilmBox.DisplayMember = "Name";
             RectanglesBox.SelectedIndex = 0;
             SeasonCB.DataSource = Enum.GetValues(typeof(Season));
         }
 
+        #region Fields
+        private List<Rectangle> _rectangles;
+        private Rectangle _currentRectangle;
+
+        private List<Film> _films;
+        private Film _currentFilm;
+        #endregion
+
+        #region Enum Page
         private void EnumListBox_SelectedValueChanged(object sender, EventArgs e)
         {
             switch ((sender as ListBox).SelectedIndex)
@@ -56,17 +70,14 @@ namespace Programming.Views.Forms
                     break;
             }
         }
-
         private void ValueListBox_SelectedValueChanged(object sender, EventArgs e)
         {
             EnumValue.Text = Convert.ToInt32(ValueListBox.SelectedValue).ToString();
-
         }
-
         private void WeekDayParseButtonClick(object sender, EventArgs e)
         {
             Weekday OutPut;
-            if (Enum.TryParse(WeekDayTextBox.Text, true , out OutPut))
+            if (Enum.TryParse(WeekDayTextBox.Text, true, out OutPut))
             {
                 WeekDayText.Text = $"Это день недели ({OutPut} = {Convert.ToInt32(OutPut)})";
             }
@@ -75,7 +86,6 @@ namespace Programming.Views.Forms
                 WeekDayText.Text = $"Нет такого дня недели!";
             }
         }
-
         private void SeasonButton_Click(object sender, EventArgs e)
         {
             switch (SeasonCB.SelectedIndex)
@@ -87,7 +97,7 @@ namespace Programming.Views.Forms
                 case 1:
                     BackColor = System.Drawing.Color.Orange;
                     MessageBox.Show("О нет! Листья падают!", "Осень", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    break; 
+                    break;
                 case 2:
                     BackColor = System.Drawing.Color.Blue;
                     MessageBox.Show("Бррр! Холодно!", "Зима", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -98,7 +108,9 @@ namespace Programming.Views.Forms
                     break;
             }
         }
+        #endregion
 
+        #region Rectangle Page
         private void RectanglesBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             _currentRectangle = RectanglesBox.SelectedItem as Rectangle;
@@ -106,7 +118,6 @@ namespace Programming.Views.Forms
             LenghtTextBox.Text = _currentRectangle.Lenght.ToString();
             ColorTextBox.Text = _currentRectangle.Color.ToString();
         }
-
         private void LenghtTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -164,12 +175,109 @@ namespace Programming.Views.Forms
             }
             return Index;
         }
-
-        private void FindButton_Click(object sender, EventArgs e)
-
+        private void FindRectangleButton_Click(object sender, EventArgs e)
         {
             RectanglesBox.SelectedIndex = FindRectangleWithMaxWidth(_rectangles);
             _currentRectangle = RectanglesBox.SelectedItem as Rectangle;
         }
+
+        #endregion
+
+        #region Film Page
+        private void FilmBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _currentFilm = FilmBox.SelectedItem as Film;
+            NameTextBox.Text = _currentFilm.Name;
+            DurationTextBox.Text = _currentFilm.Duration.ToString();
+            ReleaseYearTextBox.Text = _currentFilm.ReleaseYear.ToString();
+            GenreTextBox.Text = _currentFilm.Genre.ToString();
+            RatingTextBox.Text = _currentFilm.Rating.ToString();
+        }
+        private int FindFilmWithMaxRating(List<Film> Films)
+        {
+            double maxRating = 0;
+            int Index = 0;
+            for (int i = 0; i < Films.Count; i++)
+            {
+                if (Films[i].Rating > maxRating)
+                {
+                    maxRating = Films[i].Rating;
+                    Index = i;
+                }
+            }
+            return Index;
+        }
+        private void FindFilmButton_Click(object sender, EventArgs e)
+        {
+            FilmBox.SelectedIndex = FindFilmWithMaxRating(_films);
+            _currentFilm = FilmBox.SelectedItem as Film;
+        }
+        private void NameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                (FilmBox.SelectedItem as Film).Name = NameTextBox.Text;
+                NameTextBox.BackColor = System.Drawing.Color.White;
+
+            }
+            catch
+            {
+                NameTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
+        private void DurationTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                (FilmBox.SelectedItem as Film).Duration = Convert.ToInt32(DurationTextBox.Text);
+                DurationTextBox.BackColor = System.Drawing.Color.White;
+
+            }
+            catch
+            {
+                DurationTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
+        private void ReleaseYearTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                (FilmBox.SelectedItem as Film).ReleaseYear = Convert.ToInt32(ReleaseYearTextBox.Text);
+                ReleaseYearTextBox.BackColor = System.Drawing.Color.White;
+
+            }
+            catch
+            {
+                ReleaseYearTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
+        private void GenreTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                (FilmBox.SelectedItem as Film).Genre = GenreTextBox.Text;
+                GenreTextBox.BackColor = System.Drawing.Color.White;
+
+            }
+            catch
+            {
+                GenreTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
+        private void RatingTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                (FilmBox.SelectedItem as Film).Rating = Convert.ToInt32(RatingTextBox.Text);
+                RatingTextBox.BackColor = System.Drawing.Color.White;
+
+            }
+            catch
+            {
+                RatingTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
+        #endregion
+
     }
 }

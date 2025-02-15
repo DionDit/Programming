@@ -8,6 +8,16 @@ namespace Programming.Models
 {
     public class Contact
     {
+        public Contact(string Name, string LastName, string PhoneNumber)
+        {
+            this.Name = Name;
+            this.LastName = LastName;
+            this.PhoneNumber = PhoneNumber;
+        }
+        public Contact()
+        {
+
+        }
         #region Fields
         /// <summary>
         /// Название
@@ -89,16 +99,5 @@ namespace Programming.Models
             }
         }
         #endregion
-
-        public Contact(string Name, string LastName, string PhoneNumber)
-        {
-            this.Name = Name;
-            this.LastName = LastName;
-            this.PhoneNumber = PhoneNumber;
-        }
-        public Contact()
-        {
-            
-        }
     }
 }

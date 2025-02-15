@@ -8,6 +8,18 @@ namespace Programming.Models
 {
     public class Film
     {
+        public Film(string Name, int Duration, int ReleaseYear, string Genre, double Rating)
+        {
+            this.Name = Name;
+            this.Duration = Duration;
+            this.ReleaseYear = ReleaseYear;
+            this.Genre = Genre;
+            this.Rating = Rating;
+        }
+        public Film()
+        {
+
+        }
         #region Fields
         /// <summary>
         /// Название фильма
@@ -138,18 +150,5 @@ namespace Programming.Models
             }
         }
         #endregion
-
-        public Film(string Name, int Duration, int ReleaseYear, string Genre, double Rating)
-        {
-            this.Name = Name;
-            this.Duration = Duration;
-            this.ReleaseYear = ReleaseYear;
-            this.Genre = Genre;
-            this.Rating = Rating;
-        }
-        public Film()
-        {
-
-        }
     }
 }

@@ -8,6 +8,16 @@ namespace Programming.Models
 {
     public class Time
     {
+        public Time(int Hours, int Minutes, int Seconds)
+        {
+            this.Hours = Hours;
+            this.Minutes = Minutes;
+            this.Seconds = Seconds;
+        }
+        public Time()
+        {
+
+        }
         #region Fields
         /// <summary>
         /// Часы
@@ -89,16 +99,5 @@ namespace Programming.Models
             }
         }
         #endregion
-
-        public Time(int Hours, int Minutes, int Seconds)
-        {
-            this.Hours = Hours;
-            this.Minutes = Minutes;
-            this.Seconds = Seconds;
-        }
-        public Time()
-        {
-            
-        }
     }
 }

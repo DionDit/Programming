@@ -8,6 +8,16 @@ namespace Programming.Models
 {
     public class Flight
     {
+        public Flight(string DeparturePoint, string Destination, int FlightTime)
+        {
+            this.DeparturePoint = DeparturePoint;
+            this.Destination = Destination;
+            this.FlightTime = FlightTime;
+        }
+        public Flight()
+        {
+
+        }
         #region Fields
         /// <summary>
         /// Пункт вылета
@@ -88,16 +98,5 @@ namespace Programming.Models
             }
         }
         #endregion
-
-        public Flight(string DeparturePoint, string Destination, int FlightTime)
-        {
-            this.DeparturePoint = DeparturePoint;
-            this.Destination = Destination;
-            this.FlightTime = FlightTime;
-        }
-        public Flight()
-        {
-            
-        }
     }
 }

@@ -8,6 +8,16 @@ namespace Programming.Models
 {
     public class Song
     {
+        public Song(string Name, string Artist, double Duration)
+        {
+            this.Name = Name;
+            this.Artist = Artist;
+            this.Duration = Duration;
+        }
+        public Song()
+        {
+
+        }
         #region Fields
         /// <summary>
         /// Название
@@ -88,16 +98,5 @@ namespace Programming.Models
             }
         }
         #endregion
-
-        public Song(string Name, string Artist, double Duration)
-        {
-            this.Name = Name;
-            this.Artist = Artist;
-            this.Duration = Duration;
-        }
-        public Song()
-        {
-            
-        }
     }
 }
