@@ -89,5 +89,16 @@ namespace Programming.Models
             }
         }
         #endregion
+
+        public Time(int Hours, int Minutes, int Seconds)
+        {
+            this.Hours = Hours;
+            this.Minutes = Minutes;
+            this.Seconds = Seconds;
+        }
+        public Time()
+        {
+            
+        }
     }
 }

@@ -9,11 +9,17 @@ namespace Programming.Models
     public class Rectangle
     {
         #region Fields
-        // Длина
+        /// <summary>
+        /// Длина
+        /// </summary>
         private double _lenght;
-        //Ширина
+        /// <summary>
+        /// Ширина
+        /// </summary>
         private double _width;
-        //Цвет
+        /// <summary>
+        /// Цвет
+        /// </summary>
         private string _color;
         #endregion
 
@@ -82,5 +88,16 @@ namespace Programming.Models
             }
         }
         #endregion
+
+        public Rectangle(double Lenght, double Width, string Color)
+        {
+            this.Lenght = Lenght;
+            this.Width = Width;
+            this.Color = Color;
+        }
+        public Rectangle()
+        {
+            
+        }
     }
 }
