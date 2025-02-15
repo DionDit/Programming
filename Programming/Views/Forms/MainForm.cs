@@ -15,9 +15,20 @@ namespace Programming.Views.Forms
 {
     public partial class MainForm : Form
     {
+        private List<Rectangle> _rectangles;
+        private Rectangle _currentRectangle;
         public MainForm()
         {
             InitializeComponent();
+            Random rnd = new Random();
+            _rectangles = new List<Rectangle>();
+            for (int i = 0; i < 5; i++)
+            {
+                int Index = i;
+                _rectangles.Add(new Rectangle(++Index, rnd.Next(1, 50), rnd.Next(1, 50), "Black"));
+            }
+            RectanglesBox.DataSource = _rectangles;
+            RectanglesBox.SelectedIndex = 0;
             SeasonCB.DataSource = Enum.GetValues(typeof(Season));
         }
 
@@ -86,6 +97,79 @@ namespace Programming.Views.Forms
                     MessageBox.Show("Ураа! Птички вернулись!", "Весна", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     break;
             }
+        }
+
+        private void RectanglesBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _currentRectangle = RectanglesBox.SelectedItem as Rectangle;
+            WidthTextBox.Text = _currentRectangle.Width.ToString();
+            LenghtTextBox.Text = _currentRectangle.Lenght.ToString();
+            ColorTextBox.Text = _currentRectangle.Color.ToString();
+        }
+
+        private void LenghtTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                (RectanglesBox.SelectedItem as Rectangle).Lenght = Convert.ToInt32(LenghtTextBox.Text);
+                LenghtTextBox.BackColor = System.Drawing.Color.White;
+
+            }
+            catch
+            {
+                LenghtTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
+
+        private void WidthTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                (RectanglesBox.SelectedItem as Rectangle).Width = Convert.ToInt32(WidthTextBox.Text);
+                WidthTextBox.BackColor = System.Drawing.Color.White;
+
+            }
+            catch
+            {
+                WidthTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
+
+        private void ColorTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if ((Models.Enums.Color)Enum.Parse(typeof(Models.Enums.Color), ColorTextBox.Text) != null)
+                {
+                    (RectanglesBox.SelectedItem as Rectangle).Color = ColorTextBox.Text;
+                    ColorTextBox.BackColor = System.Drawing.Color.White;
+                }
+            }
+            catch
+            {
+                ColorTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
+        private int FindRectangleWithMaxWidth(List<Rectangle> Rectangles)
+        {
+            double maxWidth = 0;
+            int Index = 0;
+            for (int i = 0; i < Rectangles.Count; i++)
+            {
+                if (Rectangles[i].Width > maxWidth)
+                {
+                    maxWidth = Rectangles[i].Width;
+                    Index = i;
+                }
+            }
+            return Index;
+        }
+
+        private void FindButton_Click(object sender, EventArgs e)
+
+        {
+            RectanglesBox.SelectedIndex = FindRectangleWithMaxWidth(_rectangles);
+            _currentRectangle = RectanglesBox.SelectedItem as Rectangle;
         }
     }
 }

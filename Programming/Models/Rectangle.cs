@@ -24,6 +24,7 @@ namespace Programming.Models
         #endregion
 
         #region Properties
+        public int Index { get; set; }
         /// <summary>
         /// Длина
         /// </summary>
@@ -89,8 +90,9 @@ namespace Programming.Models
         }
         #endregion
 
-        public Rectangle(double Lenght, double Width, string Color)
+        public Rectangle(int Index ,double Lenght, double Width, string Color)
         {
+            this.Index = Index;
             this.Lenght = Lenght;
             this.Width = Width;
             this.Color = Color;
@@ -99,5 +101,7 @@ namespace Programming.Models
         {
             
         }
+
+        public override string ToString() => $"Rectangle {Index}";
     }
 }
