@@ -70,6 +70,13 @@
             this.label11 = new System.Windows.Forms.Label();
             this.NameTextBox = new System.Windows.Forms.TextBox();
             this.FilmBox = new System.Windows.Forms.ListBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.YTextBox = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.XTextBox = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.IdTextBox = new System.Windows.Forms.TextBox();
             this.MainFormTab.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.SeasonBox.SuspendLayout();
@@ -281,6 +288,13 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label16);
+            this.groupBox1.Controls.Add(this.IdTextBox);
+            this.groupBox1.Controls.Add(this.label15);
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.YTextBox);
+            this.groupBox1.Controls.Add(this.label14);
+            this.groupBox1.Controls.Add(this.XTextBox);
             this.groupBox1.Controls.Add(this.FindButton);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.ColorTextBox);
@@ -298,7 +312,7 @@
             // 
             // FindButton
             // 
-            this.FindButton.Location = new System.Drawing.Point(210, 164);
+            this.FindButton.Location = new System.Drawing.Point(210, 325);
             this.FindButton.Name = "FindButton";
             this.FindButton.Size = new System.Drawing.Size(131, 23);
             this.FindButton.TabIndex = 7;
@@ -309,7 +323,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(210, 111);
+            this.label9.Location = new System.Drawing.Point(210, 154);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(34, 13);
             this.label9.TabIndex = 6;
@@ -317,7 +331,7 @@
             // 
             // ColorTextBox
             // 
-            this.ColorTextBox.Location = new System.Drawing.Point(210, 127);
+            this.ColorTextBox.Location = new System.Drawing.Point(210, 170);
             this.ColorTextBox.Name = "ColorTextBox";
             this.ColorTextBox.Size = new System.Drawing.Size(131, 20);
             this.ColorTextBox.TabIndex = 5;
@@ -326,7 +340,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(210, 66);
+            this.label7.Location = new System.Drawing.Point(210, 109);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(38, 13);
             this.label7.TabIndex = 4;
@@ -334,7 +348,7 @@
             // 
             // WidthTextBox
             // 
-            this.WidthTextBox.Location = new System.Drawing.Point(210, 82);
+            this.WidthTextBox.Location = new System.Drawing.Point(210, 125);
             this.WidthTextBox.Name = "WidthTextBox";
             this.WidthTextBox.Size = new System.Drawing.Size(131, 20);
             this.WidthTextBox.TabIndex = 3;
@@ -343,7 +357,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(210, 18);
+            this.label5.Location = new System.Drawing.Point(210, 61);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(43, 13);
             this.label5.TabIndex = 2;
@@ -351,7 +365,7 @@
             // 
             // LenghtTextBox
             // 
-            this.LenghtTextBox.Location = new System.Drawing.Point(210, 34);
+            this.LenghtTextBox.Location = new System.Drawing.Point(210, 77);
             this.LenghtTextBox.Name = "LenghtTextBox";
             this.LenghtTextBox.Size = new System.Drawing.Size(131, 20);
             this.LenghtTextBox.TabIndex = 1;
@@ -501,6 +515,67 @@
             this.FilmBox.TabIndex = 0;
             this.FilmBox.SelectedIndexChanged += new System.EventHandler(this.FilmBox_SelectedIndexChanged);
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(210, 267);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(17, 13);
+            this.label8.TabIndex = 11;
+            this.label8.Text = "Y:";
+            // 
+            // YTextBox
+            // 
+            this.YTextBox.Location = new System.Drawing.Point(210, 283);
+            this.YTextBox.Name = "YTextBox";
+            this.YTextBox.Size = new System.Drawing.Size(131, 20);
+            this.YTextBox.TabIndex = 10;
+            this.YTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.YTextBox_KeyPress);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(210, 222);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(17, 13);
+            this.label14.TabIndex = 9;
+            this.label14.Text = "X:";
+            // 
+            // XTextBox
+            // 
+            this.XTextBox.Location = new System.Drawing.Point(210, 238);
+            this.XTextBox.Name = "XTextBox";
+            this.XTextBox.Size = new System.Drawing.Size(131, 20);
+            this.XTextBox.TabIndex = 8;
+            this.XTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.XTextBox_KeyPress);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(235, 195);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(84, 26);
+            this.label15.TabIndex = 12;
+            this.label15.Text = "Coordinates\r\nrectangle center";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(210, 22);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(19, 13);
+            this.label16.TabIndex = 14;
+            this.label16.Text = "Id:";
+            // 
+            // IdTextBox
+            // 
+            this.IdTextBox.Location = new System.Drawing.Point(210, 38);
+            this.IdTextBox.Name = "IdTextBox";
+            this.IdTextBox.Size = new System.Drawing.Size(131, 20);
+            this.IdTextBox.TabIndex = 13;
+            this.IdTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -573,5 +648,12 @@
         private System.Windows.Forms.TextBox RatingTextBox;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox GenreTextBox;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox YTextBox;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox XTextBox;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox IdTextBox;
     }
 }

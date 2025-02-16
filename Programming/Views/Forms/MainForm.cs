@@ -1,5 +1,6 @@
 ﻿using Programming.Models;
 using Programming.Models.Enums;
+using Programming.Models.Geometry;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,18 +16,23 @@ namespace Programming.Views.Forms
 {
     public partial class MainForm : Form
     {
+        #region Fields
+        private List<Rectangle> _rectangles;
+        private Rectangle _currentRectangle;
+
+        private List<Film> _films;
+        private Film _currentFilm;
+        #endregion
         public MainForm()
         {
             InitializeComponent();
             Random rnd = new Random();
             _rectangles = new List<Rectangle>();
             _films = new List<Film>();
-
             for (int i = 0; i < 5; i++)
             {
-                int Index = i;
-                _rectangles.Add(new Rectangle(++Index, rnd.Next(1, 50), rnd.Next(1, 50), "Black"));
-                _films.Add(new Film($"Film {Index}", rnd.Next(1, 4), rnd.Next(1980, 2025), "Horror", Convert.ToDouble(rnd.Next(1, 11))));
+                _rectangles.Add(new Rectangle(rnd.Next(1, 10), rnd.Next(1, 10), "Black"));
+                _films.Add(new Film($"Film", rnd.Next(1, 4), rnd.Next(1980, 2025), "Horror", Convert.ToDouble(rnd.Next(1, 11))));
 
             }
             RectanglesBox.DataSource = _rectangles;
@@ -36,15 +42,6 @@ namespace Programming.Views.Forms
             RectanglesBox.SelectedIndex = 0;
             SeasonCB.DataSource = Enum.GetValues(typeof(Season));
         }
-
-        #region Fields
-        private List<Rectangle> _rectangles;
-        private Rectangle _currentRectangle;
-
-        private List<Film> _films;
-        private Film _currentFilm;
-        #endregion
-
         #region Enum Page
         private void EnumListBox_SelectedValueChanged(object sender, EventArgs e)
         {
@@ -109,7 +106,6 @@ namespace Programming.Views.Forms
             }
         }
         #endregion
-
         #region Rectangle Page
         private void RectanglesBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -117,6 +113,9 @@ namespace Programming.Views.Forms
             WidthTextBox.Text = _currentRectangle.Width.ToString();
             LenghtTextBox.Text = _currentRectangle.Lenght.ToString();
             ColorTextBox.Text = _currentRectangle.Color.ToString();
+            XTextBox.Text = _currentRectangle.Center.X.ToString();
+            YTextBox.Text = _currentRectangle.Center.Y.ToString();
+            IdTextBox.Text = _currentRectangle.Id.ToString();
         }
         private void LenghtTextBox_TextChanged(object sender, EventArgs e)
         {
@@ -131,7 +130,6 @@ namespace Programming.Views.Forms
                 LenghtTextBox.BackColor = System.Drawing.Color.LightPink;
             }
         }
-
         private void WidthTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -145,7 +143,6 @@ namespace Programming.Views.Forms
                 WidthTextBox.BackColor = System.Drawing.Color.LightPink;
             }
         }
-
         private void ColorTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -180,9 +177,20 @@ namespace Programming.Views.Forms
             RectanglesBox.SelectedIndex = FindRectangleWithMaxWidth(_rectangles);
             _currentRectangle = RectanglesBox.SelectedItem as Rectangle;
         }
+        private void XTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
+        private void YTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
 
         #endregion
-
         #region Film Page
         private void FilmBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -278,6 +286,5 @@ namespace Programming.Views.Forms
             }
         }
         #endregion
-
     }
 }

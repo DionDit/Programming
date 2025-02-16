@@ -2,22 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Programming.Models
 {
     public class Contact
     {
-        public Contact(string Name, string LastName, string PhoneNumber)
-        {
-            this.Name = Name;
-            this.LastName = LastName;
-            this.PhoneNumber = PhoneNumber;
-        }
-        public Contact()
-        {
-
-        }
         #region Fields
         /// <summary>
         /// Название
@@ -26,14 +17,23 @@ namespace Programming.Models
         /// <summary>
         /// Фамилия
         /// </summary>
-        private string _lastName;
+        private string _surName;
         /// <summary>
         /// Номер телефона
         /// </summary>
         private string _phoneNumber;
 
         #endregion
+        public Contact(string Name, string SurName, string PhoneNumber)
+        {
+            this.Name = Name;
+            this.SurName = SurName;
+            this.PhoneNumber = PhoneNumber;
+        }
+        public Contact()
+        {
 
+        }
         #region Properties
         /// <summary>
         /// Название
@@ -46,34 +46,26 @@ namespace Programming.Models
             }
             set
             {
-                if (!string.IsNullOrWhiteSpace(value))
+                if (Validator.AssertStringContainsOnlyLetters(value, nameof(Name)))
                 {
                     _name = value;
-                }
-                else
-                {
-                    throw new ArgumentException("Невозможное значение имени");
                 }
             }
         }
         /// <summary>
         /// Фамилия
         /// </summary>
-        public string LastName
+        public string SurName
         {
             get
             {
-                return _lastName;
+                return _surName;
             }
             set
             {
-                if (!string.IsNullOrWhiteSpace(value))
+                if (Validator.AssertStringContainsOnlyLetters(value, nameof(SurName)))
                 {
-                    _lastName = value;
-                }
-                else
-                {
-                    throw new ArgumentException("Невозможное значение фамилии");
+                    _surName = value;
                 }
             }
         }
@@ -99,5 +91,6 @@ namespace Programming.Models
             }
         }
         #endregion
+
     }
 }

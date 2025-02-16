@@ -8,16 +8,6 @@ namespace Programming.Models
 {
     public class Song
     {
-        public Song(string Name, string Artist, double Duration)
-        {
-            this.Name = Name;
-            this.Artist = Artist;
-            this.Duration = Duration;
-        }
-        public Song()
-        {
-
-        }
         #region Fields
         /// <summary>
         /// Название
@@ -32,7 +22,16 @@ namespace Programming.Models
         /// </summary>
         private double _duration;
         #endregion
+        public Song(string Name, string Artist, double Duration)
+        {
+            this.Name = Name;
+            this.Artist = Artist;
+            this.Duration = Duration;
+        }
+        public Song()
+        {
 
+        }
         #region Properties
         /// <summary>
         /// Название
@@ -87,13 +86,9 @@ namespace Programming.Models
             }
             set
             {
-                if (value > 0)
+                if (Validator.AssertOnPositiveValue(value, nameof(Duration)))
                 {
                     _duration = value;
-                }
-                else
-                {
-                    throw new ArgumentException("Невозможное значение продолжительности");
                 }
             }
         }

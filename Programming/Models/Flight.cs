@@ -8,16 +8,6 @@ namespace Programming.Models
 {
     public class Flight
     {
-        public Flight(string DeparturePoint, string Destination, int FlightTime)
-        {
-            this.DeparturePoint = DeparturePoint;
-            this.Destination = Destination;
-            this.FlightTime = FlightTime;
-        }
-        public Flight()
-        {
-
-        }
         #region Fields
         /// <summary>
         /// Пункт вылета
@@ -32,7 +22,16 @@ namespace Programming.Models
         /// </summary>
         private int _flightTime;
         #endregion
+        public Flight(string DeparturePoint, string Destination, int FlightTime)
+        {
+            this.DeparturePoint = DeparturePoint;
+            this.Destination = Destination;
+            this.FlightTime = FlightTime;
+        }
+        public Flight()
+        {
 
+        }
         #region Properties
         /// <summary>
         /// Пункт вылета
@@ -87,13 +86,9 @@ namespace Programming.Models
             }
             set
             {
-                if (value > 0)
+                if (Validator.AssertOnPositiveValue(value, nameof(FlightTime)))
                 {
                     _flightTime = value;
-                }
-                else
-                {
-                    throw new ArgumentException("Недопустимое значение времени полета");
                 }
             }
         }

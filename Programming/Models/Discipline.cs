@@ -8,16 +8,6 @@ namespace Programming.Models
 {
     public class Discipline
     {
-        public Discipline(string Name, string TeacherLastName, int Assessment)
-        {
-            this.Name = Name;
-            this.TeacherLastName = TeacherLastName;
-            this.Assessment = Assessment;
-        }
-        public Discipline()
-        {
-
-        }
         #region Fields
         /// <summary>
         /// Название дисциплины
@@ -32,7 +22,16 @@ namespace Programming.Models
         /// </summary>
         private int _assessment;
         #endregion
+        public Discipline(string Name, string TeacherLastName, int Assessment)
+        {
+            this.Name = Name;
+            this.TeacherLastName = TeacherLastName;
+            this.Assessment = Assessment;
+        }
+        public Discipline()
+        {
 
+        }
         #region Properties
         /// <summary>
         /// Название дисциплины
@@ -87,13 +86,9 @@ namespace Programming.Models
             }
             set
             {
-                if (value > 1 && value <= 5)
+                if (Validator.AssertValueInRange(value,1,5,nameof(Assessment)))
                 {
                     _assessment = value;
-                }
-                else
-                {
-                    throw new ArgumentException("Невозможное значение оценки");
                 }
             }
         }

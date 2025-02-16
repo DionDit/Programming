@@ -8,18 +8,6 @@ namespace Programming.Models
 {
     public class Film
     {
-        public Film(string Name, int Duration, int ReleaseYear, string Genre, double Rating)
-        {
-            this.Name = Name;
-            this.Duration = Duration;
-            this.ReleaseYear = ReleaseYear;
-            this.Genre = Genre;
-            this.Rating = Rating;
-        }
-        public Film()
-        {
-
-        }
         #region Fields
         /// <summary>
         /// Название фильма
@@ -42,7 +30,18 @@ namespace Programming.Models
         /// </summary>
         private double _rating;
         #endregion
+        public Film(string Name, int Duration, int ReleaseYear, string Genre, double Rating)
+        {
+            this.Name = Name;
+            this.Duration = Duration;
+            this.ReleaseYear = ReleaseYear;
+            this.Genre = Genre;
+            this.Rating = Rating;
+        }
+        public Film()
+        {
 
+        }
         #region Properties
         /// <summary>
         /// Название фильма
@@ -76,13 +75,9 @@ namespace Programming.Models
             }
             set
             {
-                if (value > 0)
+                if (Validator.AssertOnPositiveValue(value, nameof(Duration)))
                 {
                     _duration = value;
-                }
-                else
-                {
-                    throw new ArgumentException("Недопустимое значение продолжительности фильма");
                 }
             }
         }
@@ -97,13 +92,9 @@ namespace Programming.Models
             }
             set
             {
-                if (value >= 1900 && value <= DateTime.Now.Year)
+                if (Validator.AssertValueInRange(value, 1900, DateTime.Now.Year, nameof(ReleaseYear)))
                 {
                     _releaseYear = value;
-                }
-                else
-                {
-                    throw new ArgumentException("Недопустимое значение года выпуска");
                 }
             }
         }
@@ -139,13 +130,9 @@ namespace Programming.Models
             }
             set
             {
-                if (value >= 0 && value <= 10)
+                if (Validator.AssertValueInRange(value, 0, 10, nameof(Rating)))
                 {
                     _rating = value;
-                }
-                else
-                {
-                    throw new ArgumentException("Недопустимое значение рейтинга");
                 }
             }
         }

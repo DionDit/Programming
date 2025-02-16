@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Programming.Models.Geometry;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,18 +9,11 @@ namespace Programming.Models
 {
     public class Rectangle
     {
-        public Rectangle(int Index, double Lenght, double Width, string Color)
-        {
-            this.Index = Index;
-            this.Lenght = Lenght;
-            this.Width = Width;
-            this.Color = Color;
-        }
-        public Rectangle()
-        {
-
-        }
         #region Fields
+        /// <summary>
+        /// Индетификатор прямоугольника
+        /// </summary>
+        private int _id;
         /// <summary>
         /// Длина
         /// </summary>
@@ -32,10 +26,29 @@ namespace Programming.Models
         /// Цвет
         /// </summary>
         private string _color;
+        /// <summary>
+        /// Кол.во всех существующих прямоугольников
+        /// </summary>
+        private static int _allRectanglesCount;
         #endregion
+        public Rectangle(double Lenght, double Width, string Color)
+        {
+            this.Lenght = Lenght;
+            this.Width = Width;
+            this.Color = Color;
+            _allRectanglesCount++;
+            _id = _allRectanglesCount;
+        }
+        public Rectangle()
+        {
 
+        }
         #region Properties
-        public int Index { get; set; }
+        public int Id { get => _id; }
+        /// <summary>
+        /// Центр прямоугольника
+        /// </summary>
+        public Point2D Center { get => new Point2D(Width / 2, Lenght / 2); }
         /// <summary>
         /// Длина
         /// </summary>
@@ -47,13 +60,9 @@ namespace Programming.Models
             }
             set
             {
-                if (value > 0)
+                if (Validator.AssertOnPositiveValue(value, nameof(Lenght)))
                 {
                     _lenght = value;
-                }
-                else
-                {
-                    throw new ArgumentException("Невозможное значение длины");
                 }
             }
         }
@@ -68,13 +77,9 @@ namespace Programming.Models
             }
             set
             {
-                if (value > 0)
+                if (Validator.AssertOnPositiveValue(value, nameof(Width)))
                 {
                     _width = value;
-                }
-                else
-                {
-                    throw new ArgumentException("Невозможное значение ширины");
                 }
             }
         }
@@ -99,8 +104,9 @@ namespace Programming.Models
                 }
             }
         }
+        public static int AllRectanglesCount { get => _allRectanglesCount; }
         #endregion
 
-        public override string ToString() => $"Rectangle {Index}";
+        public override string ToString() => $"Rectangle {Id}";
     }
 }

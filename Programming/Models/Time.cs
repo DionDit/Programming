@@ -8,16 +8,6 @@ namespace Programming.Models
 {
     public class Time
     {
-        public Time(int Hours, int Minutes, int Seconds)
-        {
-            this.Hours = Hours;
-            this.Minutes = Minutes;
-            this.Seconds = Seconds;
-        }
-        public Time()
-        {
-
-        }
         #region Fields
         /// <summary>
         /// Часы
@@ -33,7 +23,16 @@ namespace Programming.Models
         private int _seconds;
 
         #endregion
+        public Time(int Hours, int Minutes, int Seconds)
+        {
+            this.Hours = Hours;
+            this.Minutes = Minutes;
+            this.Seconds = Seconds;
+        }
+        public Time()
+        {
 
+        }
         #region Properties
         /// <summary>
         /// Часы
@@ -46,13 +45,9 @@ namespace Programming.Models
             }
             set
             {
-                if (value > 0 && value <= 23)
+                if (Validator.AssertValueInRange(value, 0, 23, nameof(Hours)))
                 {
                     _hours = value;
-                }
-                else
-                {
-                    throw new ArgumentException("Невозможное значение часов");
                 }
             }
         }
@@ -67,13 +62,9 @@ namespace Programming.Models
             }
             set
             {
-                if (value > 0 && value <= 60)
+                if (Validator.AssertValueInRange(value, 0, 60, nameof(Minutes)))
                 {
                     _minutes = value;
-                }
-                else
-                {
-                    throw new ArgumentException("Невозможное значение минут");
                 }
             }
         }
@@ -88,13 +79,9 @@ namespace Programming.Models
             }
             set
             {
-                if (value > 0 && value <= 60)
+                if (Validator.AssertValueInRange(value, 0, 60, nameof(Seconds)))
                 {
                     _seconds = value;
-                }
-                else
-                {
-                    throw new ArgumentException("Невозможное значение минут");
                 }
             }
         }
