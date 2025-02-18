@@ -17,6 +17,10 @@ namespace Programming.Views.UserControls
         {
             InitializeComponent();
         }
+
+        /// <summary>
+        /// Проверка ввода дня недели.
+        /// </summary>
         private void WeekDayParseButtonClick(object sender, EventArgs e)
         {
             Weekday outPut;

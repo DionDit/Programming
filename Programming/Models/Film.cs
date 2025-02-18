@@ -6,30 +6,46 @@ using System.Threading.Tasks;
 
 namespace Programming.Models
 {
+    /// <summary>
+    /// Фильм.
+    /// </summary>
     public class Film
     {
         #region Fields
         /// <summary>
-        /// Название фильма
+        /// Название фильма.
         /// </summary>
         private string _name;
+
         /// <summary>
-        /// Продолжительность фильма
+        /// Продолжительность фильма.
         /// </summary>
         private int _duration;
+
         /// <summary>
-        /// Год выпуска
+        /// Год выпуска.
         /// </summary>
         private int _releaseYear;
+
         /// <summary>
-        /// Жанр фильма
+        /// Жанр фильма.
         /// </summary>
         private string _genre;
+
         /// <summary>
-        /// Рейтинг фильма
+        /// Рейтинг фильма.
         /// </summary>
         private double _rating;
         #endregion
+
+        /// <summary>
+        /// Создает экземпляр класса <see cref="Film"/>.
+        /// </summary>
+        /// <param name="Name">Название.</param>
+        /// <param name="Duration">Продолжительность.</param>
+        /// <param name="ReleaseYear">Год выпуска.</param>
+        /// <param name="Genre">Жанр.</param>
+        /// <param name="Rating">Рейтинг.</param>
         public Film(string Name, int Duration, int ReleaseYear, string Genre, double Rating)
         {
             this.Name = Name;
@@ -38,13 +54,18 @@ namespace Programming.Models
             this.Genre = Genre;
             this.Rating = Rating;
         }
+
+        /// <summary>
+        /// Создает экземпляр класса <see cref="Film"/>.
+        /// </summary>
         public Film()
         {
 
         }
+
         #region Properties
         /// <summary>
-        /// Название фильма
+        /// Название фильма.
         /// </summary>
         public string Name
         {
@@ -64,8 +85,9 @@ namespace Programming.Models
                 }
             }
         }
+
         /// <summary>
-        /// Продолжительность фильма
+        /// Продолжительность фильма.
         /// </summary>
         public int Duration
         {
@@ -81,8 +103,9 @@ namespace Programming.Models
                 }
             }
         }
+
         /// <summary>
-        /// Год выпуска фильма
+        /// Год выпуска фильма.
         /// </summary>
         public int ReleaseYear
         {
@@ -98,8 +121,9 @@ namespace Programming.Models
                 }
             }
         }
+
         /// <summary>
-        /// Жанр фильма
+        /// Жанр фильма.
         /// </summary>
         public string Genre
         {
@@ -119,8 +143,9 @@ namespace Programming.Models
                 }
             }
         }
+
         /// <summary>
-        /// Рейтинг фильма
+        /// Рейтинг фильма.
         /// </summary>
         public double Rating
         {
@@ -138,6 +163,10 @@ namespace Programming.Models
         }
         #endregion
 
+        /// <summary>
+        /// Метод переопределения ToString().
+        /// </summary>
+        /// <returns>Строку с информацией об фильме.</returns>
         public override string ToString() => $"Film: {Name}";
     }
 }

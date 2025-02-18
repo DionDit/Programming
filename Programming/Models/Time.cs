@@ -6,36 +6,53 @@ using System.Threading.Tasks;
 
 namespace Programming.Models
 {
+    /// <summary>
+    /// Время.
+    /// </summary>
     public class Time
     {
         #region Fields
         /// <summary>
-        /// Часы
+        /// Часы.
         /// </summary>
         private int _hours;
+
         /// <summary>
-        /// Минуты
+        /// Минуты.
         /// </summary>
         private int _minutes;
+
         /// <summary>
-        /// Секунды
+        /// Секунды.
         /// </summary>
         private int _seconds;
 
         #endregion
+
+        /// <summary>
+        /// Создает экземпляр класса <see cref="Time"/>.
+        /// </summary>
+        /// <param name="Hours">Часы.</param>
+        /// <param name="Minutes">Минуты.</param>
+        /// <param name="Seconds">Секунды.</param>
         public Time(int Hours, int Minutes, int Seconds)
         {
             this.Hours = Hours;
             this.Minutes = Minutes;
             this.Seconds = Seconds;
         }
+
+        /// <summary>
+        /// Создает экземпляр класса <see cref="Time"/>.
+        /// </summary>
         public Time()
         {
 
         }
+
         #region Properties
         /// <summary>
-        /// Часы
+        /// Часы.
         /// </summary>
         public int Hours
         {
@@ -51,8 +68,9 @@ namespace Programming.Models
                 }
             }
         }
+
         /// <summary>
-        /// Минуты
+        /// Минуты.
         /// </summary>
         public int Minutes
         {
@@ -68,8 +86,9 @@ namespace Programming.Models
                 }
             }
         }
+
         /// <summary>
-        /// Секунды
+        /// Секунды.
         /// </summary>
         public int Seconds
         {

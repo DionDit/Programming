@@ -14,6 +14,9 @@ namespace Programming.Views.UserControls
 {
     public partial class SeasonControl : UserControl
     {
+        /// <summary>
+        /// Событие возникающие при изменении времени года.
+        /// </summary>
         public event EventHandler<int> SeasonChanged;
 
         public SeasonControl()
@@ -21,6 +24,10 @@ namespace Programming.Views.UserControls
             InitializeComponent();
             SeasonCB.DataSource = Enum.GetValues(typeof(Season));
         }
+
+        /// <summary>
+        /// Нажатие кнопки для вызова события.
+        /// </summary>
         private void SeasonButton_Click(object sender, EventArgs e)
         {
             switch (SeasonCB.SelectedIndex)
@@ -39,9 +46,11 @@ namespace Programming.Views.UserControls
                     break;
             }
         }
-        protected virtual void OnSeasonChanged(int season)
-        {
-            SeasonChanged?.Invoke(this, season);
-        }
+
+        /// <summary>
+        /// Вызов события.
+        /// </summary>
+        /// <param name="season">Номер времени года.</param>
+        protected virtual void OnSeasonChanged(int season) => SeasonChanged?.Invoke(this, season);
     }
 }

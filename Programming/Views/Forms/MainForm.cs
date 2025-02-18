@@ -28,6 +28,9 @@ namespace Programming.Views.Forms
             SeasonControl.SeasonChanged += SeasonControl_SeasonChanged;
         }
 
+        /// <summary>
+        /// Событие возникающие при выборе времени года.
+        /// </summary>
         private void SeasonControl_SeasonChanged(object sender, int e)
         {
             switch (e)

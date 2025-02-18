@@ -6,35 +6,52 @@ using System.Threading.Tasks;
 
 namespace Programming.Models
 {
+    /// <summary>
+    /// Песня.
+    /// </summary>
     public class Song
     {
         #region Fields
         /// <summary>
-        /// Название
+        /// Название.
         /// </summary>
         private string _name;
+
         /// <summary>
-        /// Исполнитель
+        /// Исполнитель.
         /// </summary>
         private string _artist;
+
         /// <summary>
-        /// Продолжительность
+        /// Продолжительность.
         /// </summary>
         private double _duration;
         #endregion
+
+        /// <summary>
+        /// Создает экземпляр класса <see cref="Song"/>.
+        /// </summary>
+        /// <param name="Name">Название.</param>
+        /// <param name="Artist">Исполнитель.</param>
+        /// <param name="Duration">Продолжительность.</param>
         public Song(string Name, string Artist, double Duration)
         {
             this.Name = Name;
             this.Artist = Artist;
             this.Duration = Duration;
         }
+
+        /// <summary>
+        /// Создает экземпляр класса <see cref="Song"/>.
+        /// </summary>
         public Song()
         {
 
         }
+
         #region Properties
         /// <summary>
-        /// Название
+        /// Название.
         /// </summary>
         public string Name
         {
@@ -54,8 +71,9 @@ namespace Programming.Models
                 }
             }
         }
+
         /// <summary>
-        /// Исполнитель
+        /// Исполнитель.
         /// </summary>
         public string Artist
         {
@@ -75,8 +93,9 @@ namespace Programming.Models
                 }
             }
         }
+
         /// <summary>
-        /// Продолжительность
+        /// Продолжительность.
         /// </summary>
         public double Duration
         {

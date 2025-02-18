@@ -6,14 +6,17 @@ using System.Threading.Tasks;
 
 namespace Programming.Models.Geometry
 {
+    /// <summary>
+    /// Проверяет объекты на пересечения.
+    /// </summary>
     public static class CollisionManager
     {
         /// <summary>
-        /// Пересекаются ли прямоугольники
+        /// Проверяет, пересекаются ли прямоугольники.
         /// </summary>
-        /// <param name="rectangle1">Первый прямоугольник</param>
-        /// <param name="rectangle2">Второй прямоугольник</param>
-        /// <returns></returns>
+        /// <param name="rectangle1">Первый прямоугольник.</param>
+        /// <param name="rectangle2">Второй прямоугольник.</param>
+        /// <returns>Возвращает true, если прямоугольники пересекаются.</returns>
         public static bool IsCollision(Rectangle rectangle1, Rectangle rectangle2)
         {
             //Разница координат по модулю
@@ -27,12 +30,13 @@ namespace Programming.Models.Geometry
             return deltaX < sumHalfWidths && deltaY < sumHalfHeights;
 
         }
+
         /// <summary>
-        /// Пересекаются ли кольца
+        /// Проверяет, пересекаются ли кольца.
         /// </summary>
-        /// <param name="ring1">Первое кольцо</param>
-        /// <param name="ring2">Второе кольцо</param>
-        /// <returns></returns>
+        /// <param name="ring1">Первое кольцо.</param>
+        /// <param name="ring2">Второе кольцо.</param>
+        /// <returns>Возвращает true, если кольца пересекаются.</returns>
         public static bool IsCollision(Ring ring1, Ring ring2)
         {
             //Расстояние между центрами колец

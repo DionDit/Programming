@@ -6,26 +6,37 @@ using System.Threading.Tasks;
 
 namespace Programming.Models.Geometry
 {
+    /// <summary>
+    /// Точка в пространстве.
+    /// </summary>
     public class Point2D
     {
         #region Fields
         /// <summary>
-        /// Значение Х
+        /// Значение Х.
         /// </summary>
         private double _x;
+
         /// <summary>
-        /// Значение Y
+        /// Значение Y.
         /// </summary>
         private double _y;
         #endregion
+
+        /// <summary>
+        /// Создает экземпляр класса <see cref="Point2D"/>.
+        /// </summary>
+        /// <param name="X">Значение Х</param>
+        /// <param name="Y">Значение Y</param>
         public Point2D(double X, double Y)
         {
             this.X = X;
             this.Y = Y;
         }
+
         #region Properties
         /// <summary>
-        /// Значение X
+        /// Значение X.
         /// </summary>
         public double X
         {
@@ -41,8 +52,9 @@ namespace Programming.Models.Geometry
                 }
             }
         }
+
         /// <summary>
-        /// Значение Y
+        /// Значение Y.
         /// </summary>
         public double Y
         {

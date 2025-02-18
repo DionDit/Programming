@@ -7,38 +7,48 @@ using System.Threading.Tasks;
 
 namespace Programming.Models
 {
+    /// <summary>
+    /// Набор цветов в приложении.
+    /// </summary>
     public static class AppColors
     {
         /// <summary>
-        /// Цвет элемента управления при возникновении ошибки валидации
+        /// Цвет элемента управления при возникновении ошибки валидации.
         /// </summary>
         public static Color ErrorInput { get => Color.LightPink; }
+
         /// <summary>
-        /// Базовый цвет элемента управления
+        /// Базовый цвет элемента управления.
         /// </summary>
         public static Color BaseInput { get => Color.White; }
+
         /// <summary>
-        /// Цвет лета
+        /// Цвет лета.
         /// </summary>
         public static Color Summer { get => Color.Green; }
+
         /// <summary>
-        /// Цвет осени
+        /// Цвет осени.
         /// </summary>
         public static Color Autumn { get => Color.Yellow; }
+
         /// <summary>
-        /// Цвет зимы
+        /// Цвет зимы.
         /// </summary>
         public static Color Winter { get => Color.Blue; }
+
         /// <summary>
-        /// Цвет весны
+        /// Цвет весны.
         /// </summary>
         public static Color Spring { get => Color.Cyan; }
+
         /// <summary>
-        /// Базовый цвет прямоугольника
+        /// Базовый цвет прямоугольника.
         /// </summary>
         public static Color RectangleBase { get => Color.FromArgb(127, 127, 255, 127); }
+
         /// <summary>
-        /// Цвет прямоугольника при пересечении
+        /// Цвет прямоугольника при пересечении.
         /// </summary>
         public static Color RectangleCollision { get => Color.FromArgb(255, 255, 0, 0); }
     }

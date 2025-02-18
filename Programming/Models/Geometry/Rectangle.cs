@@ -7,30 +7,45 @@ using System.Threading.Tasks;
 
 namespace Programming.Models
 {
+    /// <summary>
+    /// Прямоугольник.
+    /// </summary>
     public class Rectangle
     {
         #region Fields
         /// <summary>
-        /// Индетификатор прямоугольника
+        /// Идентификатор прямоугольника.
         /// </summary>
         private int _id;
+
         /// <summary>
-        /// Высота
+        /// Высота.
         /// </summary>
         private double _height;
+
         /// <summary>
-        /// Ширина
+        /// Ширина.
         /// </summary>
         private double _width;
+
         /// <summary>
-        /// Цвет
+        /// Цвет.
         /// </summary>
         private string _color;
+
         /// <summary>
-        /// Кол.во всех существующих прямоугольников
+        /// Кол.во всех существующих прямоугольников.
         /// </summary>
         private static int _allRectanglesCount;
         #endregion
+
+        /// <summary>
+        /// Создает экземпляр класса <see cref="Rectangle"/>.
+        /// </summary>
+        /// <param name="Center">Центр прямоугольника.</param>
+        /// <param name="Height">Высота.</param>
+        /// <param name="Width">Ширина.</param>
+        /// <param name="Color">Цвет.</param>
         public Rectangle(Point2D Center, double Height, double Width, string Color)
         {
             this.Center = Center;
@@ -40,20 +55,29 @@ namespace Programming.Models
             _allRectanglesCount++;
             _id = _allRectanglesCount;
         }
+
+        /// <summary>
+        /// Создает экземпляр класса <see cref="Rectangle"/>.
+        /// </summary>
         public Rectangle()
         {
             _allRectanglesCount++;
             _id = _allRectanglesCount;
         }
+
         #region Properties
-        public int Id { get => _id; }
         /// <summary>
-        /// Центр прямоугольника
+        /// Идентификатор прямоугольника.
         /// </summary>
-        //public Point2D Center { get => new Point2D(Width / 3, Height / 2); }
-        public Point2D Center { get; private set; }
+        public int Id { get => _id; }
+
         /// <summary>
-        /// Длина
+        /// Центр прямоугольника.
+        /// </summary>
+        public Point2D Center { get; private set; }
+
+        /// <summary>
+        /// Длина.
         /// </summary>
         public double Height
         {
@@ -69,8 +93,9 @@ namespace Programming.Models
                 }
             }
         }
+
         /// <summary>
-        /// Ширина
+        /// Ширина.
         /// </summary>
         public double Width
         {
@@ -86,8 +111,9 @@ namespace Programming.Models
                 }
             }
         }
+
         /// <summary>
-        /// Цвет
+        /// Цвет.
         /// </summary>
         public string Color
         {
@@ -107,10 +133,22 @@ namespace Programming.Models
                 }
             }
         }
+
+        /// <summary>
+        /// Кол.во всех существующих прямоугольников.
+        /// </summary>
         public static int AllRectanglesCount { get => _allRectanglesCount; }
+
+        /// <summary>
+        /// Список прямоугольников.
+        /// </summary>
         public static List<Rectangle> Rectangles = new List<Rectangle>();
         #endregion
 
+        /// <summary>
+        /// Метод переопределения ToString().
+        /// </summary>
+        /// <returns>Строку с информацией об прямоугольнике.</returns>
         public override string ToString() => $"{Id}: (X= {Center.X}; Y= {Center.Y}; W= {Width}; H= {Height})";
     }
 }

@@ -165,7 +165,7 @@
             this.LenghtTextBox.Name = "LenghtTextBox";
             this.LenghtTextBox.Size = new System.Drawing.Size(131, 20);
             this.LenghtTextBox.TabIndex = 16;
-            this.LenghtTextBox.TextChanged += new System.EventHandler(this.LenghtTextBox_TextChanged);
+            this.LenghtTextBox.TextChanged += new System.EventHandler(this.HeightTextBox_TextChanged);
             // 
             // RectanglesBox
             // 

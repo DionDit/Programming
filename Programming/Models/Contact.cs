@@ -7,36 +7,52 @@ using System.Threading.Tasks;
 
 namespace Programming.Models
 {
+    /// <summary>
+    /// Контакт телефонной книжки.
+    /// </summary>
     public class Contact
     {
         #region Fields
         /// <summary>
-        /// Название
+        /// Название.
         /// </summary>
         private string _name;
+
         /// <summary>
-        /// Фамилия
+        /// Фамилия.
         /// </summary>
         private string _surName;
+
         /// <summary>
-        /// Номер телефона
+        /// Номер телефона.
         /// </summary>
         private string _phoneNumber;
-
         #endregion
+
+        /// <summary>
+        /// Создает экземпляр класса <see cref="Contact"/>.
+        /// </summary>
+        /// <param name="Name">Название.</param>
+        /// <param name="SurName">Фамилия.</param>
+        /// <param name="PhoneNumber">Номер телефона.</param>
         public Contact(string Name, string SurName, string PhoneNumber)
         {
             this.Name = Name;
             this.SurName = SurName;
             this.PhoneNumber = PhoneNumber;
         }
+
+        /// <summary>
+        /// Создает экземпляр класса <see cref="Contact"/>.
+        /// </summary>
         public Contact()
         {
 
         }
+
         #region Properties
         /// <summary>
-        /// Название
+        /// Название.
         /// </summary>
         public string Name
         {
@@ -52,8 +68,9 @@ namespace Programming.Models
                 }
             }
         }
+
         /// <summary>
-        /// Фамилия
+        /// Фамилия.
         /// </summary>
         public string SurName
         {
@@ -69,8 +86,9 @@ namespace Programming.Models
                 }
             }
         }
+
         /// <summary>
-        /// Номер телефона
+        /// Номер телефона.
         /// </summary>
         public string PhoneNumber
         {

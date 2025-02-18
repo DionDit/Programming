@@ -6,35 +6,52 @@ using System.Threading.Tasks;
 
 namespace Programming.Models
 {
+    /// <summary>
+    /// Информация о полете
+    /// </summary>
     public class Flight
     {
         #region Fields
         /// <summary>
-        /// Пункт вылета
+        /// Пункт вылета.
         /// </summary>
         private string _departurePoint;
+
         /// <summary>
-        /// Пункт назначения
+        /// Пункт назначения.
         /// </summary>
         private string _destination;
+
         /// <summary>
-        ///  Время полета в минутах
+        ///  Время полета в минутах.
         /// </summary>
         private int _flightTime;
         #endregion
+
+        /// <summary>
+        /// Создает экземпляр класса <see cref="Flight"/>.
+        /// </summary>
+        /// <param name="DeparturePoint">Пункт вылета.</param>
+        /// <param name="Destination">Пункт назначения.</param>
+        /// <param name="FlightTime">Время полета.</param>
         public Flight(string DeparturePoint, string Destination, int FlightTime)
         {
             this.DeparturePoint = DeparturePoint;
             this.Destination = Destination;
             this.FlightTime = FlightTime;
         }
+
+        /// <summary>
+        /// Создает экземпляр класса <see cref="Flight"/>.
+        /// </summary>
         public Flight()
         {
 
         }
+
         #region Properties
         /// <summary>
-        /// Пункт вылета
+        /// Пункт вылета.
         /// </summary>
         public string DeparturePoint
         {
@@ -54,8 +71,9 @@ namespace Programming.Models
                 }
             }
         }
+
         /// <summary>
-        /// Пункт назначения
+        /// Пункт назначения.
         /// </summary>
         public string Destination
         {
@@ -75,8 +93,9 @@ namespace Programming.Models
                 }
             }
         }
+
         /// <summary>
-        ///  Время полета в минутах
+        ///  Время полета в минутах.
         /// </summary>
         public int FlightTime
         {

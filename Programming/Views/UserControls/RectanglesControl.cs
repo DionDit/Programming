@@ -15,12 +15,20 @@ namespace Programming.Views.UserControls
 {
     public partial class RectanglesControl : UserControl
     {
+        /// <summary>
+        /// Выбранный прямоугольник.
+        /// </summary>
         private Rectangle _currentRectangle;
+
         public RectanglesControl()
         {
             InitializeComponent();
             RectanglesBox.DataSource = Rectangle.Rectangles;
         }
+
+        /// <summary>
+        /// Изменение выбранного прямоугольника.
+        /// </summary>
         private void RectanglesBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -33,6 +41,10 @@ namespace Programming.Views.UserControls
             }
             
         }
+
+        /// <summary>
+        /// Обновление полей ввода.
+        /// </summary>
         private void UpdatePropertyTextBox()
         {
             if (RectanglesBox.SelectedItem != null)
@@ -45,6 +57,11 @@ namespace Programming.Views.UserControls
             }
 
         }
+
+        /// <summary>
+        /// Обновление данных прямоугольника.
+        /// </summary>
+        /// <param name="rectangle">Изменяемый прямоугольник.</param>
         private void UpdateRectangleInfo(Rectangle rectangle)
         {
             WidthTextBox.Text = _currentRectangle.Width.ToString();
@@ -54,6 +71,10 @@ namespace Programming.Views.UserControls
             YTextBox.Text = _currentRectangle.Center.Y.ToString();
             IdTextBox.Text = _currentRectangle.Id.ToString();
         }
+
+        /// <summary>
+        /// Очистка полей ввода.
+        /// </summary>
         private void ClearRectangleInfo()
         {
             WidthTextBox.Text = string.Empty;
@@ -63,7 +84,11 @@ namespace Programming.Views.UserControls
             YTextBox.Text = string.Empty;
             IdTextBox.Text = string.Empty;
         }
-        private void LenghtTextBox_TextChanged(object sender, EventArgs e)
+
+        /// <summary>
+        /// Изменение высоты.
+        /// </summary>
+        private void HeightTextBox_TextChanged(object sender, EventArgs e)
         {
             try
             {
@@ -76,6 +101,10 @@ namespace Programming.Views.UserControls
                 LenghtTextBox.BackColor = AppColors.ErrorInput;
             }
         }
+
+        /// <summary>
+        /// Изменение ширины.
+        /// </summary>
         private void WidthTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -89,6 +118,10 @@ namespace Programming.Views.UserControls
                 WidthTextBox.BackColor = AppColors.ErrorInput;
             }
         }
+
+        /// <summary>
+        /// Изменение цвета.
+        /// </summary>
         private void ColorTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -104,6 +137,10 @@ namespace Programming.Views.UserControls
                 ColorTextBox.BackColor = AppColors.ErrorInput;
             }
         }
+
+        /// <summary>
+        /// Поиск прямоугольника с макс.шириной.
+        /// </summary>
         private int FindRectangleWithMaxWidth(List<Rectangle> Rectangles)
         {
             double maxWidth = 0;
@@ -118,11 +155,19 @@ namespace Programming.Views.UserControls
             }
             return Index;
         }
+
+        /// <summary>
+        /// Поиск прямоугольника с макс.шириной.
+        /// </summary>
         private void FindRectangleButton_Click(object sender, EventArgs e)
         {
             RectanglesBox.SelectedIndex = FindRectangleWithMaxWidth(Rectangle.Rectangles);
             _currentRectangle = RectanglesBox.SelectedItem as Rectangle;
         }
+
+        /// <summary>
+        /// Запрет ввода данных.
+        /// </summary>
         private void InputData(object sender, KeyPressEventArgs e)
         {
             Validator.InterdictionInputData(sender, e);

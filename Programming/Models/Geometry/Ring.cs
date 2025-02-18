@@ -6,27 +6,39 @@ using System.Threading.Tasks;
 
 namespace Programming.Models.Geometry
 {
+    /// <summary>
+    /// Кольцо.
+    /// </summary>
     public class Ring
     {
         #region Fields
         /// <summary>
-        /// Внешний радиус
+        /// Внешний радиус.
         /// </summary>
         private double _outerRadius;
+
         /// <summary>
-        /// Внутренний радиус
+        /// Внутренний радиус.
         /// </summary>
         private double _innerRadius;
         #endregion
+
+        /// <summary>
+        /// Создает экземпляр класса <see cref="Ring"/>.
+        /// </summary>
+        /// <param name="OuterRadius">Внешний радиус.</param>
+        /// <param name="InnerRadius">Внутренний радиус.</param>
+        /// <param name="Center">Центр кольца.</param>
         public Ring(double OuterRadius, double InnerRadius, Point2D Center)
         {
             this.OuterRadius = OuterRadius;
             this.InnerRadius = InnerRadius;
             this.Center = Center;
         }
+
         #region Properties
         /// <summary>
-        /// Внешний радиус
+        /// Внешний радиус.
         /// </summary>
         public double OuterRadius
         {
@@ -42,8 +54,9 @@ namespace Programming.Models.Geometry
                 }
             }
         }
+
         /// <summary>
-        /// Внутренний радиус
+        /// Внутренний радиус.
         /// </summary>
         public double InnerRadius
         {
@@ -59,10 +72,15 @@ namespace Programming.Models.Geometry
                 }
             }
         }
+
         /// <summary>
-        /// Площадь кольца
+        /// Площадь кольца.
         /// </summary>
         public double Area { get => Math.PI * Math.Pow(OuterRadius, 2) - Math.PI * Math.Pow(InnerRadius, 2); }
+
+        /// <summary>
+        /// Центр кольца.
+        /// </summary>
         public Point2D Center { get; set; }
         #endregion
     }

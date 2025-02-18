@@ -7,20 +7,20 @@ using System.Windows.Forms;
 
 namespace Programming.Models.Geometry
 {
+    /// <summary>
+    /// Создает случайные экземпляры класса <see cref="Rectangle"/>.
+    /// </summary>
     public static class RectangleFactory
     {
+        /// <summary>
+        /// Экземпляр класса <see cref="Random"/>.
+        /// </summary>
         private static Random Random = new Random();
 
-        public static Rectangle Randomize(int Padding, Panel panel)
-        {
-            int width = Random.Next(10, 350);
-            int height = Random.Next(10, 350);
-
-            int x = Random.Next(Padding, panel.Width - width - Padding);
-            int y = Random.Next(Padding, panel.Height - height - Padding);
-
-            return new Rectangle(new Point2D(x + width / 2,y + height / 2), width, height, "Black");
-        }
+        /// <summary>
+        /// Создает экземпляр класса <see cref="Rectangle"/>.
+        /// </summary>
+        /// <returns>Прямоугольник со случайными значениями.</returns>
         public static Rectangle Randomize()
         {
             int width = Random.Next(10, 350);

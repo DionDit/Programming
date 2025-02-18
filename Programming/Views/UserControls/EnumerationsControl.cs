@@ -17,6 +17,10 @@ namespace Programming.Views.UserControls
         {
             InitializeComponent();
         }
+
+        /// <summary>
+        /// Изменение выбранного перечисления.
+        /// </summary>
         private void EnumListBox_SelectedValueChanged(object sender, EventArgs e)
         {
             switch ((sender as ListBox).SelectedIndex)
@@ -41,6 +45,10 @@ namespace Programming.Views.UserControls
                     break;
             }
         }
+
+        /// <summary>
+        /// Изменение выбранного значения перечисления.
+        /// </summary>
         private void ValueListBox_SelectedValueChanged(object sender, EventArgs e)
         {
             EnumValue.Text = Convert.ToInt32(ValueListBox.SelectedValue).ToString();

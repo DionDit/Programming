@@ -17,9 +17,17 @@ namespace Programming.Views.UserControls
     public partial class RectanglesCollisionControl : UserControl
     {
         #region Fields
+        /// <summary>
+        /// Список прямоугольников в пространстве.
+        /// </summary>
         private List<Panel> _rectanglePanels;
+
+        /// <summary>
+        /// Выбранный прямоугольник.
+        /// </summary>
         private Models.Rectangle _currentRectangle;
         #endregion
+
         public RectanglesCollisionControl()
         {
             _rectanglePanels = new List<Panel>();
@@ -27,12 +35,18 @@ namespace Programming.Views.UserControls
             UpdateRectangleListBox();
         }
 
+        /// <summary>
+        /// Изменение стиля кнопки добавления прямоугольника при наведении.
+        /// </summary>
         private void RectangleAdd_MouseMove(object sender, MouseEventArgs e)
         {
             RectangleAdd.BackColor = AppColors.BaseInput;
             RectangleAdd.BackgroundImage = Resources.RecAdd2;
         }
 
+        /// <summary>
+        /// Изменение стиля кнопки добавления прямоугольника при отсутствии наведения.
+        /// </summary>
         private void RectangleAdd_MouseLeave(object sender, EventArgs e)
         {
             RectangleAdd.BackColor = AppColors.BaseInput;
@@ -40,23 +54,36 @@ namespace Programming.Views.UserControls
 
         }
 
-        private void RectangleRemove_MouseLeave(object sender, EventArgs e)
-        {
-            RectangleRemove.BackgroundImage = Resources.RecRemove1;
-        }
-
+        /// <summary>
+        /// Изменение стиля кнопки удаления прямоугольника при наведении.
+        /// </summary>
         private void RectangleRemove_MouseMove(object sender, MouseEventArgs e)
         {
             RectangleRemove.BackgroundImage = Resources.RecRemove2;
 
         }
 
+        /// <summary>
+        /// Изменение стиля кнопки удаления прямоугольника при отсутствии наведения.
+        /// </summary>
+        private void RectangleRemove_MouseLeave(object sender, EventArgs e)
+        {
+            RectangleRemove.BackgroundImage = Resources.RecRemove1;
+        }
+
+        /// <summary>
+        /// Добавление нового прямоугольника.
+        /// </summary>
         private void RectangleAdd_Click(object sender, EventArgs e)
         {
-            Rectangle.Rectangles.Add(RectangleFactory.Randomize(15, RectanglePanel));
+            Rectangle.Rectangles.Add(RectangleFactory.Randomize());
             UpdateRectangleListBox();
             RectangleBox.SelectedIndex = RectangleBox.Items.Count - 1;
         }
+
+        /// <summary>
+        /// Удаление прямоугольника.
+        /// </summary>
         private void RectangleRemove_Click(object sender, EventArgs e)
         {
             Rectangle.Rectangles.Remove(_currentRectangle);
@@ -64,6 +91,10 @@ namespace Programming.Views.UserControls
             _currentRectangle = null;
             RectangleBox.SelectedIndex = RectangleBox.Items.Count - 1;
         }
+
+        /// <summary>
+        /// Обновление списка прямоугольников.
+        /// </summary>
         private void UpdateRectangleListBox()
         {
             RectangleBox.Items.Clear();
@@ -77,6 +108,10 @@ namespace Programming.Views.UserControls
             FindCollisions();
 
         }
+
+        /// <summary>
+        /// Обновление прямоугольников в пространстве.
+        /// </summary>
         private void UpdateRectanglePanel()
         {
 
@@ -93,6 +128,10 @@ namespace Programming.Views.UserControls
             });
             _rectanglePanels.ForEach(x => RectanglePanel.Controls.Add(x));
         }
+
+        /// <summary>
+        /// Поиск пересечений.
+        /// </summary>
         private void FindCollisions()
         {
             foreach (Control item in RectanglePanel.Controls)
@@ -114,6 +153,10 @@ namespace Programming.Views.UserControls
             }
 
         }
+
+        /// <summary>
+        /// Обновление данных в полях прямоугольника.
+        /// </summary>
         private void UpdatePropertyTextBox()
         {
             if (RectangleBox.SelectedItem != null)
@@ -126,6 +169,11 @@ namespace Programming.Views.UserControls
             }
 
         }
+
+        /// <summary>
+        /// Обновление данных прямоугольника.
+        /// </summary>
+        /// <param name="rectangle">Изменяемый прямоугольник.</param>
         private void UpdateRectangleInfo(Rectangle rectangle)
         {
             RectangleIdTextBox.Text = rectangle.Id.ToString();
@@ -134,6 +182,10 @@ namespace Programming.Views.UserControls
             RectangleWidthTextBox.Text = rectangle.Width.ToString();
             RectangleHeightTextBox.Text = rectangle.Height.ToString();
         }
+
+        /// <summary>
+        /// Очистка полей ввода.
+        /// </summary>
         private void ClearRectangleInfo()
         {
             RectangleIdTextBox.Text = string.Empty;
@@ -142,12 +194,21 @@ namespace Programming.Views.UserControls
             RectangleWidthTextBox.Text = string.Empty;
             RectangleHeightTextBox.Text = string.Empty;
         }
+
+        /// <summary>
+        /// Изменение выбранного прямоугольника.
+        /// </summary>
         private void RectangleBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             _currentRectangle = RectangleBox.SelectedItem as Rectangle;
             UpdatePropertyTextBox();
         }
 
+        /// <summary>
+        /// Изменение ширины.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RectangleWidthTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -165,6 +226,9 @@ namespace Programming.Views.UserControls
             }
         }
 
+        /// <summary>
+        /// Изменение высоты.
+        /// </summary>
         private void RectangleHeightTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -181,6 +245,10 @@ namespace Programming.Views.UserControls
                 }
             }
         }
+
+        /// <summary>
+        /// Запрет ввода данных.
+        /// </summary>
         private void InputData(object sender, KeyPressEventArgs e)
         {
             Validator.InterdictionInputData(sender, e);

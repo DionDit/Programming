@@ -6,35 +6,52 @@ using System.Threading.Tasks;
 
 namespace Programming.Models
 {
+    /// <summary>
+    /// Дисциплина.
+    /// </summary>
     public class Discipline
     {
         #region Fields
         /// <summary>
-        /// Название дисциплины
+        /// Название дисциплины.
         /// </summary>
         private string _name;
+
         /// <summary>
-        /// Фамилия преподавателя
+        /// Фамилия преподавателя.
         /// </summary>
         private string _teacherLastName;
+
         /// <summary>
-        /// Оценка
+        /// Оценка.
         /// </summary>
         private int _assessment;
         #endregion
+
+        /// <summary>
+        /// Создает экземпляр класса <see cref="Discipline"/>.
+        /// </summary>
+        /// <param name="Name">Название.</param>
+        /// <param name="TeacherLastName">ФИО преподавателя.</param>
+        /// <param name="Assessment">Оценка</param>
         public Discipline(string Name, string TeacherLastName, int Assessment)
         {
             this.Name = Name;
             this.TeacherLastName = TeacherLastName;
             this.Assessment = Assessment;
         }
+
+        /// <summary>
+        /// Создает экземпляр класса <see cref="Discipline"/>.
+        /// </summary>
         public Discipline()
         {
 
         }
+
         #region Properties
         /// <summary>
-        /// Название дисциплины
+        /// Название дисциплины.
         /// </summary>
         public string Name
         {
@@ -54,8 +71,9 @@ namespace Programming.Models
                 }
             }
         }
+
         /// <summary>
-        /// Фамилия преподавателя
+        /// Фамилия преподавателя.
         /// </summary>
         public string TeacherLastName
         {
@@ -75,8 +93,9 @@ namespace Programming.Models
                 }
             }
         }
+
         /// <summary>
-        /// Оценка
+        /// Оценка.
         /// </summary>
         public int Assessment
         {
