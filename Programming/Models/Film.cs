@@ -137,5 +137,7 @@ namespace Programming.Models
             }
         }
         #endregion
+
+        public override string ToString() => $"Film: {Name}";
     }
 }

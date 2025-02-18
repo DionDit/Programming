@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Programming.Models
 {
@@ -145,5 +146,15 @@ namespace Programming.Models
                 throw new ArgumentException($"Некорректное значение в свойстве {propertyName}. Допустимы только английские буквы и пробелы.");
             }
         }
+        /// <summary>
+        /// Указание для ограничения ввода входных данных
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public static void InterdictionInputData(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
+
     }
 }

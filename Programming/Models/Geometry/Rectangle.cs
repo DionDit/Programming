@@ -42,7 +42,8 @@ namespace Programming.Models
         }
         public Rectangle()
         {
-
+            _allRectanglesCount++;
+            _id = _allRectanglesCount;
         }
         #region Properties
         public int Id { get => _id; }
@@ -107,6 +108,7 @@ namespace Programming.Models
             }
         }
         public static int AllRectanglesCount { get => _allRectanglesCount; }
+        public static List<Rectangle> Rectangles = new List<Rectangle>();
         #endregion
 
         public override string ToString() => $"{Id}: (X= {Center.X}; Y= {Center.Y}; W= {Width}; H= {Height})";

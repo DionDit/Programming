@@ -21,5 +21,15 @@ namespace Programming.Models.Geometry
 
             return new Rectangle(new Point2D(x + width / 2,y + height / 2), width, height, "Black");
         }
+        public static Rectangle Randomize()
+        {
+            int width = Random.Next(10, 350);
+            int height = Random.Next(10, 350);
+
+            int x = Random.Next(1, width / 2);
+            int y = Random.Next(1, height / 2);
+
+            return new Rectangle(new Point2D(x + width / 2, y + height / 2), width, height, "Black");
+        }
     }
 }
