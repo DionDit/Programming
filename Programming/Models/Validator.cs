@@ -145,7 +145,5 @@ namespace Programming.Models
                 throw new ArgumentException($"Некорректное значение в свойстве {propertyName}. Допустимы только английские буквы и пробелы.");
             }
         }
-
-
     }
 }

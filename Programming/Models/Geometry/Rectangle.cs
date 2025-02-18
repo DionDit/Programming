@@ -15,9 +15,9 @@ namespace Programming.Models
         /// </summary>
         private int _id;
         /// <summary>
-        /// Длина
+        /// Высота
         /// </summary>
-        private double _lenght;
+        private double _height;
         /// <summary>
         /// Ширина
         /// </summary>
@@ -31,9 +31,10 @@ namespace Programming.Models
         /// </summary>
         private static int _allRectanglesCount;
         #endregion
-        public Rectangle(double Lenght, double Width, string Color)
+        public Rectangle(Point2D Center, double Height, double Width, string Color)
         {
-            this.Lenght = Lenght;
+            this.Center = Center;
+            this.Height = Height;
             this.Width = Width;
             this.Color = Color;
             _allRectanglesCount++;
@@ -48,21 +49,22 @@ namespace Programming.Models
         /// <summary>
         /// Центр прямоугольника
         /// </summary>
-        public Point2D Center { get => new Point2D(Width / 2, Lenght / 2); }
+        //public Point2D Center { get => new Point2D(Width / 3, Height / 2); }
+        public Point2D Center { get; private set; }
         /// <summary>
         /// Длина
         /// </summary>
-        public double Lenght
+        public double Height
         {
             get
             {
-                return _lenght;
+                return _height;
             }
             set
             {
-                if (Validator.AssertOnPositiveValue(value, nameof(Lenght)))
+                if (Validator.AssertOnPositiveValue(value, nameof(Height)))
                 {
-                    _lenght = value;
+                    _height = value;
                 }
             }
         }
@@ -107,6 +109,6 @@ namespace Programming.Models
         public static int AllRectanglesCount { get => _allRectanglesCount; }
         #endregion
 
-        public override string ToString() => $"Rectangle {Id}";
+        public override string ToString() => $"{Id}: (X= {Center.X}; Y= {Center.Y}; W= {Width}; H= {Height})";
     }
 }

@@ -58,8 +58,9 @@
     <Compile Include="Models\Flight.cs" />
     <Compile Include="Models\Geometry\CollisionManager.cs" />
     <Compile Include="Models\Geometry\Point2D.cs" />
+    <Compile Include="Models\Geometry\RectangleFactory.cs" />
     <Compile Include="Models\Geometry\Ring.cs" />
-    <Compile Include="Models\Rectangle.cs" />
+    <Compile Include="Models\Geometry\Rectangle.cs" />
     <Compile Include="Models\Song.cs" />
     <Compile Include="Models\Time.cs" />
     <Compile Include="Models\Validator.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Views\Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -96,6 +98,19 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\RecAdd1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\RecAdd2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\RecRemove1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\RecRemove2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

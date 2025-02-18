@@ -22,16 +22,10 @@ namespace Programming.Models.Geometry
 
             //Сумма половин ширин и высот
             double sumHalfWidths = (rectangle1.Width + rectangle2.Width) / 2;
-            double sumHalfHeights = (rectangle1.Lenght + rectangle2.Lenght) / 2;
+            double sumHalfHeights = (rectangle1.Height + rectangle2.Height) / 2;
 
-            if (deltaX < sumHalfWidths && deltaY < sumHalfHeights)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return deltaX < sumHalfWidths && deltaY < sumHalfHeights;
+
         }
         /// <summary>
         /// Пересекаются ли кольца
