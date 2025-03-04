@@ -28,6 +28,7 @@ namespace MusicPlayList.Views.Forms
             InitializeComponent();
             FileManager.ReadFile();
             UpdateSongList();
+            FormBorderStyle = FormBorderStyle.FixedSingle;
         }
         
         /// <summary>
@@ -84,13 +85,23 @@ namespace MusicPlayList.Views.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(SongNameTextBox.Text))
             {
-                var p = MusicParser.GetSongs(SongNameTextBox.Text);
-                new SelectMusicForm(p).ShowDialog();
-                UpdateSongList();
+                pictureBox2.Visible = true;
+                var Songs = await Task.Run(() => MusicParser.GetSongs(SongNameTextBox.Text));
+                if (Songs.Count > 0)
+                {
+                    pictureBox2.Visible = false;
+                    new SelectMusicForm(Songs).ShowDialog();
+                    UpdateSongList();
+                }
+                else
+                {
+                    MessageBox.Show("Ничего не найдено! Повторите поиск указав другое название.","Ошибка",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    pictureBox2.Visible = false;
+                }
                 SongNameTextBox.Text = string.Empty;
             }
         }
@@ -113,8 +124,6 @@ namespace MusicPlayList.Views.Forms
 
                 }
                 pictureBox1.Image = image;
-
-
             }
         }
 
@@ -217,5 +226,18 @@ namespace MusicPlayList.Views.Forms
             FileManager.SaveChanges();
 
         }
+
+        private void button4_MouseMove(object sender, MouseEventArgs e)
+        {
+            button4.BackColor = AppColors.BaseInput;
+            button4.BackgroundImage = Resources.RecRemove2;
+        }
+
+        private void button4_MouseLeave(object sender, EventArgs e)
+        {
+            button4.BackColor = AppColors.BaseInput;
+            button4.BackgroundImage = Resources.RecRemove1;
+        }
+
     }
 }

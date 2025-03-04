@@ -17,6 +17,7 @@ namespace MusicPlayList.Views.Forms
         private List<Song> Songs { get; set; }
         public SelectMusicForm(List<Song> songs)
         {
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Songs = songs;
             InitializeComponent();
 

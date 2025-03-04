@@ -28,11 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.label1 = new System.Windows.Forms.Label();
             this.SongNameTextBox = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.GenreSong = new System.Windows.Forms.TextBox();
@@ -43,10 +45,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.NameSong = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -77,6 +80,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.Color.Transparent;
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.button4);
             this.groupBox1.Controls.Add(this.button5);
@@ -89,9 +93,9 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.NameSong);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Location = new System.Drawing.Point(322, 38);
+            this.groupBox1.Location = new System.Drawing.Point(342, 38);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(304, 387);
+            this.groupBox1.Size = new System.Drawing.Size(284, 387);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Подробная информация";
@@ -105,6 +109,24 @@
             this.label6.Size = new System.Drawing.Size(80, 13);
             this.label6.TabIndex = 9;
             this.label6.Text = "Изображение:";
+            // 
+            // button4
+            // 
+            this.button4.BackgroundImage = global::MusicPlayList.Properties.Resources.RecRemove1;
+            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button4.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.button4.FlatAppearance.BorderSize = 0;
+            this.button4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Location = new System.Drawing.Point(228, 331);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(50, 50);
+            this.button4.TabIndex = 7;
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.button4.MouseLeave += new System.EventHandler(this.button4_MouseLeave);
+            this.button4.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button4_MouseMove);
             // 
             // button5
             // 
@@ -193,40 +215,49 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Название:";
             // 
-            // button4
+            // pictureBox2
             // 
-            this.button4.Location = new System.Drawing.Point(223, 356);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 7;
-            this.button4.Text = "Удалить";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox2.Image = global::MusicPlayList.Properties.Resources.loading;
+            this.pictureBox2.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(631, 429);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox2.TabIndex = 10;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Visible = false;
             // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.AutoScroll = true;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(2, 38);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(314, 387);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(334, 387);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(631, 429);
+            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.SongNameTextBox);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Text = "Список песен";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -250,5 +281,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,15 +43,22 @@ namespace MusicPlayList.Views.UserControls
         public SelectedSongControl(Song song, string parametr)
         {
             InitializeComponent();
+            _song = song;
+            Duration.Text = $"Продолжительность: {(_song.Duration / 60.0).ToString().Replace(",",":")} мин.";
             switch (parametr)
             {
                 case "create":
-                    _song = song;
                     SongName.Text = $"Название: {_song.Name}";
-                    Artist.Text = $"Artist";
+                    Artist.Text = $"Исполнитель: {_song.Artist}";
                     break;
                 case "view":
-                    _song = song;
+                    if (_song.Image != null)
+                    {
+                        using (var ms = new MemoryStream(_song.Image))
+                        {
+                            pictureBox1.Image = Image.FromStream(ms);
+                        }
+                    }
                     SongName.Text = $"Название: {_song.Name}";
                     Artist.Text = $"Исполнитель: {_song.Artist}";
                     PlayButton.Location = new Point(259,22);
@@ -90,7 +98,9 @@ namespace MusicPlayList.Views.UserControls
         /// <param name="e"></param>
         private void button2_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("Вы успешно добавили песню","Успех",MessageBoxButtons.OK, MessageBoxIcon.Information);
             Song.Songs.Add(_song);
+            button2.Visible = false;
         }
 
         /// <summary>

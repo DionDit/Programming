@@ -21,14 +21,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_84517E05D632317B5B41D7845FC4AAE6"
-        "OwnerKey" = "8:_B64FBCEB9D4217375869F15A88ABFDDE"
+        "MsmKey" = "8:_1722E36C5A9E7E1E11ECCCF9B586E579"
+        "OwnerKey" = "8:_BBEEB945643B410DB423DA11BE82355E"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_B64FBCEB9D4217375869F15A88ABFDDE"
-        "OwnerKey" = "8:_FFA3368A6B9E6520195104F9D6441A37"
+        "MsmKey" = "8:_84517E05D632317B5B41D7845FC4AAE6"
+        "OwnerKey" = "8:_F53DB0ED1266361AB9531D32F576ED87"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -39,32 +39,32 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_FFA3368A6B9E6520195104F9D6441A37"
+        "MsmKey" = "8:_F53DB0ED1266361AB9531D32F576ED87"
+        "OwnerKey" = "8:_1722E36C5A9E7E1E11ECCCF9B586E579"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_BBEEB945643B410DB423DA11BE82355E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_1722E36C5A9E7E1E11ECCCF9B586E579"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_F53DB0ED1266361AB9531D32F576ED87"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_07D4EDC93B613D16CDD0B172BF97E5A7"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_BBEEB945643B410DB423DA11BE82355E"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_FFA3368A6B9E6520195104F9D6441A37"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_B64FBCEB9D4217375869F15A88ABFDDE"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -85,6 +85,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -101,6 +117,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -161,6 +185,37 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_1722E36C5A9E7E1E11ECCCF9B586E579"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:AxInterop.WMPLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_1722E36C5A9E7E1E11ECCCF9B586E579"
+                    {
+                    "Name" = "8:AxInterop.WMPLib.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:AxInterop.WMPLib.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_F655157302EE4F1887677F82661AC384"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_84517E05D632317B5B41D7845FC4AAE6"
             {
             "SourcePath" = "8:wmp.dll"
@@ -181,51 +236,20 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B64FBCEB9D4217375869F15A88ABFDDE"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F53DB0ED1266361AB9531D32F576ED87"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:Interop.WMPLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_B64FBCEB9D4217375869F15A88ABFDDE"
+                    "_F53DB0ED1266361AB9531D32F576ED87"
                     {
                     "Name" = "8:Interop.WMPLib.dll"
                     "Attributes" = "3:512"
                     }
                 }
             "SourcePath" = "8:Interop.WMPLib.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_F655157302EE4F1887677F82661AC384"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_FFA3368A6B9E6520195104F9D6441A37"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:AxInterop.WMPLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_FFA3368A6B9E6520195104F9D6441A37"
-                    {
-                    "Name" = "8:AxInterop.WMPLib.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:AxInterop.WMPLib.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_F655157302EE4F1887677F82661AC384"
@@ -311,7 +335,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:MusicPlayerSetup"
         "ProductCode" = "8:{BCD8E810-626A-4E61-9741-8F19B5A2A649}"
-        "PackageCode" = "8:{D992B8EF-31F4-45CA-A6EE-F3383F2398CD}"
+        "PackageCode" = "8:{1035D462-A226-4F57-B5AC-24BCB9BFF077}"
         "UpgradeCode" = "8:{DFA176BE-B199-4A26-AB96-38E4F9BDE77E}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"

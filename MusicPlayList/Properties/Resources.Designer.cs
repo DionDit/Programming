@@ -63,9 +63,39 @@ namespace MusicPlayList.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap loading {
+            get {
+                object obj = ResourceManager.GetObject("loading", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap NoPhoto {
             get {
                 object obj = ResourceManager.GetObject("NoPhoto", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RecRemove1 {
+            get {
+                object obj = ResourceManager.GetObject("RecRemove1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RecRemove2 {
+            get {
+                object obj = ResourceManager.GetObject("RecRemove2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

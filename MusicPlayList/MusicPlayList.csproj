@@ -115,7 +115,13 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Resources\loading.gif" />
     <Content Include="Resources\NoPhoto.png" />
+    <Content Include="Resources\RecRemove1.png" />
+    <Content Include="Resources\icon.ico" />
+    <None Include="Resources\RecRemove21.png" />
+    <None Include="Resources\RecRemove11.png" />
+    <Content Include="Resources\RecRemove2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
