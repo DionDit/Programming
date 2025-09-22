@@ -1,0 +1,18 @@
+﻿namespace ObjectOrientedPractics.Services
+{
+    /// <summary>
+    /// Набор цветов в приложении.
+    /// </summary>
+    public static class AppColors
+    {
+        /// <summary>
+        /// Цвет элемента управления при возникновении ошибки валидации.
+        /// </summary>
+        public static Color ErrorInput { get => Color.LightPink; }
+
+        /// <summary>
+        /// Базовый цвет элемента управления.
+        /// </summary>
+        public static Color BaseInput { get => Color.White; }
+    }
+}
