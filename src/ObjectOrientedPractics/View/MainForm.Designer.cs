@@ -97,7 +97,7 @@
             tabPage3.Controls.Add(ExitSaving);
             tabPage3.Location = new Point(4, 24);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(976, 533);
+            tabPage3.Size = new Size(192, 72);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Settings";
             tabPage3.UseVisualStyleBackColor = true;

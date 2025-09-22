@@ -56,6 +56,7 @@ namespace ObjectOrientedPractics.View.Tabs
             if (ItemBox.Items != null && ItemBox.SelectedItem != null)
             {
                 _currentItem = ItemBox.SelectedItem as Item;
+                tableLayoutPanel4.Visible = true;
                 UpdateTextProperty(_currentItem);
             }
         }
@@ -136,7 +137,12 @@ namespace ObjectOrientedPractics.View.Tabs
                     NameTextBox.BackColor = AppColors.BaseInput;
                     CostTextBox.BackColor = AppColors.BaseInput;
                     DescriptionTextBox.BackColor = AppColors.BaseInput;
+                    tableLayoutPanel4.Visible = false;
                 }
+            }
+            else
+            {
+                MessageBox.Show("Вы не можете выполнить данную операцию!","Ошибка",MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

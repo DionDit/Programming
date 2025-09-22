@@ -55,6 +55,7 @@ namespace ObjectOrientedPractics.View.Tabs
             if (CustomerListBox.Items != null && CustomerListBox.SelectedItem != null)
             {
                 _currentCustomer = CustomerListBox.SelectedItem as Customer;
+                tableLayoutPanel5.Visible = true;
                 UpdateTextProperty(_currentCustomer);
             }
         }
@@ -118,7 +119,12 @@ namespace ObjectOrientedPractics.View.Tabs
                     _currentCustomer = null;
                     FullNameTextBox.BackColor = AppColors.BaseInput;
                     AddressTextBox.BackColor = AppColors.BaseInput;
+                    tableLayoutPanel5.Visible = false;
                 }
+            }
+            else
+            {
+                MessageBox.Show("Вы не можете выполнить данную операцию!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

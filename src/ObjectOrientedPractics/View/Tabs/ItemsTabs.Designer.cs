@@ -29,26 +29,28 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            panel3 = new Panel();
-            NameTextBox = new RichTextBox();
             label6 = new Label();
-            DescriptionTextBox = new RichTextBox();
             label5 = new Label();
-            CostTextBox = new TextBox();
             label4 = new Label();
-            IdTextBox = new TextBox();
             label3 = new Label();
             label2 = new Label();
-            panel2 = new Panel();
             AddRandomBtn = new Button();
             RemoveBtn = new Button();
             AddBtn = new Button();
             ItemBox = new ListBox();
             label1 = new Label();
-            flowLayoutPanel1 = new FlowLayoutPanel();
-            panel3.SuspendLayout();
-            panel2.SuspendLayout();
-            flowLayoutPanel1.SuspendLayout();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            tableLayoutPanel4 = new TableLayoutPanel();
+            tableLayoutPanel3 = new TableLayoutPanel();
+            IdTextBox = new TextBox();
+            NameTextBox = new TextBox();
+            DescriptionTextBox = new TextBox();
+            CostTextBox = new TextBox();
+            tableLayoutPanel2 = new TableLayoutPanel();
+            tableLayoutPanel1.SuspendLayout();
+            tableLayoutPanel4.SuspendLayout();
+            tableLayoutPanel3.SuspendLayout();
+            tableLayoutPanel2.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -58,120 +60,70 @@
             panel1.Size = new Size(0, 0);
             panel1.TabIndex = 0;
             // 
-            // panel3
-            // 
-            panel3.BackColor = Color.White;
-            panel3.Controls.Add(NameTextBox);
-            panel3.Controls.Add(label6);
-            panel3.Controls.Add(DescriptionTextBox);
-            panel3.Controls.Add(label5);
-            panel3.Controls.Add(CostTextBox);
-            panel3.Controls.Add(label4);
-            panel3.Controls.Add(IdTextBox);
-            panel3.Controls.Add(label3);
-            panel3.Controls.Add(label2);
-            panel3.Location = new Point(496, 3);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(471, 521);
-            panel3.TabIndex = 1;
-            // 
-            // NameTextBox
-            // 
-            NameTextBox.Location = new Point(7, 114);
-            NameTextBox.Name = "NameTextBox";
-            NameTextBox.Size = new Size(461, 96);
-            NameTextBox.TabIndex = 12;
-            NameTextBox.Text = "";
-            NameTextBox.TextChanged += NameTextBox_TextChanged;
-            // 
             // label6
             // 
+            label6.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             label6.AutoSize = true;
-            label6.Location = new Point(7, 96);
+            label6.Location = new Point(3, 87);
+            label6.Margin = new Padding(3, 0, 0, 0);
             label6.Name = "label6";
-            label6.Size = new Size(42, 15);
+            label6.Size = new Size(86, 41);
             label6.TabIndex = 11;
             label6.Text = "Name:";
-            // 
-            // DescriptionTextBox
-            // 
-            DescriptionTextBox.Location = new Point(7, 239);
-            DescriptionTextBox.Name = "DescriptionTextBox";
-            DescriptionTextBox.Size = new Size(461, 96);
-            DescriptionTextBox.TabIndex = 10;
-            DescriptionTextBox.Text = "";
-            DescriptionTextBox.TextChanged += DescriptionTextBox_TextChanged;
+            label6.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label5
             // 
+            label5.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             label5.AutoSize = true;
-            label5.Location = new Point(7, 221);
+            label5.Location = new Point(3, 215);
+            label5.Margin = new Padding(3, 0, 0, 0);
             label5.Name = "label5";
-            label5.Size = new Size(70, 15);
+            label5.Size = new Size(86, 38);
             label5.TabIndex = 9;
             label5.Text = "Description:";
-            // 
-            // CostTextBox
-            // 
-            CostTextBox.Location = new Point(51, 59);
-            CostTextBox.Name = "CostTextBox";
-            CostTextBox.Size = new Size(148, 23);
-            CostTextBox.TabIndex = 8;
-            CostTextBox.TextChanged += CostTextBox_TextChanged;
+            label5.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label4
             // 
+            label4.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             label4.AutoSize = true;
-            label4.Location = new Point(7, 62);
+            label4.Location = new Point(3, 46);
             label4.Name = "label4";
-            label4.Size = new Size(34, 15);
+            label4.Size = new Size(83, 41);
             label4.TabIndex = 7;
             label4.Text = "Cost:";
-            // 
-            // IdTextBox
-            // 
-            IdTextBox.Location = new Point(51, 30);
-            IdTextBox.Name = "IdTextBox";
-            IdTextBox.Size = new Size(148, 23);
-            IdTextBox.TabIndex = 6;
-            IdTextBox.KeyPress += InputData;
+            label4.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label3
             // 
+            label3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             label3.AutoSize = true;
-            label3.Location = new Point(7, 33);
+            label3.Location = new Point(3, 0);
             label3.Name = "label3";
-            label3.Size = new Size(21, 15);
+            label3.Size = new Size(83, 46);
             label3.TabIndex = 5;
             label3.Text = "ID:";
+            label3.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label2
             // 
+            label2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label2.Location = new Point(7, 4);
+            label2.Location = new Point(3, 0);
             label2.Name = "label2";
-            label2.Size = new Size(91, 15);
+            label2.Size = new Size(473, 16);
             label2.TabIndex = 4;
             label2.Text = "Selected Items";
-            // 
-            // panel2
-            // 
-            panel2.Controls.Add(AddRandomBtn);
-            panel2.Controls.Add(RemoveBtn);
-            panel2.Controls.Add(AddBtn);
-            panel2.Controls.Add(ItemBox);
-            panel2.Controls.Add(label1);
-            panel2.Location = new Point(3, 3);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(487, 524);
-            panel2.TabIndex = 0;
+            label2.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // AddRandomBtn
             // 
-            AddRandomBtn.Location = new Point(225, 482);
+            AddRandomBtn.Dock = DockStyle.Fill;
+            AddRandomBtn.Location = new Point(321, 3);
             AddRandomBtn.Name = "AddRandomBtn";
-            AddRandomBtn.Size = new Size(105, 34);
+            AddRandomBtn.Size = new Size(155, 41);
             AddRandomBtn.TabIndex = 4;
             AddRandomBtn.Text = "Add Random";
             AddRandomBtn.UseVisualStyleBackColor = true;
@@ -179,9 +131,10 @@
             // 
             // RemoveBtn
             // 
-            RemoveBtn.Location = new Point(114, 483);
+            RemoveBtn.Dock = DockStyle.Fill;
+            RemoveBtn.Location = new Point(162, 3);
             RemoveBtn.Name = "RemoveBtn";
-            RemoveBtn.Size = new Size(105, 34);
+            RemoveBtn.Size = new Size(153, 41);
             RemoveBtn.TabIndex = 3;
             RemoveBtn.Text = "Remove";
             RemoveBtn.UseVisualStyleBackColor = true;
@@ -189,9 +142,10 @@
             // 
             // AddBtn
             // 
-            AddBtn.Location = new Point(3, 483);
+            AddBtn.Dock = DockStyle.Fill;
+            AddBtn.Location = new Point(3, 3);
             AddBtn.Name = "AddBtn";
-            AddBtn.Size = new Size(105, 34);
+            AddBtn.Size = new Size(153, 41);
             AddBtn.TabIndex = 2;
             AddBtn.Text = "Add";
             AddBtn.UseVisualStyleBackColor = true;
@@ -199,68 +153,190 @@
             // 
             // ItemBox
             // 
+            ItemBox.Dock = DockStyle.Fill;
             ItemBox.FormattingEnabled = true;
             ItemBox.Location = new Point(3, 22);
             ItemBox.Name = "ItemBox";
-            ItemBox.Size = new Size(481, 454);
+            ItemBox.Size = new Size(479, 449);
             ItemBox.TabIndex = 1;
             ItemBox.SelectedIndexChanged += ItemBox_SelectedIndexChanged;
             // 
             // label1
             // 
+            label1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label1.Location = new Point(3, 4);
+            label1.Location = new Point(3, 0);
             label1.Name = "label1";
-            label1.Size = new Size(39, 15);
+            label1.Size = new Size(39, 19);
             label1.TabIndex = 0;
             label1.Text = "Items";
+            label1.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // flowLayoutPanel1
+            // tableLayoutPanel1
             // 
-            flowLayoutPanel1.Controls.Add(panel2);
-            flowLayoutPanel1.Controls.Add(panel3);
-            flowLayoutPanel1.Dock = DockStyle.Fill;
-            flowLayoutPanel1.Location = new Point(0, 0);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(970, 527);
-            flowLayoutPanel1.TabIndex = 2;
+            tableLayoutPanel1.ColumnCount = 2;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.Controls.Add(tableLayoutPanel4, 1, 0);
+            tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 0, 2);
+            tableLayoutPanel1.Controls.Add(label1, 0, 0);
+            tableLayoutPanel1.Controls.Add(ItemBox, 0, 1);
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 3;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 4.00843859F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 95.99156F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 52F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel1.Size = new Size(970, 527);
+            tableLayoutPanel1.TabIndex = 3;
+            // 
+            // tableLayoutPanel4
+            // 
+            tableLayoutPanel4.BackColor = Color.White;
+            tableLayoutPanel4.ColumnCount = 1;
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel4.Controls.Add(tableLayoutPanel3, 0, 1);
+            tableLayoutPanel4.Controls.Add(label2, 0, 0);
+            tableLayoutPanel4.Dock = DockStyle.Fill;
+            tableLayoutPanel4.Location = new Point(488, 3);
+            tableLayoutPanel4.Name = "tableLayoutPanel4";
+            tableLayoutPanel4.RowCount = 2;
+            tableLayoutPanel1.SetRowSpan(tableLayoutPanel4, 3);
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 3.125F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 96.875F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel4.Size = new Size(479, 521);
+            tableLayoutPanel4.TabIndex = 4;
+            tableLayoutPanel4.Visible = false;
+            // 
+            // tableLayoutPanel3
+            // 
+            tableLayoutPanel3.BackColor = Color.White;
+            tableLayoutPanel3.ColumnCount = 2;
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 18.8160667F));
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 81.18393F));
+            tableLayoutPanel3.Controls.Add(label6, 0, 2);
+            tableLayoutPanel3.Controls.Add(IdTextBox, 1, 0);
+            tableLayoutPanel3.Controls.Add(label5, 0, 4);
+            tableLayoutPanel3.Controls.Add(label4, 0, 1);
+            tableLayoutPanel3.Controls.Add(NameTextBox, 0, 3);
+            tableLayoutPanel3.Controls.Add(DescriptionTextBox, 0, 5);
+            tableLayoutPanel3.Controls.Add(CostTextBox, 1, 1);
+            tableLayoutPanel3.Controls.Add(label3, 0, 0);
+            tableLayoutPanel3.Dock = DockStyle.Fill;
+            tableLayoutPanel3.Location = new Point(3, 19);
+            tableLayoutPanel3.Name = "tableLayoutPanel3";
+            tableLayoutPanel3.RowCount = 7;
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 9.342073F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 8.413173F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 8.413173F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 17.5117111F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 7.79757452F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 17.5117111F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 31.0105877F));
+            tableLayoutPanel3.Size = new Size(473, 499);
+            tableLayoutPanel3.TabIndex = 5;
+            // 
+            // IdTextBox
+            // 
+            IdTextBox.Anchor = AnchorStyles.Left;
+            IdTextBox.Location = new Point(92, 11);
+            IdTextBox.Name = "IdTextBox";
+            IdTextBox.Size = new Size(113, 23);
+            IdTextBox.TabIndex = 6;
+            IdTextBox.KeyPress += InputData;
+            // 
+            // NameTextBox
+            // 
+            tableLayoutPanel3.SetColumnSpan(NameTextBox, 2);
+            NameTextBox.Dock = DockStyle.Fill;
+            NameTextBox.Location = new Point(3, 131);
+            NameTextBox.Multiline = true;
+            NameTextBox.Name = "NameTextBox";
+            NameTextBox.Size = new Size(467, 81);
+            NameTextBox.TabIndex = 12;
+            NameTextBox.TextChanged += NameTextBox_TextChanged;
+            // 
+            // DescriptionTextBox
+            // 
+            tableLayoutPanel3.SetColumnSpan(DescriptionTextBox, 2);
+            DescriptionTextBox.Dock = DockStyle.Fill;
+            DescriptionTextBox.Location = new Point(7, 256);
+            DescriptionTextBox.Margin = new Padding(7, 3, 3, 3);
+            DescriptionTextBox.Multiline = true;
+            DescriptionTextBox.Name = "DescriptionTextBox";
+            DescriptionTextBox.Size = new Size(463, 81);
+            DescriptionTextBox.TabIndex = 13;
+            DescriptionTextBox.TextChanged += DescriptionTextBox_TextChanged;
+            // 
+            // CostTextBox
+            // 
+            CostTextBox.Anchor = AnchorStyles.Left;
+            CostTextBox.Location = new Point(92, 55);
+            CostTextBox.Name = "CostTextBox";
+            CostTextBox.Size = new Size(113, 23);
+            CostTextBox.TabIndex = 8;
+            CostTextBox.TextChanged += CostTextBox_TextChanged;
+            // 
+            // tableLayoutPanel2
+            // 
+            tableLayoutPanel2.ColumnCount = 3;
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanel2.Controls.Add(AddRandomBtn, 2, 0);
+            tableLayoutPanel2.Controls.Add(AddBtn, 0, 0);
+            tableLayoutPanel2.Controls.Add(RemoveBtn, 1, 0);
+            tableLayoutPanel2.Dock = DockStyle.Fill;
+            tableLayoutPanel2.Location = new Point(3, 477);
+            tableLayoutPanel2.Name = "tableLayoutPanel2";
+            tableLayoutPanel2.RowCount = 1;
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel2.Size = new Size(479, 47);
+            tableLayoutPanel2.TabIndex = 4;
             // 
             // ItemsTabs
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(flowLayoutPanel1);
+            Controls.Add(tableLayoutPanel1);
             Controls.Add(panel1);
             Name = "ItemsTabs";
             Size = new Size(970, 527);
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
-            flowLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.PerformLayout();
+            tableLayoutPanel4.ResumeLayout(false);
+            tableLayoutPanel4.PerformLayout();
+            tableLayoutPanel3.ResumeLayout(false);
+            tableLayoutPanel3.PerformLayout();
+            tableLayoutPanel2.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
         private Panel panel1;
-        private Panel panel2;
         private Label label1;
         private Button AddBtn;
         private ListBox ItemBox;
         private Button RemoveBtn;
-        private Panel panel3;
-        private RichTextBox NameTextBox;
         private Label label6;
-        private RichTextBox DescriptionTextBox;
         private Label label5;
-        private TextBox CostTextBox;
         private Label label4;
-        private TextBox IdTextBox;
         private Label label3;
         private Label label2;
-        private FlowLayoutPanel flowLayoutPanel1;
         private Button AddRandomBtn;
+        private TableLayoutPanel tableLayoutPanel1;
+        private TableLayoutPanel tableLayoutPanel2;
+        private TableLayoutPanel tableLayoutPanel3;
+        private TextBox IdTextBox;
+        private TextBox CostTextBox;
+        private TextBox NameTextBox;
+        private TextBox DescriptionTextBox;
+        private TableLayoutPanel tableLayoutPanel4;
     }
 }
