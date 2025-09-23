@@ -43,9 +43,11 @@
             tableLayoutPanel4 = new TableLayoutPanel();
             tableLayoutPanel3 = new TableLayoutPanel();
             IdTextBox = new TextBox();
+            CostTextBox = new TextBox();
             NameTextBox = new TextBox();
             DescriptionTextBox = new TextBox();
-            CostTextBox = new TextBox();
+            label7 = new Label();
+            CategoryComboBox = new ComboBox();
             tableLayoutPanel2 = new TableLayoutPanel();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel4.SuspendLayout();
@@ -64,10 +66,10 @@
             // 
             label6.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             label6.AutoSize = true;
-            label6.Location = new Point(3, 87);
+            label6.Location = new Point(3, 84);
             label6.Margin = new Padding(3, 0, 0, 0);
             label6.Name = "label6";
-            label6.Size = new Size(86, 41);
+            label6.Size = new Size(86, 22);
             label6.TabIndex = 11;
             label6.Text = "Name:";
             label6.TextAlign = ContentAlignment.MiddleLeft;
@@ -76,10 +78,10 @@
             // 
             label5.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             label5.AutoSize = true;
-            label5.Location = new Point(3, 215);
+            label5.Location = new Point(3, 180);
             label5.Margin = new Padding(3, 0, 0, 0);
             label5.Name = "label5";
-            label5.Size = new Size(86, 38);
+            label5.Size = new Size(86, 58);
             label5.TabIndex = 9;
             label5.Text = "Description:";
             label5.TextAlign = ContentAlignment.MiddleLeft;
@@ -88,9 +90,9 @@
             // 
             label4.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             label4.AutoSize = true;
-            label4.Location = new Point(3, 46);
+            label4.Location = new Point(3, 30);
             label4.Name = "label4";
-            label4.Size = new Size(83, 41);
+            label4.Size = new Size(83, 27);
             label4.TabIndex = 7;
             label4.Text = "Cost:";
             label4.TextAlign = ContentAlignment.MiddleLeft;
@@ -101,7 +103,7 @@
             label3.AutoSize = true;
             label3.Location = new Point(3, 0);
             label3.Name = "label3";
-            label3.Size = new Size(83, 46);
+            label3.Size = new Size(83, 30);
             label3.TabIndex = 5;
             label3.Text = "ID:";
             label3.TextAlign = ContentAlignment.MiddleLeft;
@@ -219,45 +221,58 @@
             tableLayoutPanel3.ColumnCount = 2;
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 18.8160667F));
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 81.18393F));
-            tableLayoutPanel3.Controls.Add(label6, 0, 2);
             tableLayoutPanel3.Controls.Add(IdTextBox, 1, 0);
-            tableLayoutPanel3.Controls.Add(label5, 0, 4);
             tableLayoutPanel3.Controls.Add(label4, 0, 1);
-            tableLayoutPanel3.Controls.Add(NameTextBox, 0, 3);
-            tableLayoutPanel3.Controls.Add(DescriptionTextBox, 0, 5);
             tableLayoutPanel3.Controls.Add(CostTextBox, 1, 1);
             tableLayoutPanel3.Controls.Add(label3, 0, 0);
+            tableLayoutPanel3.Controls.Add(label6, 0, 3);
+            tableLayoutPanel3.Controls.Add(NameTextBox, 1, 3);
+            tableLayoutPanel3.Controls.Add(label5, 0, 5);
+            tableLayoutPanel3.Controls.Add(DescriptionTextBox, 1, 5);
+            tableLayoutPanel3.Controls.Add(label7, 0, 2);
+            tableLayoutPanel3.Controls.Add(CategoryComboBox, 1, 2);
             tableLayoutPanel3.Dock = DockStyle.Fill;
             tableLayoutPanel3.Location = new Point(3, 19);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
-            tableLayoutPanel3.RowCount = 7;
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 9.342073F));
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 8.413173F));
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 8.413173F));
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 17.5117111F));
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 7.79757452F));
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 17.5117111F));
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 31.0105877F));
+            tableLayoutPanel3.RowCount = 8;
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 6.228049F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 5.608782F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 5.608782F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 4.6092186F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 15.03006F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 11.8236475F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 17.43487F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 34.86974F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel3.Size = new Size(473, 499);
             tableLayoutPanel3.TabIndex = 5;
             // 
             // IdTextBox
             // 
             IdTextBox.Anchor = AnchorStyles.Left;
-            IdTextBox.Location = new Point(92, 11);
+            IdTextBox.Location = new Point(92, 3);
             IdTextBox.Name = "IdTextBox";
             IdTextBox.Size = new Size(113, 23);
             IdTextBox.TabIndex = 6;
             IdTextBox.KeyPress += InputData;
             // 
+            // CostTextBox
+            // 
+            CostTextBox.Anchor = AnchorStyles.Left;
+            CostTextBox.Location = new Point(92, 33);
+            CostTextBox.Name = "CostTextBox";
+            CostTextBox.Size = new Size(113, 23);
+            CostTextBox.TabIndex = 8;
+            CostTextBox.TextChanged += CostTextBox_TextChanged;
+            // 
             // NameTextBox
             // 
             tableLayoutPanel3.SetColumnSpan(NameTextBox, 2);
             NameTextBox.Dock = DockStyle.Fill;
-            NameTextBox.Location = new Point(3, 131);
+            NameTextBox.Location = new Point(3, 109);
             NameTextBox.Multiline = true;
             NameTextBox.Name = "NameTextBox";
-            NameTextBox.Size = new Size(467, 81);
+            NameTextBox.Size = new Size(467, 68);
             NameTextBox.TabIndex = 12;
             NameTextBox.TextChanged += NameTextBox_TextChanged;
             // 
@@ -265,22 +280,34 @@
             // 
             tableLayoutPanel3.SetColumnSpan(DescriptionTextBox, 2);
             DescriptionTextBox.Dock = DockStyle.Fill;
-            DescriptionTextBox.Location = new Point(7, 256);
+            DescriptionTextBox.Location = new Point(7, 241);
             DescriptionTextBox.Margin = new Padding(7, 3, 3, 3);
             DescriptionTextBox.Multiline = true;
             DescriptionTextBox.Name = "DescriptionTextBox";
-            DescriptionTextBox.Size = new Size(463, 81);
+            DescriptionTextBox.Size = new Size(463, 79);
             DescriptionTextBox.TabIndex = 13;
             DescriptionTextBox.TextChanged += DescriptionTextBox_TextChanged;
             // 
-            // CostTextBox
+            // label7
             // 
-            CostTextBox.Anchor = AnchorStyles.Left;
-            CostTextBox.Location = new Point(92, 55);
-            CostTextBox.Name = "CostTextBox";
-            CostTextBox.Size = new Size(113, 23);
-            CostTextBox.TabIndex = 8;
-            CostTextBox.TextChanged += CostTextBox_TextChanged;
+            label7.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            label7.AutoSize = true;
+            label7.Location = new Point(3, 57);
+            label7.Name = "label7";
+            label7.Size = new Size(58, 27);
+            label7.TabIndex = 14;
+            label7.Text = "Category:";
+            label7.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // CategoryComboBox
+            // 
+            CategoryComboBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            CategoryComboBox.FormattingEnabled = true;
+            CategoryComboBox.Location = new Point(92, 60);
+            CategoryComboBox.Name = "CategoryComboBox";
+            CategoryComboBox.Size = new Size(113, 23);
+            CategoryComboBox.TabIndex = 15;
+            CategoryComboBox.SelectedIndexChanged += CategoryComboBox_SelectedIndexChanged;
             // 
             // tableLayoutPanel2
             // 
@@ -338,5 +365,7 @@
         private TextBox NameTextBox;
         private TextBox DescriptionTextBox;
         private TableLayoutPanel tableLayoutPanel4;
+        private Label label7;
+        private ComboBox CategoryComboBox;
     }
 }

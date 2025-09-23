@@ -1,4 +1,5 @@
 ﻿using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.Model.Enums;
 using ObjectOrientedPractics.Services;
 
 namespace ObjectOrientedPractics.View.Dialogs
@@ -14,6 +15,7 @@ namespace ObjectOrientedPractics.View.Dialogs
         {
             InitializeComponent();
             _currentItem = new Item();
+            CategoryComboBox.DataSource = Enum.GetValues(typeof(Category));
         }
 
         /// <summary>
@@ -69,7 +71,7 @@ namespace ObjectOrientedPractics.View.Dialogs
         /// </summary>
         private void button1_Click(object sender, EventArgs e)
         {
-            AppData.Items.Add(new Item(NameTextBox.Text,DescriptionTextBox.Text,Convert.ToDouble(CostTextBox.Text)));
+            AppData.Items.Add(new Item(NameTextBox.Text,DescriptionTextBox.Text,Convert.ToDouble(CostTextBox.Text),(Category)CategoryComboBox.SelectedIndex));
             DialogResult = DialogResult.OK;
         }
     }

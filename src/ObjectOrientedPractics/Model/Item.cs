@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using ObjectOrientedPractics.Model.Enums;
 using ObjectOrientedPractics.Services;
 using ValueValidator = ObjectOrientedPractics.Services.ValueValidator;
 
@@ -35,12 +36,14 @@ namespace ObjectOrientedPractics.Model
         /// <param name="name">Название предмета.</param>
         /// <param name="info">Информация о предмете.</param>
         /// <param name="cost">Стоимость предмета.</param>
-        public Item(string name, string info, double cost)
+        /// <param name="category">Категория предмета.</param>
+        public Item(string name, string info, double cost, Category category)
         {
             _id = IdGenerator.GetNextId();
             Name = name;
             Information = info;
             Cost = cost;
+            Category = category;
         }
 
         /// <summary>
@@ -50,13 +53,15 @@ namespace ObjectOrientedPractics.Model
         /// <param name="name">Название предмета.</param>
         /// <param name="info">Информация о предмете.</param>
         /// <param name="cost">Стоимость предмета.</param>
+        /// <param name="category">Категория предмета.</param>
         [JsonConstructor]
-        private Item(int id, string name, string info, double cost)
+        private Item(int id, string name, string info, double cost, Category category)
         {
             _id = id;
             _name = name;
             _info = info;
             _cost = cost;
+            Category = category;
         }
 
         /// <summary>
@@ -126,6 +131,11 @@ namespace ObjectOrientedPractics.Model
                 }
             }
         }
+
+        /// <summary>
+        /// Категория товара.
+        /// </summary>
+        public Category Category { get; set; }
         #endregion
 
         /// <summary>

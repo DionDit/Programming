@@ -1,4 +1,5 @@
 ﻿using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.Model.Enums;
 
 namespace ObjectOrientedPractics.Services
 {
@@ -143,7 +144,7 @@ namespace ObjectOrientedPractics.Services
             string info = _itemDescriptions[_random.Next(_itemDescriptions.Length)];
             double cost = Math.Round(_random.NextDouble() * 1000 + 100, 2); // от 100 до 1100
 
-            return new Item(name, info, cost);
+            return new Item(name, info, cost, (Category)_random.Next(0,10));
         }
 
         /// <summary>
@@ -152,7 +153,8 @@ namespace ObjectOrientedPractics.Services
         /// <param name="name">Название предмета.</param>
         /// <param name="info">Информация о предмете.</param>
         /// <param name="cost">Стоимость предмета.</param>
+        /// <param name="category">Категория предмета.</param>
         /// <returns>Новый объект <see cref="Item"/>.</returns>
-        public static Item CreateItem(string name, string info, double cost) => new Item(name, info, cost);
+        public static Item CreateItem(string name, string info, double cost, Category category) => new Item(name, info, cost, category);
     }
 }

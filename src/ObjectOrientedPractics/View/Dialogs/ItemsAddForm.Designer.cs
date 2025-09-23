@@ -37,12 +37,16 @@
             CostTextBox = new TextBox();
             label4 = new Label();
             label2 = new Label();
+            label3 = new Label();
+            CategoryComboBox = new ComboBox();
             panel3.SuspendLayout();
             SuspendLayout();
             // 
             // panel3
             // 
             panel3.BackColor = Color.White;
+            panel3.Controls.Add(CategoryComboBox);
+            panel3.Controls.Add(label3);
             panel3.Controls.Add(button1);
             panel3.Controls.Add(NameTextBox);
             panel3.Controls.Add(label6);
@@ -51,14 +55,15 @@
             panel3.Controls.Add(CostTextBox);
             panel3.Controls.Add(label4);
             panel3.Controls.Add(label2);
-            panel3.Location = new Point(-2, 1);
+            panel3.Dock = DockStyle.Fill;
+            panel3.Location = new Point(0, 0);
             panel3.Name = "panel3";
-            panel3.Size = new Size(350, 387);
+            panel3.Size = new Size(348, 417);
             panel3.TabIndex = 2;
             // 
             // button1
             // 
-            button1.Location = new Point(124, 341);
+            button1.Location = new Point(122, 368);
             button1.Name = "button1";
             button1.Size = new Size(123, 37);
             button1.TabIndex = 13;
@@ -68,7 +73,7 @@
             // 
             // NameTextBox
             // 
-            NameTextBox.Location = new Point(7, 114);
+            NameTextBox.Location = new Point(7, 140);
             NameTextBox.Name = "NameTextBox";
             NameTextBox.Size = new Size(338, 96);
             NameTextBox.TabIndex = 12;
@@ -78,7 +83,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(7, 96);
+            label6.Location = new Point(7, 122);
             label6.Name = "label6";
             label6.Size = new Size(42, 15);
             label6.TabIndex = 11;
@@ -86,7 +91,7 @@
             // 
             // DescriptionTextBox
             // 
-            DescriptionTextBox.Location = new Point(7, 239);
+            DescriptionTextBox.Location = new Point(7, 265);
             DescriptionTextBox.Name = "DescriptionTextBox";
             DescriptionTextBox.Size = new Size(338, 96);
             DescriptionTextBox.TabIndex = 10;
@@ -96,7 +101,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(7, 221);
+            label5.Location = new Point(7, 247);
             label5.Name = "label5";
             label5.Size = new Size(70, 15);
             label5.TabIndex = 9;
@@ -104,7 +109,7 @@
             // 
             // CostTextBox
             // 
-            CostTextBox.Location = new Point(51, 59);
+            CostTextBox.Location = new Point(78, 59);
             CostTextBox.Name = "CostTextBox";
             CostTextBox.Size = new Size(148, 23);
             CostTextBox.TabIndex = 8;
@@ -129,11 +134,28 @@
             label2.TabIndex = 4;
             label2.Text = "Adding Item";
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(7, 91);
+            label3.Name = "label3";
+            label3.Size = new Size(58, 15);
+            label3.TabIndex = 16;
+            label3.Text = "Category:";
+            // 
+            // CategoryComboBox
+            // 
+            CategoryComboBox.FormattingEnabled = true;
+            CategoryComboBox.Location = new Point(78, 91);
+            CategoryComboBox.Name = "CategoryComboBox";
+            CategoryComboBox.Size = new Size(148, 23);
+            CategoryComboBox.TabIndex = 17;
+            // 
             // ItemsAddForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(348, 386);
+            ClientSize = new Size(348, 417);
             Controls.Add(panel3);
             MaximizeBox = false;
             MinimizeBox = false;
@@ -156,5 +178,7 @@
         private Label label4;
         private Label label2;
         private Button button1;
+        private ComboBox CategoryComboBox;
+        private Label label3;
     }
 }
