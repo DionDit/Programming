@@ -24,7 +24,6 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             CustomerListBox.Items.Clear();
             AppData.Customers.ForEach(x => CustomerListBox.Items.Add(x));
-
         }
 
         /// <summary>
@@ -34,7 +33,6 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             IdTextBox.Text = item.Id.ToString();
             FullNameTextBox.Text = item.FullName;
-            AddressTextBox.Text = item.Address;
         }
 
         /// <summary>
@@ -44,7 +42,6 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             IdTextBox.Text = string.Empty;
             FullNameTextBox.Text = string.Empty;
-            AddressTextBox.Text = string.Empty;
         }
 
         /// <summary>
@@ -57,6 +54,8 @@ namespace ObjectOrientedPractics.View.Tabs
                 _currentCustomer = CustomerListBox.SelectedItem as Customer;
                 tableLayoutPanel5.Visible = true;
                 UpdateTextProperty(_currentCustomer);
+                addressControl1.Address = _currentCustomer.Address;
+
             }
         }
 
@@ -73,22 +72,6 @@ namespace ObjectOrientedPractics.View.Tabs
             catch
             {
                 FullNameTextBox.BackColor = AppColors.ErrorInput;
-            }
-        }
-
-        /// <summary>
-        /// Изменение адреса покупателя.
-        /// </summary>
-        private void AddressTextBox_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                _currentCustomer.Address = AddressTextBox.Text;
-                AddressTextBox.BackColor = AppColors.BaseInput;
-            }
-            catch
-            {
-                AddressTextBox.BackColor = AppColors.ErrorInput;
             }
         }
 
@@ -118,7 +101,6 @@ namespace ObjectOrientedPractics.View.Tabs
                     UpdateUI();
                     _currentCustomer = null;
                     FullNameTextBox.BackColor = AppColors.BaseInput;
-                    AddressTextBox.BackColor = AppColors.BaseInput;
                     tableLayoutPanel5.Visible = false;
                 }
             }

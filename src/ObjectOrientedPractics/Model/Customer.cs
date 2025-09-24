@@ -22,7 +22,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Адрес.
         /// </summary>
-        private string _address;
+        private Address _address;
         #endregion
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         /// <param name="fullname">Полное имя.</param>
         /// <param name="address">Адрес.</param>
-        public Customer(string fullname, string address)
+        public Customer(string fullname, Address address)
         {
             _id = IdGenerator.GetNextId();
             FullName = fullname;
@@ -44,7 +44,7 @@ namespace ObjectOrientedPractics.Model
         /// <param name="fullname">Полное имя.</param>
         /// <param name="address">Адрес.</param>
         [JsonConstructor]
-        public Customer(int id, string fullname, string address)
+        public Customer(int id, string fullname, Address address)
         {
             _id = id;
             FullName = fullname;
@@ -86,20 +86,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Адрес.
         /// </summary>
-        public string Address
-        {
-            get
-            {
-                return _address;
-            }
-            set
-            {
-                if (ValueValidator.AssertStringOnLength(value, 500, nameof(Address)))
-                {
-                    _address = value;
-                }
-            }
-        }
+        public Address Address { get; set; }
         #endregion
 
         /// <summary>

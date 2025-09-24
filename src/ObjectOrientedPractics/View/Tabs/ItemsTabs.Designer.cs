@@ -305,7 +305,7 @@
             CategoryComboBox.FormattingEnabled = true;
             CategoryComboBox.Location = new Point(92, 60);
             CategoryComboBox.Name = "CategoryComboBox";
-            CategoryComboBox.Size = new Size(113, 23);
+            CategoryComboBox.Size = new Size(200, 23);
             CategoryComboBox.TabIndex = 15;
             CategoryComboBox.SelectedIndexChanged += CategoryComboBox_SelectedIndexChanged;
             // 

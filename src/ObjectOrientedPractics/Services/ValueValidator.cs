@@ -144,13 +144,13 @@ namespace ObjectOrientedPractics.Services
         /// <param name="propertyName">Свойство передаваемого значения.</param>
         public static bool AssertStringOnLength(string value, int maxLength, string propertyName)
         {
-            if (value.Length <= maxLength)
+            if (value.Length > 0 && value.Length <= maxLength)
             {
                 return true;
             }
             else
             {
-                throw new ArgumentException($"{propertyName} должен быть меньше {maxLength} символов!");
+                throw new ArgumentException($"{propertyName} должен быть в диапазоне от 1 до {maxLength} символов!");
             }
         }
 

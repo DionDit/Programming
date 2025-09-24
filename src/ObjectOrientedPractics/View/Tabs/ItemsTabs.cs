@@ -16,8 +16,15 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             InitializeComponent();
             UpdateUI();
-            CategoryComboBox.DataSource = Enum.GetValues(typeof(Category));
 
+            CategoryComboBox.Items.AddRange(Enum.GetValues(typeof(Category)).Cast<object>().ToArray());
+            CategoryComboBox.Format += (s, e) =>
+            {
+                if (e.ListItem is Category category)
+                {
+                    e.Value = category.GetDisplayName();
+                }
+            };
         }
 
         /// <summary>
@@ -155,6 +162,9 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void InputData(object sender, KeyPressEventArgs e) => ValueValidator.InterdictionInputData(sender, e);
 
+        /// <summary>
+        /// Добавление нового товара.
+        /// </summary>
         private void AddRandomBtn_Click(object sender, EventArgs e)
         {
             AppData.Items.Add(ItemFactory.CreateRandomItem());
@@ -168,6 +178,6 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e) => _currentItem.Category = (Category)CategoryComboBox.SelectedItem;
+        private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e) => _currentItem.Category = (Category)CategoryComboBox.SelectedIndex;
     }
 }

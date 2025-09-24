@@ -31,29 +31,28 @@ namespace ObjectOrientedPractics.View.Dialogs
             }
         }
 
-        /// <summary>
-        /// Изменение введённого адреса. 
-        /// </summary>
-        private void AddressTextBox_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                _currentCustomer.Address = AddressTextBox.Text;
-                AddressTextBox.BackColor = AppColors.BaseInput;
-            }
-            catch
-            {
-                AddressTextBox.BackColor = AppColors.ErrorInput;
-            }
-        }
 
         /// <summary>
         /// Добавление нового покупателя.
         /// </summary>
         private void button1_Click(object sender, EventArgs e)
         {
-            AppData.Customers.Add(new Customer(FullNameTextBox.Text, AddressTextBox.Text));
-            DialogResult = DialogResult.OK;
+            if (addressControl1.Address.IsFullyFilled)
+            {
+                try
+                {
+                    AppData.Customers.Add(new Customer(FullNameTextBox.Text, addressControl1.Address));
+                    DialogResult = DialogResult.OK;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message,"Ошибка",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Корректно заполните адрес покупателя!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label6 = new Label();
             FullNameTextBox = new TextBox();
             label4 = new Label();
             IdTextBox = new TextBox();
@@ -44,7 +43,7 @@
             tableLayoutPanel3 = new TableLayoutPanel();
             tableLayoutPanel5 = new TableLayoutPanel();
             tableLayoutPanel4 = new TableLayoutPanel();
-            AddressTextBox = new TextBox();
+            addressControl1 = new ObjectOrientedPractics.View.Controls.AddressControl();
             panel1 = new Panel();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
@@ -53,22 +52,13 @@
             tableLayoutPanel4.SuspendLayout();
             SuspendLayout();
             // 
-            // label6
-            // 
-            label6.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            label6.AutoSize = true;
-            label6.Location = new Point(3, 78);
-            label6.Name = "label6";
-            label6.Size = new Size(52, 75);
-            label6.TabIndex = 11;
-            label6.Text = "Address:";
-            label6.TextAlign = ContentAlignment.MiddleLeft;
-            // 
             // FullNameTextBox
             // 
-            FullNameTextBox.Location = new Point(88, 53);
+            FullNameTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            FullNameTextBox.Location = new Point(79, 78);
+            FullNameTextBox.Margin = new Padding(3, 8, 3, 3);
             FullNameTextBox.Name = "FullNameTextBox";
-            FullNameTextBox.Size = new Size(150, 23);
+            FullNameTextBox.Size = new Size(398, 23);
             FullNameTextBox.TabIndex = 8;
             FullNameTextBox.TextChanged += FullNameTextBox_TextChanged;
             // 
@@ -76,9 +66,9 @@
             // 
             label4.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             label4.AutoSize = true;
-            label4.Location = new Point(3, 50);
+            label4.Location = new Point(3, 70);
             label4.Name = "label4";
-            label4.Size = new Size(64, 28);
+            label4.Size = new Size(64, 39);
             label4.TabIndex = 7;
             label4.Text = "Full Name:";
             label4.TextAlign = ContentAlignment.MiddleLeft;
@@ -86,7 +76,8 @@
             // IdTextBox
             // 
             IdTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            IdTextBox.Location = new Point(88, 25);
+            IdTextBox.Location = new Point(79, 39);
+            IdTextBox.Margin = new Padding(3, 8, 3, 3);
             IdTextBox.Name = "IdTextBox";
             IdTextBox.Size = new Size(150, 23);
             IdTextBox.TabIndex = 6;
@@ -96,9 +87,9 @@
             // 
             label3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             label3.AutoSize = true;
-            label3.Location = new Point(3, 22);
+            label3.Location = new Point(3, 31);
             label3.Name = "label3";
-            label3.Size = new Size(21, 28);
+            label3.Size = new Size(21, 39);
             label3.TabIndex = 5;
             label3.Text = "ID:";
             label3.TextAlign = ContentAlignment.MiddleLeft;
@@ -112,7 +103,7 @@
             label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             label2.Location = new Point(3, 0);
             label2.Name = "label2";
-            label2.Size = new Size(113, 22);
+            label2.Size = new Size(113, 31);
             label2.TabIndex = 4;
             label2.Text = "Selected Customer";
             label2.TextAlign = ContentAlignment.MiddleLeft;
@@ -234,8 +225,8 @@
             tableLayoutPanel5.Name = "tableLayoutPanel5";
             tableLayoutPanel5.RowCount = 2;
             tableLayoutPanel1.SetRowSpan(tableLayoutPanel5, 2);
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 40.18018F));
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 59.81982F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 58.1981964F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 41.8018036F));
             tableLayoutPanel5.Size = new Size(486, 555);
             tableLayoutPanel5.TabIndex = 3;
             tableLayoutPanel5.Visible = false;
@@ -244,15 +235,14 @@
             // 
             tableLayoutPanel4.BackColor = Color.White;
             tableLayoutPanel4.ColumnCount = 2;
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 17.708334F));
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 82.2916641F));
-            tableLayoutPanel4.Controls.Add(AddressTextBox, 1, 3);
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 15.833333F));
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 84.1666641F));
             tableLayoutPanel4.Controls.Add(label2, 0, 0);
-            tableLayoutPanel4.Controls.Add(label6, 0, 3);
             tableLayoutPanel4.Controls.Add(label3, 0, 1);
             tableLayoutPanel4.Controls.Add(FullNameTextBox, 1, 2);
             tableLayoutPanel4.Controls.Add(IdTextBox, 1, 1);
             tableLayoutPanel4.Controls.Add(label4, 0, 2);
+            tableLayoutPanel4.Controls.Add(addressControl1, 0, 3);
             tableLayoutPanel4.Dock = DockStyle.Fill;
             tableLayoutPanel4.Location = new Point(3, 3);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
@@ -261,29 +251,28 @@
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 12.9583063F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 12.9583063F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 34.5722466F));
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 24.24547F));
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 4.938892F));
-            tableLayoutPanel4.Size = new Size(480, 217);
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 20.2764969F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 11.5207376F));
+            tableLayoutPanel4.Size = new Size(480, 316);
             tableLayoutPanel4.TabIndex = 6;
             // 
-            // AddressTextBox
+            // addressControl1
             // 
-            AddressTextBox.Dock = DockStyle.Fill;
-            AddressTextBox.Location = new Point(88, 81);
-            AddressTextBox.Multiline = true;
-            AddressTextBox.Name = "AddressTextBox";
-            tableLayoutPanel4.SetRowSpan(AddressTextBox, 2);
-            AddressTextBox.Size = new Size(389, 121);
-            AddressTextBox.TabIndex = 13;
-            AddressTextBox.TextChanged += AddressTextBox_TextChanged;
+            tableLayoutPanel4.SetColumnSpan(addressControl1, 2);
+            addressControl1.Dock = DockStyle.Fill;
+            addressControl1.Location = new Point(3, 112);
+            addressControl1.Name = "addressControl1";
+            tableLayoutPanel4.SetRowSpan(addressControl1, 3);
+            addressControl1.Size = new Size(474, 201);
+            addressControl1.TabIndex = 9;
             // 
             // panel1
             // 
             panel1.BackColor = Color.White;
             panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(3, 226);
+            panel1.Location = new Point(3, 325);
             panel1.Name = "panel1";
-            panel1.Size = new Size(480, 326);
+            panel1.Size = new Size(480, 227);
             panel1.TabIndex = 7;
             // 
             // CustomersTab
@@ -304,7 +293,6 @@
         }
 
         #endregion
-        private Label label6;
         private TextBox FullNameTextBox;
         private Label label4;
         private TextBox IdTextBox;
@@ -320,7 +308,7 @@
         private TableLayoutPanel tableLayoutPanel3;
         private TableLayoutPanel tableLayoutPanel4;
         private TableLayoutPanel tableLayoutPanel5;
-        private TextBox AddressTextBox;
         private Panel panel1;
+        private Controls.AddressControl addressControl1;
     }
 }

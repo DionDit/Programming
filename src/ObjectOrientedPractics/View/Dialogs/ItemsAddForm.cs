@@ -15,7 +15,17 @@ namespace ObjectOrientedPractics.View.Dialogs
         {
             InitializeComponent();
             _currentItem = new Item();
-            CategoryComboBox.DataSource = Enum.GetValues(typeof(Category));
+
+            CategoryComboBox.Items.AddRange(Enum.GetValues(typeof(Category)).Cast<object>().ToArray());
+
+            CategoryComboBox.SelectedIndex = 0;
+            CategoryComboBox.Format += (s, e) =>
+            {
+                if (e.ListItem is Category category)
+                {
+                    e.Value = category.GetDisplayName();
+                }
+            };
         }
 
         /// <summary>
