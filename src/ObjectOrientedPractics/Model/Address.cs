@@ -163,7 +163,5 @@ namespace ObjectOrientedPractics.Model
         !string.IsNullOrWhiteSpace(Apartment) &&
         Index >= 100000 && Index <= 999999;
         #endregion
-
-
     }
 }

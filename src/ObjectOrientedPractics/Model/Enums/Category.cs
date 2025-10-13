@@ -86,5 +86,24 @@ namespace ObjectOrientedPractics.Model.Enums
                 _ => category.ToString()
             };
         }
+
+        /// <summary>
+        /// Преобразование перечисления в текст.
+        /// </summary>
+        /// <param name="orderStatus">Статус заказа.</param>
+        /// <returns></returns>
+        public static string GetDisplayName(this OrderStatus orderStatus)
+        {
+            return orderStatus switch
+            {
+                OrderStatus.New => "Мобильные устройства и телефоны",
+                OrderStatus.Processing => "Компьютеры и ноутбуки",
+                OrderStatus.Assembly => "Телевизоры и видео техника",
+                OrderStatus.Sent => "Бытовая техника для дома",
+                OrderStatus.Delivered => "Кухонная техника и приборы",
+                OrderStatus.Returned => "Спортивные товары и инвентарь",
+                _ => orderStatus.ToString()
+            };
+        }
     }
 }

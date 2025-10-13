@@ -41,5 +41,15 @@ namespace ObjectOrientedPractics.View
                 ProjectSerializer.DisableAutoSave(this);
             }
         }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (tabControl1.SelectedIndex)
+            {
+                case 2:
+                    cartsTab1.UpdateUI();
+                    break;
+            }
+        }
     }
 }
