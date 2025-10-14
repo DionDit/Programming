@@ -36,12 +36,15 @@
             customersTab1 = new ObjectOrientedPractics.View.Tabs.CustomersTab();
             tabPage4 = new TabPage();
             cartsTab1 = new ObjectOrientedPractics.View.Tabs.CartsTab();
+            tabPage5 = new TabPage();
+            ordersTab1 = new ObjectOrientedPractics.View.Tabs.OrdersTab();
             tabPage3 = new TabPage();
             ExitSaving = new CheckBox();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
             tabPage4.SuspendLayout();
+            tabPage5.SuspendLayout();
             tabPage3.SuspendLayout();
             SuspendLayout();
             // 
@@ -50,6 +53,7 @@
             tabControl1.Controls.Add(tabPage1);
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(tabPage4);
+            tabControl1.Controls.Add(tabPage5);
             tabControl1.Controls.Add(tabPage3);
             tabControl1.Dock = DockStyle.Fill;
             tabControl1.Location = new Point(0, 0);
@@ -102,7 +106,7 @@
             tabPage4.Controls.Add(cartsTab1);
             tabPage4.Location = new Point(4, 24);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(976, 533);
+            tabPage4.Size = new Size(192, 72);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "Carts";
             tabPage4.UseVisualStyleBackColor = true;
@@ -112,15 +116,33 @@
             cartsTab1.Dock = DockStyle.Fill;
             cartsTab1.Location = new Point(0, 0);
             cartsTab1.Name = "cartsTab1";
-            cartsTab1.Size = new Size(976, 533);
+            cartsTab1.Size = new Size(192, 72);
             cartsTab1.TabIndex = 0;
+            // 
+            // tabPage5
+            // 
+            tabPage5.Controls.Add(ordersTab1);
+            tabPage5.Location = new Point(4, 24);
+            tabPage5.Name = "tabPage5";
+            tabPage5.Size = new Size(976, 533);
+            tabPage5.TabIndex = 4;
+            tabPage5.Text = "Orders";
+            tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // ordersTab1
+            // 
+            ordersTab1.Dock = DockStyle.Fill;
+            ordersTab1.Location = new Point(0, 0);
+            ordersTab1.Name = "ordersTab1";
+            ordersTab1.Size = new Size(976, 533);
+            ordersTab1.TabIndex = 0;
             // 
             // tabPage3
             // 
             tabPage3.Controls.Add(ExitSaving);
             tabPage3.Location = new Point(4, 24);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(976, 533);
+            tabPage3.Size = new Size(192, 72);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Settings";
             tabPage3.UseVisualStyleBackColor = true;
@@ -152,6 +174,7 @@
             tabPage1.ResumeLayout(false);
             tabPage2.ResumeLayout(false);
             tabPage4.ResumeLayout(false);
+            tabPage5.ResumeLayout(false);
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
             ResumeLayout(false);
@@ -168,5 +191,7 @@
         private CheckBox ExitSaving;
         private TabPage tabPage4;
         private Tabs.CartsTab cartsTab1;
+        private TabPage tabPage5;
+        private Tabs.OrdersTab ordersTab1;
     }
 }

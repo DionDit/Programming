@@ -18,6 +18,17 @@ namespace ObjectOrientedPractics.Services
         private static readonly string _filePath = "data.json";
 
         /// <summary>
+        /// Настройки сериализатора для обработки ссылок.
+        /// </summary>
+        private static readonly JsonSerializerSettings _serializerSettings = new JsonSerializerSettings
+        {
+            Formatting = Formatting.Indented,
+            PreserveReferencesHandling = PreserveReferencesHandling.Objects,
+            ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+            TypeNameHandling = TypeNameHandling.Auto
+        };
+
+        /// <summary>
         /// Сохранение всех данных.
         /// </summary>
         /// <param name="data">Данные для сохранения</param>
@@ -25,7 +36,7 @@ namespace ObjectOrientedPractics.Services
         {
             try
             {
-                string json = JsonConvert.SerializeObject(data, Formatting.Indented);
+                string json = JsonConvert.SerializeObject(data, _serializerSettings);
                 File.WriteAllText(_filePath, json);
             }
             catch (Exception ex)

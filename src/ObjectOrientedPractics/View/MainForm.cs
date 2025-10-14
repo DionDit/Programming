@@ -49,6 +49,9 @@ namespace ObjectOrientedPractics.View
                 case 2:
                     cartsTab1.UpdateUI();
                     break;
+                case 3:
+                    ordersTab1.UpdateOrdersList();
+                    break;
             }
         }
     }

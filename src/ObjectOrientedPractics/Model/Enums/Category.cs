@@ -96,12 +96,13 @@ namespace ObjectOrientedPractics.Model.Enums
         {
             return orderStatus switch
             {
-                OrderStatus.New => "Мобильные устройства и телефоны",
-                OrderStatus.Processing => "Компьютеры и ноутбуки",
-                OrderStatus.Assembly => "Телевизоры и видео техника",
-                OrderStatus.Sent => "Бытовая техника для дома",
-                OrderStatus.Delivered => "Кухонная техника и приборы",
-                OrderStatus.Returned => "Спортивные товары и инвентарь",
+                OrderStatus.New => "Новый заказ",
+                OrderStatus.Processing => "Обрабатывается",
+                OrderStatus.Assembly => "Собирается на складе",
+                OrderStatus.Sent => "Отправлен",
+                OrderStatus.Delivered => "Доставлен",
+                OrderStatus.Returned => "Возврат",
+                OrderStatus.Abandoned => "Отменен (со стороны магазина)",
                 _ => orderStatus.ToString()
             };
         }

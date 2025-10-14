@@ -142,6 +142,6 @@ namespace ObjectOrientedPractics.Model
         /// Метод переопределения ToString().
         /// </summary>
         /// <returns>Строку с информацией об предмете.</returns>
-        public override string ToString() => $"{Id}| {Name}";
+        public override string ToString() => $"{Name}";
     }
 }

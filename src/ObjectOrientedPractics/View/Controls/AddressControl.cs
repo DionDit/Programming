@@ -123,5 +123,15 @@ namespace ObjectOrientedPractics.View.Controls
                 ApartmentTextBox.BackColor = AppColors.ErrorInput;
             }
         }
+
+        public void AllReadOnly()
+        {
+            IndexTextBox.ReadOnly = true;
+            CountryTextBox.ReadOnly = true;
+            CityTextBox.ReadOnly = true;
+            StreetTextBox.ReadOnly = true;
+            BuildingTextBox.ReadOnly = true;
+            ApartmentTextBox.ReadOnly = true;
+        }
     }
 }

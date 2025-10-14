@@ -19,12 +19,20 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         private readonly int _id;
 
+        /// <summary>
+        /// Дата создания.
+        /// </summary>
         private readonly DateTime _creationDate;
 
+        /// <summary>
+        /// Адрес доставки.
+        /// </summary>
         private Address _address;
 
+        /// <summary>
+        /// Товары.
+        /// </summary>
         private List<Item> _items;
-
         #endregion
 
         public Order(Address address, List<Item> items)
@@ -46,18 +54,43 @@ namespace ObjectOrientedPractics.Model
             OrderStatus = orderStatus;
         }
 
-
-
         #region Properties
+        /// <summary>
+        /// Идентификатор заказа.
+        /// </summary>
         public int Id => _id;
 
+        /// <summary>
+        /// Дата создания.
+        /// </summary>
         public DateTime CreationDate => _creationDate;
 
+        /// <summary>
+        /// Адрес доставки.
+        /// </summary>
         public Address Address { get => _address; set => _address = value; }
 
+        /// <summary>
+        /// Товары.
+        /// </summary>
         public List<Item> Items { get => _items; set => _items = value; }
 
+        /// <summary>
+        /// Статус заказа.
+        /// </summary>
         public OrderStatus OrderStatus { get; set; }
+
+        /// <summary>
+        /// Имя покупателя (для отображения)
+        /// </summary>
+        [JsonIgnore]
+        public string CustomerName => AppData.Customers.FirstOrDefault(x => x.Orders.Contains(this)).FullName;
+
+        /// <summary>
+        /// Адрес в виде строки (для отображения)
+        /// </summary>
+        [JsonIgnore]
+        public string AddressString => $"{Address.Index}, {Address.Country}, г.{Address.City}, ул.{Address.Street}, {Address.Building}, кв.{Address.Apartment}";
 
         /// <summary>
         /// Общая стоимость всех товаров в заказе.

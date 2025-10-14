@@ -1,4 +1,5 @@
 ﻿using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.Model.Enums;
 
 namespace ObjectOrientedPractics.Services
 {
@@ -133,8 +134,9 @@ namespace ObjectOrientedPractics.Services
 
             // Создаем объект Address с использованием нового класса
             Address address = CreateRandomAddress();
-
-            return new Customer(fullName, address);
+            var Customer = new Customer(fullName, address);
+            CreateRandomOrder(Customer);
+            return Customer;
         }
 
         /// <summary>
@@ -145,7 +147,7 @@ namespace ObjectOrientedPractics.Services
         {
             return new Address
             {
-                Index = _random.Next(100000, 200000), // 6-значный индекс
+                Index = _random.Next(111111, 999999), // 6-значный индекс
                 Country = "Россия",
                 City = _cities[_random.Next(_cities.Length)],
                 Street = _streets[_random.Next(_streets.Length)],
@@ -180,6 +182,38 @@ namespace ObjectOrientedPractics.Services
         {
             Address address = new Address(index, country, city, street, building, apartment);
             return new Customer(fullName, address);
+        }
+
+        /// <summary>
+        /// Создает случайный заказ для указанного покупателя.
+        /// </summary>
+        /// <param name="customer">Покупатель.</param>
+        public static void CreateRandomOrder(Customer customer)
+        {
+            var itemsCount = _random.Next(1, 6);
+            var items = new List<Item>();
+
+            for (int i = 0; i < itemsCount; i++)
+            {
+                items.Add(ItemFactory.CreateRandomItem());
+            }
+
+            var order = new Order(customer.Address, items)
+            {
+                OrderStatus = GetRandomOrderStatus()
+            };
+
+            customer.Orders.Add(order);
+        }
+
+        /// <summary>
+        /// Возвращает случайный статус заказа.
+        /// </summary>
+        /// <returns>Случайный статус заказа.</returns>
+        private static OrderStatus GetRandomOrderStatus()
+        {
+            var statuses = Enum.GetValues(typeof(OrderStatus));
+            return (OrderStatus)statuses.GetValue(_random.Next(statuses.Length));
         }
     }
 }
