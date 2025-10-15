@@ -123,13 +123,20 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             if (_currentCustomer != null && _currentCustomer.Cart.Items.Count > 0)
             {
-                _currentCustomer.Orders.Add(new Order(_currentCustomer.Address, _currentCustomer.Cart.Items));
+                if (_currentCustomer.IsPriority)
+                {
+                    _currentCustomer.Orders.Add(new PriorityOrder(_currentCustomer.Address, _currentCustomer.Cart.Items));
+                }
+                else
+                {
+                    _currentCustomer.Orders.Add(new Order(_currentCustomer.Address, _currentCustomer.Cart.Items));
+                }
                 _currentCustomer.Cart.Items.Clear();
                 UpdateCustomer();
             }
             else
             {
-                MessageBox.Show("Добавте предметы в корзину для формирования заказа!","Предупреждение",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                MessageBox.Show("Добавьте предметы в корзину для формирования заказа!","Предупреждение",MessageBoxButtons.OK,MessageBoxIcon.Warning);
             }
         }
     }

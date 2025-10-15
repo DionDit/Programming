@@ -11,28 +11,40 @@ using System.Xml.Linq;
 
 namespace ObjectOrientedPractics.Model
 {
+    [JsonObject(MemberSerialization.OptIn)]
     public class Order
     {
         #region Fields
         /// <summary>
         /// Идентификатор заказа.
         /// </summary>
+        [JsonProperty]
         private readonly int _id;
 
         /// <summary>
         /// Дата создания.
         /// </summary>
+        [JsonProperty]
         private readonly DateTime _creationDate;
 
         /// <summary>
         /// Адрес доставки.
         /// </summary>
+        [JsonProperty]
         private Address _address;
 
         /// <summary>
         /// Товары.
         /// </summary>
+        [JsonProperty]
         private List<Item> _items;
+
+        /// <summary>
+        /// Статус заказа.
+        /// </summary>
+        [JsonProperty]
+        private OrderStatus _orderStatus { get; set; }
+
         #endregion
 
         public Order(Address address, List<Item> items)
@@ -45,7 +57,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         [JsonConstructor]
-        private Order(int id, DateTime creationDate, Address address, List<Item> items, OrderStatus orderStatus)
+        public Order(int id, DateTime creationDate, Address address, List<Item> items, OrderStatus orderStatus)
         {
             _id = id;
             _creationDate = creationDate;
@@ -78,7 +90,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Статус заказа.
         /// </summary>
-        public OrderStatus OrderStatus { get; set; }
+        public OrderStatus OrderStatus { get => _orderStatus; set => _orderStatus = value; }
 
         /// <summary>
         /// Имя покупателя (для отображения)

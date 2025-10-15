@@ -33,6 +33,11 @@ namespace ObjectOrientedPractics.Model
         /// Список заказов.
         /// </summary>
         private List<Order> _orders;
+
+        /// <summary>
+        /// Является ли покупатель приоритетным.
+        /// </summary>
+        private bool _isPriority = false;
         #endregion
 
         /// <summary>
@@ -113,6 +118,11 @@ namespace ObjectOrientedPractics.Model
         /// Список заказов.
         /// </summary>
         public List<Order> Orders { get => _orders; set => _orders = value; }
+
+        /// <summary>
+        /// Является ли покупатель приоритетным.
+        /// </summary>
+        public bool IsPriority { get => _isPriority; set => _isPriority = value; }
         #endregion
 
         /// <summary>

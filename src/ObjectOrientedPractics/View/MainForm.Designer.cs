@@ -88,7 +88,7 @@
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(192, 72);
+            tabPage2.Size = new Size(976, 533);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Customers";
             tabPage2.UseVisualStyleBackColor = true;
@@ -98,7 +98,7 @@
             customersTab1.Dock = DockStyle.Fill;
             customersTab1.Location = new Point(3, 3);
             customersTab1.Name = "customersTab1";
-            customersTab1.Size = new Size(186, 66);
+            customersTab1.Size = new Size(970, 527);
             customersTab1.TabIndex = 0;
             // 
             // tabPage4
@@ -106,7 +106,7 @@
             tabPage4.Controls.Add(cartsTab1);
             tabPage4.Location = new Point(4, 24);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(192, 72);
+            tabPage4.Size = new Size(976, 533);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "Carts";
             tabPage4.UseVisualStyleBackColor = true;
@@ -116,7 +116,7 @@
             cartsTab1.Dock = DockStyle.Fill;
             cartsTab1.Location = new Point(0, 0);
             cartsTab1.Name = "cartsTab1";
-            cartsTab1.Size = new Size(192, 72);
+            cartsTab1.Size = new Size(976, 533);
             cartsTab1.TabIndex = 0;
             // 
             // tabPage5
@@ -142,7 +142,7 @@
             tabPage3.Controls.Add(ExitSaving);
             tabPage3.Location = new Point(4, 24);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(192, 72);
+            tabPage3.Size = new Size(976, 533);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Settings";
             tabPage3.UseVisualStyleBackColor = true;

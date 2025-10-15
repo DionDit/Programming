@@ -17,11 +17,13 @@ namespace ObjectOrientedPractics.View.Tabs
     {
         private List<Order> _orders;
         private Order _currentOrder;
+        private PriorityOrder _currentPriorityOrder;
+
         public OrdersTab()
         {
             InitializeComponent();
             InitializeDataGridView();
-            UpdateOrdersList();
+            UpdateOrdersList(PriorityOrderCheckBox.Checked);
 
             StatusComboBox.Items.AddRange(Enum.GetValues(typeof(OrderStatus)).Cast<object>().ToArray());
             StatusComboBox.Format += (s, e) =>
@@ -43,7 +45,7 @@ namespace ObjectOrientedPractics.View.Tabs
             OrdersDataGridView.AllowUserToAddRows = false;
             OrdersDataGridView.AllowUserToDeleteRows = false;
             OrdersDataGridView.ReadOnly = true;
-            //OrdersDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            OrdersDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
             OrdersDataGridView.MultiSelect = false;
             OrdersDataGridView.AllowUserToResizeRows = false;
@@ -54,12 +56,22 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 new DataGridViewTextBoxColumn()
                 {
+                    Name = "PriorityColumn",
+                    HeaderText = "",
+                    Width = 30,
+                    DefaultCellStyle = new DataGridViewCellStyle()
+                    {
+                        Alignment = DataGridViewContentAlignment.MiddleCenter,
+                        Font = new Font("Arial", 14, FontStyle.Bold),
+                        ForeColor = Color.Gold
+                    }
+                },
+                new DataGridViewTextBoxColumn()
+                {
                     Name = "IdColumn",
                     HeaderText = "Id",
                     DataPropertyName = "Id",
                     Width = 50,
-                    SortMode = DataGridViewColumnSortMode.Automatic
-
                 },
                 new DataGridViewTextBoxColumn()
                 {
@@ -104,18 +116,51 @@ namespace ObjectOrientedPractics.View.Tabs
             };
 
             OrdersDataGridView.Columns.AddRange(columns);
+            OrdersDataGridView.CellFormatting += OrdersDataGridView_CellFormatting;
+
+        }
+
+        /// <summary>
+        /// Обрабатывает форматирование ячеек DataGridView для отображения приоритетных заказов.
+        /// </summary>
+        private void OrdersDataGridView_CellFormatting(object? sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex == OrdersDataGridView.Columns["PriorityColumn"].Index)
+            {
+                var order = OrdersDataGridView.Rows[e.RowIndex].DataBoundItem as Order;
+                if (order is PriorityOrder)
+                {
+                    e.Value = "★";
+                    e.FormattingApplied = true;
+                }
+                else
+                {
+                    e.Value = "";
+                    e.FormattingApplied = true;
+                }
+            }
         }
 
         /// <summary>
         /// Обновление списка заказов
         /// </summary>
-        public void UpdateOrdersList()
+        public void UpdateOrdersList(bool IsPriority)
         {
             var allOrders = new List<Order>();
             AppData.Customers.ForEach(x => x.Orders.ForEach(y => allOrders.Add(y)));
 
-            _orders = allOrders;
+            if (IsPriority)
+            {
+                _orders = allOrders.Where(order => order is PriorityOrder).ToList();
+            }
+            else
+            {
+                _orders = allOrders;
+            }
+
             OrdersDataGridView.DataSource = _orders;
+
+            OrdersDataGridView.Refresh();
         }
 
         /// <summary>
@@ -138,6 +183,22 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void UpdateOrderDetails()
         {
+            if (_currentOrder is PriorityOrder priorityOrder)
+            {
+                _currentPriorityOrder = priorityOrder;
+                PriorityLabel.Visible = true;
+                DeliveryTimeLabel.Visible = true;
+                DeliveryTimeComboBox.Visible = true;
+                DeliveryTimeComboBox.SelectedItem = _currentPriorityOrder.DeliveryTime;
+            }
+            else
+            {
+                _currentPriorityOrder = null;
+                PriorityLabel.Visible = false;
+                DeliveryTimeLabel.Visible = false;
+                DeliveryTimeComboBox.Visible = false;
+            }
+
             IdTextBox.Text = _currentOrder.Id.ToString();
             CreatedTextBox.Text = _currentOrder.CreationDate.ToString("F");
             StatusComboBox.SelectedItem = _currentOrder.OrderStatus;
@@ -176,12 +237,28 @@ namespace ObjectOrientedPractics.View.Tabs
                                     x.Id.ToString().Contains(textBox1.Text) ||
                                     x.Amount.ToString("C2").ToLower().Contains(textBox1.Text) ||
                                     x.CreationDate.ToString("dd.MM.yyyy HH:mm").Contains(textBox1.Text) ||
-                                    x.Items.Any(item => item.Name.ToLower().Contains(textBox1.Text))).ToList();         
+                                    x.Items.Any(item => item.Name.ToLower().Contains(textBox1.Text))).ToList();
             }
             else
             {
-                UpdateOrdersList();
+                UpdateOrdersList(PriorityOrderCheckBox.Checked);
             }
+        }
+
+        /// <summary>
+        /// Изменение времени доставки.
+        /// </summary>
+        private void DeliveryTimeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _currentPriorityOrder.DeliveryTime = DeliveryTimeComboBox.SelectedItem?.ToString();
+        }
+
+        /// <summary>
+        /// Показать только приоритетные заказы.
+        /// </summary>
+        private void PriorityOrderCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateOrdersList(PriorityOrderCheckBox.Checked);
         }
     }
 }

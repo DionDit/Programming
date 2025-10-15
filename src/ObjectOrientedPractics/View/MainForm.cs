@@ -1,4 +1,5 @@
-﻿using ObjectOrientedPractics.Services;
+﻿using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.Services;
 
 namespace ObjectOrientedPractics.View
 {
@@ -50,7 +51,7 @@ namespace ObjectOrientedPractics.View
                     cartsTab1.UpdateUI();
                     break;
                 case 3:
-                    ordersTab1.UpdateOrdersList();
+                    ordersTab1.UpdateOrdersList(false);
                     break;
             }
         }

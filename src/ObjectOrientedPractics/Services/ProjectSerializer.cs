@@ -25,7 +25,8 @@ namespace ObjectOrientedPractics.Services
             Formatting = Formatting.Indented,
             PreserveReferencesHandling = PreserveReferencesHandling.Objects,
             ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-            TypeNameHandling = TypeNameHandling.Auto
+            TypeNameHandling = TypeNameHandling.Auto,
+            NullValueHandling = NullValueHandling.Ignore
         };
 
         /// <summary>
@@ -58,14 +59,79 @@ namespace ObjectOrientedPractics.Services
                 }
 
                 string json = File.ReadAllText(_filePath);
-                var data = JObject.Parse(json);
-                AppData.IsExitSaving = data["IsExitSaving"].ToObject<bool>();
-                AppData.Items = data["Items"]?.ToObject<List<Item>>() ?? new List<Item>();
-                AppData.Customers = data["Customers"]?.ToObject<List<Customer>>() ?? new List<Customer>();
+
+                var container = JsonConvert.DeserializeObject<AppDataContainer>(json, _serializerSettings);
+
+                if (container != null)
+                {
+                    AppData.IsExitSaving = container.IsExitSaving;
+                    AppData.Items = container.Items ?? new List<Item>();
+                    AppData.Customers = container.Customers ?? new List<Customer>();
+
+                    FixItemReferences();
+                }
+                else
+                {
+                    AppData.Items = new List<Item>();
+                    AppData.Customers = new List<Customer>();
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Ошибка при загрузке: {ex.Message}", "Ошибка",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                AppData.Items = new List<Item>();
+                AppData.Customers = new List<Customer>();
+            }
+        }
+
+        /// <summary>
+        /// Исправляет ссылки на товары в корзинах и заказах
+        /// </summary>
+        private static void FixItemReferences()
+        {
+            if (AppData.Items == null && AppData.Customers == null)
+            {
+                AppData.Items = new List<Item>();
+                AppData.Customers = new List<Customer>();
+            }
+
+            var itemDict = AppData.Items
+                .Where(item => item != null)
+                .GroupBy(item => item.Id)
+                .ToDictionary(g => g.Key, g => g.First());
+
+            foreach (var customer in AppData.Customers)
+            {
+                if (customer == null)
+                {
+                    continue;
+                }
+
+                if (customer.Cart == null)
+                {
+                    customer.Cart = new Cart();
+                }
+                else if (customer.Cart.Items != null)
+                {
+                    customer.Cart.Items = customer.Cart.Items
+                        .Where(item => item != null && itemDict.ContainsKey(item.Id))
+                        .Select(item => itemDict[item.Id])
+                        .ToList();
+                }
+
+                if (customer.Orders != null)
+                {
+                    foreach (var order in customer.Orders)
+                    {
+                        if (order != null && order.Items != null)
+                        {
+                            order.Items = order.Items
+                                .Where(item => item != null && itemDict.ContainsKey(item.Id))
+                                .Select(item => itemDict[item.Id])
+                                .ToList();
+                        }
+                    }
+                }
             }
         }
 
@@ -97,5 +163,15 @@ namespace ObjectOrientedPractics.Services
                 _autoSaveHandler = null;
             }
         }
+    }
+
+    /// <summary>
+    /// Контейнер для данных приложения.
+    /// </summary>
+    public class AppDataContainer
+    {
+        public List<Item> Items { get; set; }
+        public List<Customer> Customers { get; set; }
+        public bool IsExitSaving { get; set; }
     }
 }

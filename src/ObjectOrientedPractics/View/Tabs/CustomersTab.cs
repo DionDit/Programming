@@ -33,6 +33,14 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             IdTextBox.Text = item.Id.ToString();
             FullNameTextBox.Text = item.FullName;
+            if (_currentCustomer.IsPriority)
+            {
+                checkBox1.Checked = true;
+            }
+            else
+            {
+                checkBox1.Checked = false;
+            }
         }
 
         /// <summary>
@@ -126,6 +134,18 @@ namespace ObjectOrientedPractics.View.Tabs
             AppData.Customers.Add(CustomerFactory.CreateRandomCustomer());
             UpdateUI();
             MessageBox.Show("Вы добавили случайного покупателя!", "Успешно", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                _currentCustomer.IsPriority = true;
+            }
+            else
+            {
+                _currentCustomer.IsPriority = false;
+            }
         }
     }
 }

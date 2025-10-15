@@ -132,7 +132,6 @@ namespace ObjectOrientedPractics.Services
 
             string fullName = $"{lastName} {firstName} {middleName}";
 
-            // Создаем объект Address с использованием нового класса
             Address address = CreateRandomAddress();
             var Customer = new Customer(fullName, address);
             CreateRandomOrder(Customer);
@@ -195,7 +194,7 @@ namespace ObjectOrientedPractics.Services
 
             for (int i = 0; i < itemsCount; i++)
             {
-                items.Add(ItemFactory.CreateRandomItem());
+                items.Add(AppData.Items[_random.Next(AppData.Items.Count)]);
             }
 
             var order = new Order(customer.Address, items)

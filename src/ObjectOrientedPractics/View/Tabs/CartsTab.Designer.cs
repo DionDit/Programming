@@ -187,7 +187,7 @@
             AmountLabel.Name = "AmountLabel";
             AmountLabel.Size = new Size(520, 38);
             AmountLabel.TabIndex = 9;
-            AmountLabel.Text = "4 999,00 ₽";
+            AmountLabel.Text = "0,00 ₽";
             AmountLabel.TextAlign = ContentAlignment.MiddleRight;
             // 
             // tableLayoutPanel3

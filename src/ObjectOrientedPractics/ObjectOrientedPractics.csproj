@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <None Remove="View\Tabs\ItemsTabs.Designer.cs~RF10fb792.TMP" />
+    <None Remove="View\Tabs\OrdersTab.Designer.cs~RF2b0c6b8.TMP" />
   </ItemGroup>
 
   <ItemGroup>
