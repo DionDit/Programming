@@ -1,5 +1,5 @@
-﻿using ObjectOrientedPractics.Model;
-using ObjectOrientedPractics.Model.Enums;
+﻿using ObjectOrientedPractics.Model.Enums;
+using ObjectOrientedPractics.Model.Orders;
 using ObjectOrientedPractics.Services;
 using System;
 using System.Collections.Generic;
@@ -112,6 +112,17 @@ namespace ObjectOrientedPractics.View.Tabs
                         Format = "C2"
                     },
                 },
+                new DataGridViewTextBoxColumn()
+                {
+                    Name = "TotalAmountColumn",
+                    HeaderText = "TotalAmount",
+                    DataPropertyName = "TotalAmount",
+                    Width = 100,
+                    DefaultCellStyle = new DataGridViewCellStyle()
+                    {
+                        Format = "C2"
+                    },
+                },
 
             };
 
@@ -205,6 +216,7 @@ namespace ObjectOrientedPractics.View.Tabs
             addressControl1.Address = _currentOrder.Address;
             addressControl1.AllReadOnly();
             AmountLabel.Text = _currentOrder.Amount.ToString("C2");
+            TotalAmount.Text = _currentOrder.TotalAmount.ToString("C2");
 
             OrderItemsListBox.Items.Clear();
 

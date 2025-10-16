@@ -1,6 +1,8 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.Model.Discounts;
+using ObjectOrientedPractics.Model.Interfaces;
 
 namespace ObjectOrientedPractics.Services
 {
@@ -11,21 +13,20 @@ namespace ObjectOrientedPractics.Services
     {
         private static FormClosingEventHandler _autoSaveHandler;
 
-
         /// <summary>
         /// Путь хранения данных приложения.
         /// </summary>
         private static readonly string _filePath = "data.json";
 
         /// <summary>
-        /// Настройки сериализатора для обработки ссылок.
+        /// Настройки сериализатора.
         /// </summary>
         private static readonly JsonSerializerSettings _serializerSettings = new JsonSerializerSettings
         {
             Formatting = Formatting.Indented,
             PreserveReferencesHandling = PreserveReferencesHandling.Objects,
             ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-            TypeNameHandling = TypeNameHandling.Auto,
+            TypeNameHandling = TypeNameHandling.All,
             NullValueHandling = NullValueHandling.Ignore
         };
 
@@ -42,7 +43,7 @@ namespace ObjectOrientedPractics.Services
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ошибка при сохранении: {ex.Message}", "Ошибка",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Ошибка при сохранении: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -69,16 +70,12 @@ namespace ObjectOrientedPractics.Services
                     AppData.Customers = container.Customers ?? new List<Customer>();
 
                     FixItemReferences();
-                }
-                else
-                {
-                    AppData.Items = new List<Item>();
-                    AppData.Customers = new List<Customer>();
+                    FixDiscountReferences();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ошибка при загрузке: {ex.Message}", "Ошибка",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Ошибка при загрузке: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 AppData.Items = new List<Item>();
                 AppData.Customers = new List<Customer>();
             }
@@ -89,49 +86,44 @@ namespace ObjectOrientedPractics.Services
         /// </summary>
         private static void FixItemReferences()
         {
-            if (AppData.Items == null && AppData.Customers == null)
+            // Базовые проверки
+            if (AppData.Items == null || AppData.Customers == null)
             {
-                AppData.Items = new List<Item>();
-                AppData.Customers = new List<Customer>();
+                return;
             }
 
-            var itemDict = AppData.Items
-                .Where(item => item != null)
-                .GroupBy(item => item.Id)
-                .ToDictionary(g => g.Key, g => g.First());
+            var itemMap = AppData.Items.ToDictionary(x => x.Id);
 
+            foreach (var customer in AppData.Customers.Where(c => c != null))
+            {
+                customer.Cart ??= new Cart();
+                customer.Cart.Items = customer.Cart.Items?
+                        .Where(item => item != null && itemMap.ContainsKey(item.Id))
+                        .Select(item => itemMap[item.Id])
+                        .ToList() ?? new List<Item>();
+
+                customer.Orders?.ForEach(order =>
+                {
+                    order.Items = order.Items?
+                         .Where(item => item != null && itemMap.ContainsKey(item.Id))
+                         .Select(item => itemMap[item.Id])
+                         .ToList() ?? new List<Item>();
+                });
+            }
+        }
+
+        /// <summary>
+        /// Восстанавливает ссылки на скидки после десериализации
+        /// </summary>
+        private static void FixDiscountReferences()
+        {
             foreach (var customer in AppData.Customers)
             {
-                if (customer == null)
+                if (customer?.Discounts == null) 
                 {
                     continue;
                 }
-
-                if (customer.Cart == null)
-                {
-                    customer.Cart = new Cart();
-                }
-                else if (customer.Cart.Items != null)
-                {
-                    customer.Cart.Items = customer.Cart.Items
-                        .Where(item => item != null && itemDict.ContainsKey(item.Id))
-                        .Select(item => itemDict[item.Id])
-                        .ToList();
-                }
-
-                if (customer.Orders != null)
-                {
-                    foreach (var order in customer.Orders)
-                    {
-                        if (order != null && order.Items != null)
-                        {
-                            order.Items = order.Items
-                                .Where(item => item != null && itemDict.ContainsKey(item.Id))
-                                .Select(item => itemDict[item.Id])
-                                .ToList();
-                        }
-                    }
-                }
+                customer.Discounts = customer.Discounts.Where(d => d != null).ToList();
             }
         }
 
@@ -147,18 +139,31 @@ namespace ObjectOrientedPractics.Services
             {
                 if (AppData.IsExitSaving)
                 {
+                    var container = new AppDataContainer
+                    {
+                        Items = AppData.Items,
+                        Customers = AppData.Customers,
+                        IsExitSaving = AppData.IsExitSaving
+                    };
+
+                    SaveData(container);
                     MessageBox.Show("Данные успешно сохранены!", "Успешно", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    SaveData(new { Items = AppData.Items, Customers = AppData.Customers, IsExitSaving = AppData.IsExitSaving });
                 }
             };
-
             mainForm.FormClosing += _autoSaveHandler;
         }
         public static void DisableAutoSave(Form mainForm)
         {
             if (mainForm != null && _autoSaveHandler != null)
             {
-                SaveData(new { Items = AppData.Items, Customers = AppData.Customers, IsExitSaving = AppData.IsExitSaving });
+                var container = new AppDataContainer
+                {
+                    Items = AppData.Items,
+                    Customers = AppData.Customers,
+                    IsExitSaving = AppData.IsExitSaving
+                };
+
+                SaveData(container);
                 mainForm.FormClosing -= _autoSaveHandler;
                 _autoSaveHandler = null;
             }

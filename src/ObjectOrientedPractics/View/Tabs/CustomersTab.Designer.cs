@@ -47,12 +47,21 @@
             checkBox1 = new CheckBox();
             addressControl1 = new ObjectOrientedPractics.View.Controls.AddressControl();
             panel1 = new Panel();
+            tableLayoutPanel7 = new TableLayoutPanel();
+            tableLayoutPanel8 = new TableLayoutPanel();
+            label5 = new Label();
+            DiscountListBox = new ListBox();
+            AddDiscountBtn = new Button();
+            RemoveDiscountBtn = new Button();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
             tableLayoutPanel5.SuspendLayout();
             tableLayoutPanel4.SuspendLayout();
             tableLayoutPanel6.SuspendLayout();
+            panel1.SuspendLayout();
+            tableLayoutPanel7.SuspendLayout();
+            tableLayoutPanel8.SuspendLayout();
             SuspendLayout();
             // 
             // FullNameTextBox
@@ -70,7 +79,7 @@
             label4.Dock = DockStyle.Fill;
             label4.Location = new Point(3, 0);
             label4.Name = "label4";
-            label4.Size = new Size(67, 39);
+            label4.Size = new Size(67, 37);
             label4.TabIndex = 7;
             label4.Text = "Full Name:";
             label4.TextAlign = ContentAlignment.MiddleLeft;
@@ -78,7 +87,7 @@
             // IdTextBox
             // 
             IdTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            IdTextBox.Location = new Point(79, 45);
+            IdTextBox.Location = new Point(79, 42);
             IdTextBox.Margin = new Padding(3, 8, 3, 3);
             IdTextBox.Name = "IdTextBox";
             IdTextBox.Size = new Size(150, 23);
@@ -89,9 +98,9 @@
             // 
             label3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             label3.AutoSize = true;
-            label3.Location = new Point(3, 37);
+            label3.Location = new Point(3, 34);
             label3.Name = "label3";
-            label3.Size = new Size(21, 46);
+            label3.Size = new Size(21, 43);
             label3.TabIndex = 5;
             label3.Text = "ID:";
             label3.TextAlign = ContentAlignment.MiddleLeft;
@@ -105,7 +114,7 @@
             label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             label2.Location = new Point(3, 0);
             label2.Name = "label2";
-            label2.Size = new Size(113, 37);
+            label2.Size = new Size(113, 34);
             label2.TabIndex = 4;
             label2.Text = "Selected Customer";
             label2.TextAlign = ContentAlignment.MiddleLeft;
@@ -247,13 +256,14 @@
             tableLayoutPanel4.Dock = DockStyle.Fill;
             tableLayoutPanel4.Location = new Point(3, 3);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
-            tableLayoutPanel4.RowCount = 6;
+            tableLayoutPanel4.RowCount = 7;
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 10.3267756F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 12.9583063F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 23.7430172F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 20.94972F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 20.2764969F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 11.5207376F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel4.Size = new Size(480, 358);
             tableLayoutPanel4.TabIndex = 6;
             // 
@@ -267,21 +277,21 @@
             tableLayoutPanel6.Controls.Add(FullNameTextBox, 1, 0);
             tableLayoutPanel6.Controls.Add(checkBox1, 1, 1);
             tableLayoutPanel6.Dock = DockStyle.Fill;
-            tableLayoutPanel6.Location = new Point(3, 86);
+            tableLayoutPanel6.Location = new Point(3, 80);
             tableLayoutPanel6.Name = "tableLayoutPanel6";
             tableLayoutPanel6.RowCount = 2;
             tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel6.Size = new Size(474, 79);
+            tableLayoutPanel6.Size = new Size(474, 74);
             tableLayoutPanel6.TabIndex = 0;
             // 
             // checkBox1
             // 
             checkBox1.AutoSize = true;
             checkBox1.Dock = DockStyle.Fill;
-            checkBox1.Location = new Point(76, 42);
+            checkBox1.Location = new Point(76, 40);
             checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(395, 34);
+            checkBox1.Size = new Size(395, 31);
             checkBox1.TabIndex = 9;
             checkBox1.Text = "Is Priority";
             checkBox1.UseVisualStyleBackColor = true;
@@ -291,20 +301,100 @@
             // 
             tableLayoutPanel4.SetColumnSpan(addressControl1, 2);
             addressControl1.Dock = DockStyle.Fill;
-            addressControl1.Location = new Point(3, 171);
+            addressControl1.Location = new Point(3, 160);
             addressControl1.Name = "addressControl1";
             tableLayoutPanel4.SetRowSpan(addressControl1, 3);
-            addressControl1.Size = new Size(474, 184);
+            addressControl1.Size = new Size(474, 171);
             addressControl1.TabIndex = 9;
             // 
             // panel1
             // 
             panel1.BackColor = Color.White;
+            panel1.Controls.Add(tableLayoutPanel7);
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(3, 367);
             panel1.Name = "panel1";
             panel1.Size = new Size(480, 185);
             panel1.TabIndex = 7;
+            // 
+            // tableLayoutPanel7
+            // 
+            tableLayoutPanel7.ColumnCount = 2;
+            tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 85.625F));
+            tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.375F));
+            tableLayoutPanel7.Controls.Add(tableLayoutPanel8, 0, 0);
+            tableLayoutPanel7.Dock = DockStyle.Fill;
+            tableLayoutPanel7.Location = new Point(0, 0);
+            tableLayoutPanel7.Name = "tableLayoutPanel7";
+            tableLayoutPanel7.RowCount = 2;
+            tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 57.2973F));
+            tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 42.7027F));
+            tableLayoutPanel7.Size = new Size(480, 185);
+            tableLayoutPanel7.TabIndex = 0;
+            // 
+            // tableLayoutPanel8
+            // 
+            tableLayoutPanel8.ColumnCount = 2;
+            tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 80.74074F));
+            tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 19.25926F));
+            tableLayoutPanel8.Controls.Add(label5, 0, 0);
+            tableLayoutPanel8.Controls.Add(DiscountListBox, 0, 1);
+            tableLayoutPanel8.Controls.Add(AddDiscountBtn, 1, 1);
+            tableLayoutPanel8.Controls.Add(RemoveDiscountBtn, 1, 2);
+            tableLayoutPanel8.Dock = DockStyle.Fill;
+            tableLayoutPanel8.Location = new Point(3, 3);
+            tableLayoutPanel8.Name = "tableLayoutPanel8";
+            tableLayoutPanel8.RowCount = 3;
+            tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Percent, 20.76923F));
+            tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Percent, 41F));
+            tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Percent, 39F));
+            tableLayoutPanel8.Size = new Size(405, 100);
+            tableLayoutPanel8.TabIndex = 0;
+            // 
+            // label5
+            // 
+            label5.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            label5.AutoSize = true;
+            label5.BackColor = Color.White;
+            label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            label5.Location = new Point(3, 0);
+            label5.Name = "label5";
+            label5.Size = new Size(61, 20);
+            label5.TabIndex = 10;
+            label5.Text = "Discounts";
+            label5.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // DiscountListBox
+            // 
+            DiscountListBox.Dock = DockStyle.Fill;
+            DiscountListBox.FormattingEnabled = true;
+            DiscountListBox.Location = new Point(3, 23);
+            DiscountListBox.Name = "DiscountListBox";
+            tableLayoutPanel8.SetRowSpan(DiscountListBox, 2);
+            DiscountListBox.Size = new Size(320, 74);
+            DiscountListBox.TabIndex = 11;
+            // 
+            // AddDiscountBtn
+            // 
+            AddDiscountBtn.Dock = DockStyle.Fill;
+            AddDiscountBtn.Location = new Point(329, 23);
+            AddDiscountBtn.Name = "AddDiscountBtn";
+            AddDiscountBtn.Size = new Size(73, 34);
+            AddDiscountBtn.TabIndex = 12;
+            AddDiscountBtn.Text = "Add";
+            AddDiscountBtn.UseVisualStyleBackColor = true;
+            AddDiscountBtn.Click += AddDiscountBtn_Click;
+            // 
+            // RemoveDiscountBtn
+            // 
+            RemoveDiscountBtn.Dock = DockStyle.Fill;
+            RemoveDiscountBtn.Location = new Point(329, 63);
+            RemoveDiscountBtn.Name = "RemoveDiscountBtn";
+            RemoveDiscountBtn.Size = new Size(73, 34);
+            RemoveDiscountBtn.TabIndex = 13;
+            RemoveDiscountBtn.Text = "Remove";
+            RemoveDiscountBtn.UseVisualStyleBackColor = true;
+            RemoveDiscountBtn.Click += RemoveDiscountBtn_Click;
             // 
             // CustomersTab
             // 
@@ -322,6 +412,10 @@
             tableLayoutPanel4.PerformLayout();
             tableLayoutPanel6.ResumeLayout(false);
             tableLayoutPanel6.PerformLayout();
+            panel1.ResumeLayout(false);
+            tableLayoutPanel7.ResumeLayout(false);
+            tableLayoutPanel8.ResumeLayout(false);
+            tableLayoutPanel8.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -345,5 +439,11 @@
         private Controls.AddressControl addressControl1;
         private TableLayoutPanel tableLayoutPanel6;
         private CheckBox checkBox1;
+        private TableLayoutPanel tableLayoutPanel7;
+        private TableLayoutPanel tableLayoutPanel8;
+        private Label label5;
+        private ListBox DiscountListBox;
+        private Button AddDiscountBtn;
+        private Button RemoveDiscountBtn;
     }
 }

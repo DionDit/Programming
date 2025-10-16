@@ -38,13 +38,16 @@
             addressControl1 = new ObjectOrientedPractics.View.Controls.AddressControl();
             label6 = new Label();
             OrderItemsListBox = new ListBox();
-            label7 = new Label();
-            AmountLabel = new Label();
             tableLayoutPanel5 = new TableLayoutPanel();
             DeliveryTimeComboBox = new ComboBox();
             DeliveryTimeLabel = new Label();
             label3 = new Label();
             IdTextBox = new TextBox();
+            tableLayoutPanel7 = new TableLayoutPanel();
+            TotalAmount = new Label();
+            label9 = new Label();
+            label7 = new Label();
+            AmountLabel = new Label();
             tableLayoutPanel3 = new TableLayoutPanel();
             OrdersDataGridView = new DataGridView();
             label8 = new Label();
@@ -57,6 +60,7 @@
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             tableLayoutPanel5.SuspendLayout();
+            tableLayoutPanel7.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)OrdersDataGridView).BeginInit();
             tableLayoutPanel6.SuspendLayout();
@@ -105,9 +109,8 @@
             tableLayoutPanel2.Controls.Add(addressControl1, 0, 3);
             tableLayoutPanel2.Controls.Add(label6, 0, 8);
             tableLayoutPanel2.Controls.Add(OrderItemsListBox, 0, 9);
-            tableLayoutPanel2.Controls.Add(label7, 1, 11);
-            tableLayoutPanel2.Controls.Add(AmountLabel, 1, 12);
             tableLayoutPanel2.Controls.Add(tableLayoutPanel5, 0, 0);
+            tableLayoutPanel2.Controls.Add(tableLayoutPanel7, 1, 11);
             tableLayoutPanel2.Dock = DockStyle.Fill;
             tableLayoutPanel2.Location = new Point(495, 39);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -119,12 +122,12 @@
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 7.69230747F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 7.69230747F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 7.69230747F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 1.734104F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 4.238921F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 15.0289021F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 2.3121388F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 5.009634F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 15.7996149F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 9.82659F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 5.58766842F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 7.69230747F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 7.32177258F));
             tableLayoutPanel2.Size = new Size(486, 519);
             tableLayoutPanel2.TabIndex = 4;
             // 
@@ -174,7 +177,7 @@
             addressControl1.Location = new Point(3, 96);
             addressControl1.Name = "addressControl1";
             tableLayoutPanel2.SetRowSpan(addressControl1, 5);
-            addressControl1.Size = new Size(480, 191);
+            addressControl1.Size = new Size(480, 185);
             addressControl1.TabIndex = 6;
             // 
             // label6
@@ -182,9 +185,9 @@
             label6.AutoSize = true;
             label6.Dock = DockStyle.Fill;
             label6.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            label6.Location = new Point(3, 290);
+            label6.Location = new Point(3, 284);
             label6.Name = "label6";
-            label6.Size = new Size(90, 26);
+            label6.Size = new Size(90, 22);
             label6.TabIndex = 7;
             label6.Text = "Order Items";
             label6.TextAlign = ContentAlignment.MiddleLeft;
@@ -194,35 +197,11 @@
             tableLayoutPanel2.SetColumnSpan(OrderItemsListBox, 2);
             OrderItemsListBox.Dock = DockStyle.Fill;
             OrderItemsListBox.FormattingEnabled = true;
-            OrderItemsListBox.Location = new Point(3, 319);
+            OrderItemsListBox.Location = new Point(3, 309);
             OrderItemsListBox.Name = "OrderItemsListBox";
             tableLayoutPanel2.SetRowSpan(OrderItemsListBox, 2);
-            OrderItemsListBox.Size = new Size(480, 127);
+            OrderItemsListBox.Size = new Size(480, 84);
             OrderItemsListBox.TabIndex = 8;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Dock = DockStyle.Fill;
-            label7.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label7.Location = new Point(99, 449);
-            label7.Name = "label7";
-            label7.Size = new Size(384, 29);
-            label7.TabIndex = 9;
-            label7.Text = "Amount:";
-            label7.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // AmountLabel
-            // 
-            AmountLabel.AutoSize = true;
-            AmountLabel.Dock = DockStyle.Fill;
-            AmountLabel.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
-            AmountLabel.Location = new Point(99, 478);
-            AmountLabel.Name = "AmountLabel";
-            AmountLabel.Size = new Size(384, 41);
-            AmountLabel.TabIndex = 10;
-            AmountLabel.Text = "0,00 ₽";
-            AmountLabel.TextAlign = ContentAlignment.MiddleRight;
             // 
             // tableLayoutPanel5
             // 
@@ -287,6 +266,76 @@
             IdTextBox.Size = new Size(138, 23);
             IdTextBox.TabIndex = 1;
             IdTextBox.KeyPress += InputData;
+            // 
+            // tableLayoutPanel7
+            // 
+            tableLayoutPanel7.ColumnCount = 1;
+            tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel7.Controls.Add(TotalAmount, 0, 3);
+            tableLayoutPanel7.Controls.Add(label9, 0, 2);
+            tableLayoutPanel7.Controls.Add(label7, 0, 0);
+            tableLayoutPanel7.Controls.Add(AmountLabel, 0, 1);
+            tableLayoutPanel7.Dock = DockStyle.Fill;
+            tableLayoutPanel7.Location = new Point(99, 399);
+            tableLayoutPanel7.Name = "tableLayoutPanel7";
+            tableLayoutPanel7.RowCount = 4;
+            tableLayoutPanel2.SetRowSpan(tableLayoutPanel7, 2);
+            tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
+            tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
+            tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
+            tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
+            tableLayoutPanel7.Size = new Size(384, 117);
+            tableLayoutPanel7.TabIndex = 12;
+            // 
+            // TotalAmount
+            // 
+            TotalAmount.AutoSize = true;
+            TotalAmount.Dock = DockStyle.Fill;
+            TotalAmount.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
+            TotalAmount.Location = new Point(3, 87);
+            TotalAmount.Name = "TotalAmount";
+            TotalAmount.Size = new Size(378, 30);
+            TotalAmount.TabIndex = 12;
+            TotalAmount.Text = "0,00 ₽";
+            TotalAmount.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Dock = DockStyle.Fill;
+            label9.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            label9.Location = new Point(3, 58);
+            label9.Name = "label9";
+            label9.Size = new Size(378, 29);
+            label9.TabIndex = 11;
+            label9.Text = "Total Amount:";
+            label9.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Dock = DockStyle.Fill;
+            label7.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            label7.Location = new Point(3, 0);
+            label7.Name = "label7";
+            label7.Size = new Size(378, 29);
+            label7.TabIndex = 9;
+            label7.Text = "Amount:";
+            label7.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // AmountLabel
+            // 
+            AmountLabel.AutoSize = true;
+            AmountLabel.Dock = DockStyle.Fill;
+            AmountLabel.Font = new Font("Segoe UI", 18F, FontStyle.Bold | FontStyle.Strikeout);
+            AmountLabel.ForeColor = Color.Red;
+            AmountLabel.Location = new Point(3, 29);
+            AmountLabel.Name = "AmountLabel";
+            AmountLabel.Size = new Size(378, 29);
+            AmountLabel.TabIndex = 10;
+            AmountLabel.Text = "0,00 ₽";
+            AmountLabel.TextAlign = ContentAlignment.MiddleRight;
             // 
             // tableLayoutPanel3
             // 
@@ -417,6 +466,8 @@
             tableLayoutPanel2.PerformLayout();
             tableLayoutPanel5.ResumeLayout(false);
             tableLayoutPanel5.PerformLayout();
+            tableLayoutPanel7.ResumeLayout(false);
+            tableLayoutPanel7.PerformLayout();
             tableLayoutPanel3.ResumeLayout(false);
             tableLayoutPanel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)OrdersDataGridView).EndInit();
@@ -455,5 +506,8 @@
         private ComboBox DeliveryTimeComboBox;
         private TableLayoutPanel tableLayoutPanel6;
         private CheckBox PriorityOrderCheckBox;
+        private TableLayoutPanel tableLayoutPanel7;
+        private Label TotalAmount;
+        private Label label9;
     }
 }

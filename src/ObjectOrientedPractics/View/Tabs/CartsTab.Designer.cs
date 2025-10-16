@@ -42,11 +42,19 @@
             CreateOrderBtn = new Button();
             RemoveItemBtn = new Button();
             ClearCartBtn = new Button();
+            tableLayoutPanel5 = new TableLayoutPanel();
+            label5 = new Label();
+            label6 = new Label();
+            DiscountAmount = new Label();
+            DiscountCheckedListBox = new CheckedListBox();
+            label8 = new Label();
+            Total = new Label();
             tableLayoutPanel4 = new TableLayoutPanel();
             AddToCartBtn = new Button();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
+            tableLayoutPanel5.SuspendLayout();
             tableLayoutPanel4.SuspendLayout();
             SuspendLayout();
             // 
@@ -103,6 +111,7 @@
             tableLayoutPanel2.Controls.Add(label4, 1, 4);
             tableLayoutPanel2.Controls.Add(AmountLabel, 1, 5);
             tableLayoutPanel2.Controls.Add(tableLayoutPanel3, 0, 6);
+            tableLayoutPanel2.Controls.Add(tableLayoutPanel5, 0, 7);
             tableLayoutPanel2.Dock = DockStyle.Fill;
             tableLayoutPanel2.Location = new Point(382, 36);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -111,11 +120,11 @@
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 7.85440636F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 10.1532564F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 9.523809F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 32.37548F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 4.597701F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 7.47126436F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 22.4137936F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 5.55555534F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 7.2796936F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 8.812261F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 20.8812256F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 29.6934872F));
             tableLayoutPanel2.Size = new Size(599, 522);
             tableLayoutPanel2.TabIndex = 3;
             // 
@@ -163,7 +172,7 @@
             CartListBox.Margin = new Padding(9, 3, 3, 3);
             CartListBox.Name = "CartListBox";
             tableLayoutPanel2.SetRowSpan(CartListBox, 2);
-            CartListBox.Size = new Size(587, 208);
+            CartListBox.Size = new Size(587, 158);
             CartListBox.TabIndex = 7;
             // 
             // label4
@@ -171,9 +180,9 @@
             label4.AutoSize = true;
             label4.Dock = DockStyle.Fill;
             label4.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label4.Location = new Point(76, 306);
+            label4.Location = new Point(76, 256);
             label4.Name = "label4";
-            label4.Size = new Size(520, 23);
+            label4.Size = new Size(520, 28);
             label4.TabIndex = 8;
             label4.Text = "Amount:";
             label4.TextAlign = ContentAlignment.MiddleRight;
@@ -183,9 +192,9 @@
             AmountLabel.AutoSize = true;
             AmountLabel.Dock = DockStyle.Fill;
             AmountLabel.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
-            AmountLabel.Location = new Point(76, 329);
+            AmountLabel.Location = new Point(76, 284);
             AmountLabel.Name = "AmountLabel";
-            AmountLabel.Size = new Size(520, 38);
+            AmountLabel.Size = new Size(520, 37);
             AmountLabel.TabIndex = 9;
             AmountLabel.Text = "0,00 ₽";
             AmountLabel.TextAlign = ContentAlignment.MiddleRight;
@@ -202,7 +211,7 @@
             tableLayoutPanel3.Controls.Add(RemoveItemBtn, 2, 0);
             tableLayoutPanel3.Controls.Add(ClearCartBtn, 3, 0);
             tableLayoutPanel3.Dock = DockStyle.Fill;
-            tableLayoutPanel3.Location = new Point(3, 370);
+            tableLayoutPanel3.Location = new Point(3, 324);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
             tableLayoutPanel3.RowCount = 1;
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
@@ -243,6 +252,102 @@
             ClearCartBtn.UseVisualStyleBackColor = true;
             ClearCartBtn.Click += ClearCartBtn_Click;
             // 
+            // tableLayoutPanel5
+            // 
+            tableLayoutPanel5.ColumnCount = 2;
+            tableLayoutPanel2.SetColumnSpan(tableLayoutPanel5, 2);
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 57.8414841F));
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 42.1585159F));
+            tableLayoutPanel5.Controls.Add(label5, 0, 0);
+            tableLayoutPanel5.Controls.Add(label6, 1, 1);
+            tableLayoutPanel5.Controls.Add(DiscountAmount, 1, 2);
+            tableLayoutPanel5.Controls.Add(DiscountCheckedListBox, 0, 1);
+            tableLayoutPanel5.Controls.Add(label8, 1, 3);
+            tableLayoutPanel5.Controls.Add(Total, 1, 4);
+            tableLayoutPanel5.Dock = DockStyle.Fill;
+            tableLayoutPanel5.Location = new Point(3, 369);
+            tableLayoutPanel5.Name = "tableLayoutPanel5";
+            tableLayoutPanel5.RowCount = 5;
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            tableLayoutPanel5.Size = new Size(593, 150);
+            tableLayoutPanel5.TabIndex = 11;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            label5.Location = new Point(3, 0);
+            label5.Name = "label5";
+            label5.Size = new Size(56, 15);
+            label5.TabIndex = 12;
+            label5.Text = "Discount";
+            label5.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Dock = DockStyle.Fill;
+            label6.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            label6.Location = new Point(346, 30);
+            label6.Name = "label6";
+            label6.Size = new Size(244, 30);
+            label6.TabIndex = 13;
+            label6.Text = "Discount Amount:";
+            label6.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // DiscountAmount
+            // 
+            DiscountAmount.AutoSize = true;
+            DiscountAmount.Dock = DockStyle.Fill;
+            DiscountAmount.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            DiscountAmount.Location = new Point(346, 60);
+            DiscountAmount.Name = "DiscountAmount";
+            DiscountAmount.Size = new Size(244, 30);
+            DiscountAmount.TabIndex = 14;
+            DiscountAmount.Text = "0,00 ₽";
+            DiscountAmount.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // DiscountCheckedListBox
+            // 
+            DiscountCheckedListBox.BackColor = SystemColors.Control;
+            DiscountCheckedListBox.BorderStyle = BorderStyle.None;
+            DiscountCheckedListBox.CheckOnClick = true;
+            DiscountCheckedListBox.Dock = DockStyle.Fill;
+            DiscountCheckedListBox.FormattingEnabled = true;
+            DiscountCheckedListBox.Location = new Point(3, 33);
+            DiscountCheckedListBox.Name = "DiscountCheckedListBox";
+            tableLayoutPanel5.SetRowSpan(DiscountCheckedListBox, 4);
+            DiscountCheckedListBox.Size = new Size(337, 114);
+            DiscountCheckedListBox.TabIndex = 15;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Dock = DockStyle.Fill;
+            label8.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            label8.Location = new Point(346, 90);
+            label8.Name = "label8";
+            label8.Size = new Size(244, 30);
+            label8.TabIndex = 16;
+            label8.Text = "TOTAL:";
+            label8.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // Total
+            // 
+            Total.AutoSize = true;
+            Total.Dock = DockStyle.Fill;
+            Total.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            Total.Location = new Point(346, 120);
+            Total.Name = "Total";
+            Total.Size = new Size(244, 30);
+            Total.TabIndex = 17;
+            Total.Text = "0,00 ₽";
+            Total.TextAlign = ContentAlignment.MiddleRight;
+            // 
             // tableLayoutPanel4
             // 
             tableLayoutPanel4.ColumnCount = 3;
@@ -282,6 +387,8 @@
             tableLayoutPanel2.ResumeLayout(false);
             tableLayoutPanel2.PerformLayout();
             tableLayoutPanel3.ResumeLayout(false);
+            tableLayoutPanel5.ResumeLayout(false);
+            tableLayoutPanel5.PerformLayout();
             tableLayoutPanel4.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -304,5 +411,12 @@
         private Button ClearCartBtn;
         private TableLayoutPanel tableLayoutPanel4;
         private Button AddToCartBtn;
+        private TableLayoutPanel tableLayoutPanel5;
+        private Label label5;
+        private Label label6;
+        private Label DiscountAmount;
+        private CheckedListBox DiscountCheckedListBox;
+        private Label label8;
+        private Label Total;
     }
 }

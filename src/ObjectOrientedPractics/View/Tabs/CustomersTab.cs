@@ -1,4 +1,5 @@
 ﻿using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.Model.Interfaces;
 using ObjectOrientedPractics.Services;
 using ObjectOrientedPractics.View.Dialogs;
 
@@ -15,6 +16,7 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             InitializeComponent();
             UpdateUI();
+            DiscountListBox.DisplayMember = "Info";
         }
 
         /// <summary>
@@ -41,6 +43,8 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 checkBox1.Checked = false;
             }
+            DiscountListBox.Items.Clear();
+            _currentCustomer.Discounts.ForEach(x => DiscountListBox.Items.Add(x));
         }
 
         /// <summary>
@@ -63,7 +67,6 @@ namespace ObjectOrientedPractics.View.Tabs
                 tableLayoutPanel5.Visible = true;
                 UpdateTextProperty(_currentCustomer);
                 addressControl1.Address = _currentCustomer.Address;
-
             }
         }
 
@@ -145,6 +148,34 @@ namespace ObjectOrientedPractics.View.Tabs
             else
             {
                 _currentCustomer.IsPriority = false;
+            }
+        }
+
+        /// <summary>
+        /// Добавление новой скидки.
+        /// </summary>
+        private void AddDiscountBtn_Click(object sender, EventArgs e)
+        {
+            new DiscountAddForm(_currentCustomer).ShowDialog();
+            UpdateTextProperty(_currentCustomer);
+        }
+
+        /// <summary>
+        /// Удаление выбранной скидки.
+        /// </summary>
+        private void RemoveDiscountBtn_Click(object sender, EventArgs e)
+        {
+            if (DiscountListBox.SelectedItem != null)
+            {
+                if (DiscountListBox.SelectedIndex != 0)
+                {
+                    _currentCustomer.Discounts.Remove((IDiscount)DiscountListBox.SelectedItem);
+                    UpdateTextProperty(_currentCustomer);
+                }
+                else
+                {
+                    MessageBox.Show("Невозможно удалить накопительную скидку!","Ошибка",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
     }

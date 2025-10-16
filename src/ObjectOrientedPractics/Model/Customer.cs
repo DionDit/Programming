@@ -1,4 +1,8 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using ObjectOrientedPractics.Model.Discounts;
+using ObjectOrientedPractics.Model.Interfaces;
+using ObjectOrientedPractics.Model.Orders;
 using ObjectOrientedPractics.Services;
 
 namespace ObjectOrientedPractics.Model
@@ -35,6 +39,11 @@ namespace ObjectOrientedPractics.Model
         private List<Order> _orders;
 
         /// <summary>
+        /// Список скидок.
+        /// </summary>
+        private List<IDiscount> _discounts;
+
+        /// <summary>
         /// Является ли покупатель приоритетным.
         /// </summary>
         private bool _isPriority = false;
@@ -52,6 +61,12 @@ namespace ObjectOrientedPractics.Model
             Address = address;
             Cart = new Cart();
             Orders = new List<Order>();
+            Discounts = new List<IDiscount>();
+
+            if (!Discounts.Any(d => d is PointsDiscount))
+            {
+                Discounts.Add(new PointsDiscount());
+            }
         }
 
         /// <summary>
@@ -60,14 +75,26 @@ namespace ObjectOrientedPractics.Model
         /// <param name="id">Идентификатор покупателя.</param>
         /// <param name="fullname">Полное имя.</param>
         /// <param name="address">Адрес.</param>
+        /// <param name="cart">Корзина.</param>
+        /// <param name="orders">Заказы.</param>
+        /// <param name="discounts">Скидки.</param>
+        /// <param name="isPriority">Приоритетный покупатель.</param>
         [JsonConstructor]
-        public Customer(int id, string fullname, Address address)
+        public Customer(int id, string fullname, Address address, Cart cart, List<Order> orders, List<IDiscount> discounts, bool isPriority = false)
         {
             _id = id;
             FullName = fullname;
             Address = address;
-            Cart = new Cart();
-            Orders = new List<Order>();
+            Cart = cart ?? new Cart();
+            Orders = orders ?? new List<Order>();
+            IsPriority = isPriority;
+
+            Discounts = discounts ?? new List<IDiscount>();
+
+            if (!Discounts.Any(d => d is PointsDiscount))
+            {
+                Discounts.Add(new PointsDiscount());
+            }
         }
 
         /// <summary>
@@ -78,6 +105,12 @@ namespace ObjectOrientedPractics.Model
             _id = IdGenerator.GetNextId();
             Cart = new Cart();
             Orders = new List<Order>();
+            Discounts = new List<IDiscount>();
+
+            if (!Discounts.Any(d => d is PointsDiscount))
+            {
+                Discounts.Add(new PointsDiscount());
+            }
         }
 
         #region Properties
@@ -123,6 +156,12 @@ namespace ObjectOrientedPractics.Model
         /// Является ли покупатель приоритетным.
         /// </summary>
         public bool IsPriority { get => _isPriority; set => _isPriority = value; }
+
+        /// <summary>
+        /// Список скидок.
+        /// </summary>
+        [JsonProperty("Discounts")]
+        public List<IDiscount> Discounts { get => _discounts; set => _discounts = value; }
         #endregion
 
         /// <summary>

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ObjectOrientedPractics.Model
+namespace ObjectOrientedPractics.Model.Orders
 {
     [JsonObject(MemberSerialization.OptIn)]
     public class PriorityOrder : Order
@@ -38,8 +38,8 @@ namespace ObjectOrientedPractics.Model
         /// Конструктор для десериализации JSON.
         /// </summary>
         [JsonConstructor]
-        private PriorityOrder(int id, DateTime creationDate, Address address,List<Item> items, OrderStatus orderStatus,DateTime deliveryDate, string deliveryTime) 
-                             : base(id, creationDate, address, items, orderStatus)
+        private PriorityOrder(int id, DateTime creationDate, Address address, List<Item> items, OrderStatus orderStatus, DateTime deliveryDate, string deliveryTime, double discountAmount)
+                             : base(id, creationDate, address, items, orderStatus, discountAmount)
         {
             DeliveryDate = deliveryDate;
             DeliveryTime = deliveryTime;

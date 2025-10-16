@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace ObjectOrientedPractics.Model
+namespace ObjectOrientedPractics.Model.Orders
 {
     [JsonObject(MemberSerialization.OptIn)]
     public class Order
@@ -45,6 +45,15 @@ namespace ObjectOrientedPractics.Model
         [JsonProperty]
         private OrderStatus _orderStatus { get; set; }
 
+        /// <summary>
+        /// Размер примененной скидки.
+        /// </summary>
+        private double _discountAmount;
+
+        /// <summary>
+        /// Конечная стоимость заказа.
+        /// </summary>
+        private double _totalAmount;
         #endregion
 
         public Order(Address address, List<Item> items)
@@ -57,13 +66,14 @@ namespace ObjectOrientedPractics.Model
         }
 
         [JsonConstructor]
-        public Order(int id, DateTime creationDate, Address address, List<Item> items, OrderStatus orderStatus)
+        public Order(int id, DateTime creationDate, Address address, List<Item> items, OrderStatus orderStatus, double discountAmount)
         {
             _id = id;
             _creationDate = creationDate;
             Address = address;
             Items = items;
             OrderStatus = orderStatus;
+            DiscountAmount = discountAmount;
         }
 
         #region Properties
@@ -120,7 +130,25 @@ namespace ObjectOrientedPractics.Model
                     return 0.0;
                 }
             }
-        }        
+        }
+
+        /// <summary>
+        /// Размер примененной скидки.
+        /// </summary>
+        [JsonProperty]
+        public double DiscountAmount { get => _discountAmount; set => _discountAmount = value; }
+
+        /// <summary>
+        /// Конечная стоимость заказа.
+        /// </summary>
+        public double TotalAmount 
+        { 
+            get 
+            {
+                double total = Amount - DiscountAmount;
+                return total >= 0 ? total : 0;
+            } 
+        }
         #endregion
     }
 }
