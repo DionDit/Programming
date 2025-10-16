@@ -12,7 +12,7 @@ using System.Xml.Linq;
 namespace ObjectOrientedPractics.Model.Orders
 {
     [JsonObject(MemberSerialization.OptIn)]
-    public class Order
+    public class Order : IEquatable<Order>
     {
         #region Fields
         /// <summary>
@@ -150,5 +150,60 @@ namespace ObjectOrientedPractics.Model.Orders
             } 
         }
         #endregion
+
+        /// <summary>
+        /// Определяет, равен ли указанный объект текущему объекту.
+        /// </summary>
+        /// <param name="other">Объект для сравнения с текущим объектом.</param>
+        public bool Equals(Order other)
+        {
+            if (other is null)
+            {
+                return false;
+            }
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            return _id == other._id &&
+                   _creationDate == other._creationDate &&
+                   Equals(_address, other._address) &&
+                   OrderStatus == other.OrderStatus &&
+                   _discountAmount == other._discountAmount &&
+                   ItemsEqual(_items, other._items);
+        }
+
+        /// <summary>
+        /// Определяет, равен ли указанный объект текущему объекту.
+        /// </summary>
+        /// <param name="obj">Объект для сравнения с текущим объектом.</param>
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as Order);
+        }
+
+        /// <summary>
+        /// Сравнивает два списка товаров на равенство.
+        /// </summary>
+        /// <param name="first">Первый список товаров.</param>
+        /// <param name="second">Второй список товаров.</param>
+        private bool ItemsEqual(List<Item> first, List<Item> second)
+        {
+            if (first == null && second == null)
+            {
+                return true;
+            }
+            if (first == null || second == null)
+            {
+                return false;
+            }
+            if (first.Count != second.Count)
+            {
+                return false;
+            }
+
+            return first.SequenceEqual(second);
+        }
     }
 }

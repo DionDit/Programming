@@ -9,7 +9,7 @@ namespace ObjectOrientedPractics.Model
 	/// <summary>
 	/// Корзина.
 	/// </summary>
-    public class Cart
+    public class Cart : ICloneable
     {
         #region Fields
 		/// <summary>
@@ -46,5 +46,19 @@ namespace ObjectOrientedPractics.Model
             }
         }
         #endregion
+
+        /// <summary>
+        /// Создает копию объекта <see cref="Cart"/>.
+        /// </summary>
+        /// <returns>Новый объект <see cref="Cart"/> с копиями товаров.</returns>
+        public object Clone()
+        {
+            var clonedCart = new Cart();
+            if (_items != null)
+            {
+                clonedCart._items = _items.Select(item => (Item)item.Clone()).ToList();
+            }
+            return clonedCart;
+        }
     }
 }

@@ -11,7 +11,7 @@ namespace ObjectOrientedPractics.Model
 	/// <summary>
 	/// Адрес покупателя.
 	/// </summary>
-    public class Address
+    public class Address : ICloneable, IEquatable<Address>
     {
         #region Fields
         /// <summary>
@@ -163,5 +163,45 @@ namespace ObjectOrientedPractics.Model
         !string.IsNullOrWhiteSpace(Apartment) &&
         Index >= 100000 && Index <= 999999;
         #endregion
+
+        /// <summary>
+        /// Создает копию объекта <see cref="Address"/>.
+        /// </summary>
+        public object Clone()
+        {
+            return new Address(_index, _country, _city, _street, _building, _apartment);
+        }
+
+        /// <summary>
+        /// Определяет, равен ли указанный объект текущему объекту.
+        /// </summary>
+        /// <param name="other">Объект для сравнения с текущим объектом.</param>
+        public bool Equals(Address other)
+        {
+            if (other is null)
+            {
+                return false;
+            }
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            return _index == other._index &&
+                   _country == other._country &&
+                   _city == other._city &&
+                   _street == other._street &&
+                   _building == other._building &&
+                   _apartment == other._apartment;
+        }
+
+        /// <summary>
+        /// Определяет, равен ли указанный объект текущему объекту.
+        /// </summary>
+        /// <param name="obj">Объект для сравнения с текущим объектом.</param>
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as Address);
+        }
     }
 }

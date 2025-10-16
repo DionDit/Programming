@@ -10,7 +10,7 @@ namespace ObjectOrientedPractics.Model.Discounts
 {
     [Serializable]
     [JsonObject]
-    public class PointsDiscount : IDiscount
+    public class PointsDiscount : IDiscount, IComparable<PointsDiscount>
     {
         #region Fields
         /// <summary>
@@ -82,6 +82,19 @@ namespace ObjectOrientedPractics.Model.Discounts
             int roundedPoints = (int)Math.Ceiling(pointsToAdd);
 
             PointsCount += roundedPoints;
+        }
+
+        /// <summary>
+        /// Сравнивает текущий объект с другим объектом <see cref="PointsDiscount"/> по количеству баллов.
+        /// </summary>
+        /// <param name="other">Объект для сравнения с текущим объектом.</param>
+        public int CompareTo(PointsDiscount other)
+        {
+            if (other is null)
+            {
+                return 1;
+            }
+            return PointsCount.CompareTo(other.PointsCount);
         }
 
         public override string ToString() => Info;

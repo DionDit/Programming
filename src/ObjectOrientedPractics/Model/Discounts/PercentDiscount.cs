@@ -11,7 +11,7 @@ namespace ObjectOrientedPractics.Model.Discounts
 {
     [Serializable]
     [JsonObject]
-    public class PercentDiscount : IDiscount
+    public class PercentDiscount : IDiscount, IComparable<PercentDiscount>
     {
         #region Fields
         /// <summary>
@@ -117,6 +117,19 @@ namespace ObjectOrientedPractics.Model.Discounts
             double categoryAmount = items.Where(item => item.Category == Category).Sum(item => item.Cost);
             PurchaseAmount += categoryAmount;
             DiscountPercent = 1 + (int)(PurchaseAmount / 1000);
+        }
+
+        /// <summary>
+        /// Сравнивает текущий объект с другим объектом <see cref="PercentDiscount"/> по проценту скидки.
+        /// </summary>
+        /// <param name="other">Объект для сравнения с текущим объектом.</param>
+        public int CompareTo(PercentDiscount other)
+        {
+            if (other is null)
+            {
+                return 1;
+            }
+            return DiscountPercent.CompareTo(other.DiscountPercent);
         }
 
         public override string ToString() => Info;

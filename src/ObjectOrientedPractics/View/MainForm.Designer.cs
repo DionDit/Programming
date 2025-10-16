@@ -40,7 +40,6 @@
             ordersTab1 = new ObjectOrientedPractics.View.Tabs.OrdersTab();
             tabPage3 = new TabPage();
             ExitSaving = new CheckBox();
-            tabPage6 = new TabPage();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -56,7 +55,6 @@
             tabControl1.Controls.Add(tabPage4);
             tabControl1.Controls.Add(tabPage5);
             tabControl1.Controls.Add(tabPage3);
-            tabControl1.Controls.Add(tabPage6);
             tabControl1.Dock = DockStyle.Fill;
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
@@ -90,7 +88,7 @@
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(192, 72);
+            tabPage2.Size = new Size(976, 533);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Customers";
             tabPage2.UseVisualStyleBackColor = true;
@@ -100,7 +98,7 @@
             customersTab1.Dock = DockStyle.Fill;
             customersTab1.Location = new Point(3, 3);
             customersTab1.Name = "customersTab1";
-            customersTab1.Size = new Size(186, 66);
+            customersTab1.Size = new Size(970, 527);
             customersTab1.TabIndex = 0;
             // 
             // tabPage4
@@ -161,15 +159,6 @@
             ExitSaving.UseVisualStyleBackColor = true;
             ExitSaving.CheckedChanged += ExitSaving_CheckedChanged;
             // 
-            // tabPage6
-            // 
-            tabPage6.Location = new Point(4, 24);
-            tabPage6.Name = "tabPage6";
-            tabPage6.Size = new Size(976, 533);
-            tabPage6.TabIndex = 5;
-            tabPage6.Text = "tabPage6";
-            tabPage6.UseVisualStyleBackColor = true;
-            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -204,7 +193,6 @@
         private Tabs.CartsTab cartsTab1;
         private TabPage tabPage5;
         private Tabs.OrdersTab ordersTab1;
-        private TabPage tabPage6;
         private Tabs.DiscountsTab discountsTab1;
     }
 }
