@@ -49,10 +49,16 @@
             label7 = new Label();
             CategoryComboBox = new ComboBox();
             tableLayoutPanel2 = new TableLayoutPanel();
+            tableLayoutPanel5 = new TableLayoutPanel();
+            label9 = new Label();
+            label8 = new Label();
+            SearchItemTextBox = new TextBox();
+            ItemSortComboBox = new ComboBox();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel4.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
+            tableLayoutPanel5.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -155,11 +161,12 @@
             // 
             // ItemBox
             // 
+            tableLayoutPanel5.SetColumnSpan(ItemBox, 2);
             ItemBox.Dock = DockStyle.Fill;
             ItemBox.FormattingEnabled = true;
-            ItemBox.Location = new Point(3, 22);
+            ItemBox.Location = new Point(3, 30);
             ItemBox.Name = "ItemBox";
-            ItemBox.Size = new Size(479, 449);
+            ItemBox.Size = new Size(473, 388);
             ItemBox.TabIndex = 1;
             ItemBox.SelectedIndexChanged += ItemBox_SelectedIndexChanged;
             // 
@@ -183,7 +190,7 @@
             tableLayoutPanel1.Controls.Add(tableLayoutPanel4, 1, 0);
             tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 0, 2);
             tableLayoutPanel1.Controls.Add(label1, 0, 0);
-            tableLayoutPanel1.Controls.Add(ItemBox, 0, 1);
+            tableLayoutPanel1.Controls.Add(tableLayoutPanel5, 0, 1);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -326,6 +333,68 @@
             tableLayoutPanel2.Size = new Size(479, 47);
             tableLayoutPanel2.TabIndex = 4;
             // 
+            // tableLayoutPanel5
+            // 
+            tableLayoutPanel5.ColumnCount = 2;
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 12.9436321F));
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 87.056366F));
+            tableLayoutPanel5.Controls.Add(label9, 0, 2);
+            tableLayoutPanel5.Controls.Add(label8, 0, 0);
+            tableLayoutPanel5.Controls.Add(ItemBox, 0, 1);
+            tableLayoutPanel5.Controls.Add(SearchItemTextBox, 1, 0);
+            tableLayoutPanel5.Controls.Add(ItemSortComboBox, 1, 2);
+            tableLayoutPanel5.Dock = DockStyle.Fill;
+            tableLayoutPanel5.Location = new Point(3, 22);
+            tableLayoutPanel5.Name = "tableLayoutPanel5";
+            tableLayoutPanel5.RowCount = 3;
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 6.013363F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 87.75056F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 6.23608F));
+            tableLayoutPanel5.Size = new Size(479, 449);
+            tableLayoutPanel5.TabIndex = 16;
+            // 
+            // label9
+            // 
+            label9.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            label9.AutoSize = true;
+            label9.Location = new Point(3, 421);
+            label9.Name = "label9";
+            label9.Size = new Size(56, 28);
+            label9.TabIndex = 18;
+            label9.Text = "Order By:";
+            label9.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label8
+            // 
+            label8.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            label8.AutoSize = true;
+            label8.Location = new Point(3, 0);
+            label8.Name = "label8";
+            label8.Size = new Size(56, 27);
+            label8.TabIndex = 16;
+            label8.Text = "Find:";
+            label8.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // SearchItemTextBox
+            // 
+            SearchItemTextBox.Dock = DockStyle.Fill;
+            SearchItemTextBox.Location = new Point(65, 3);
+            SearchItemTextBox.Name = "SearchItemTextBox";
+            SearchItemTextBox.Size = new Size(411, 23);
+            SearchItemTextBox.TabIndex = 17;
+            SearchItemTextBox.TextChanged += SearchItemTextBox_TextChanged;
+            // 
+            // ItemSortComboBox
+            // 
+            ItemSortComboBox.Dock = DockStyle.Fill;
+            ItemSortComboBox.FormattingEnabled = true;
+            ItemSortComboBox.Items.AddRange(new object[] { "By name (A-Z)", "By cost (low to high)", "By cost (high to low)" });
+            ItemSortComboBox.Location = new Point(65, 424);
+            ItemSortComboBox.Name = "ItemSortComboBox";
+            ItemSortComboBox.Size = new Size(411, 23);
+            ItemSortComboBox.TabIndex = 19;
+            ItemSortComboBox.SelectedIndexChanged += ItemSortComboBox_SelectedIndexChanged;
+            // 
             // ItemsTabs
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -341,6 +410,8 @@
             tableLayoutPanel3.ResumeLayout(false);
             tableLayoutPanel3.PerformLayout();
             tableLayoutPanel2.ResumeLayout(false);
+            tableLayoutPanel5.ResumeLayout(false);
+            tableLayoutPanel5.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -367,5 +438,10 @@
         private TableLayoutPanel tableLayoutPanel4;
         private Label label7;
         private ComboBox CategoryComboBox;
+        private TableLayoutPanel tableLayoutPanel5;
+        private Label label8;
+        private TextBox SearchItemTextBox;
+        private Label label9;
+        private ComboBox ItemSortComboBox;
     }
 }

@@ -17,6 +17,7 @@ namespace ObjectOrientedPractics.View.Tabs
             InitializeComponent();
             UpdateUI();
 
+            ItemSortComboBox.SelectedIndex = 0;
             CategoryComboBox.Items.AddRange(Enum.GetValues(typeof(Category)).Cast<object>().ToArray());
             CategoryComboBox.Format += (s, e) =>
             {
@@ -176,8 +177,73 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Изменение категории товара.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e) => _currentItem.Category = (Category)CategoryComboBox.SelectedIndex;
+
+        /// <summary>
+        /// Обработчик изменения текста в поисковой строке.
+        /// </summary>
+        private void SearchItemTextBox_TextChanged(object sender, EventArgs e)
+        {
+            ApplySearchFilter();
+        }
+
+        /// <summary>
+        /// Применяет фильтр поиска к списку товаров.
+        /// </summary>
+        private void ApplySearchFilter()
+        {
+            string searchText = SearchItemTextBox.Text.Trim();
+
+            if (string.IsNullOrEmpty(searchText))
+            {
+                ItemBox.Items.Clear();
+                SortItems(AppData.Items).ForEach(x => ItemBox.Items.Add(x));
+            }
+            else
+            {
+                var filteredItems = DataTools.FilterItems(AppData.Items, CreateSearchFilter(searchText));
+                SortItems(filteredItems);
+
+                ItemBox.Items.Clear();
+                filteredItems.ForEach(x => ItemBox.Items.Add(x));
+            }
+        }
+        
+        /// <summary>
+        /// Сортировка списка товаров.
+        /// </summary>
+        private List<Item> SortItems(List<Item> items)
+        {
+            var sortItems = new List<Item>();
+            if (items.Count != 0)
+            {
+                switch (ItemSortComboBox.SelectedIndex)
+                {
+                    case 0:
+                        sortItems = DataTools.SortItems(items, DataTools.SortByName);
+                        break;
+                    case 1:
+                        sortItems = DataTools.SortItems(items, DataTools.SortByCostAscending);
+                        break;
+                    case 2:
+                        sortItems = DataTools.SortItems(items, DataTools.SortByCostDescending);
+                        break;
+                }
+            }
+            return sortItems;
+        }
+
+        /// <summary>
+        /// Делегат фильтрации для поиска по подстроке в имени товара.
+        /// </summary>
+        private ItemFilterDelegate CreateSearchFilter(string searchText) => item => item.Name.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0;
+
+        /// <summary>
+        /// Выбор способа сортировки.
+        /// </summary>
+        private void ItemSortComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ApplySearchFilter();
+        }
     }
 }
