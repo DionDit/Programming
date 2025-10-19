@@ -12,6 +12,13 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private Item _currentItem;
 
+        #region Events
+        /// <summary>
+        /// Событие, возникающее при добавлении, удалении или редактировании товара.
+        /// </summary>
+        public event EventHandler<EventArgs> ItemsChanged;
+        #endregion
+
         public ItemsTabs()
         {
             InitializeComponent();
@@ -27,6 +34,11 @@ namespace ObjectOrientedPractics.View.Tabs
                 }
             };
         }
+
+        /// <summary>
+        /// Вызывает событие ItemsChanged.
+        /// </summary>
+        protected virtual void OnItemsChanged(EventArgs e) => ItemsChanged?.Invoke(this, e);
 
         /// <summary>
         /// Обновление графического интерфейса.
@@ -82,6 +94,7 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 _currentItem.Cost = Convert.ToDouble(CostTextBox.Text);
                 CostTextBox.BackColor = AppColors.BaseInput;
+                OnItemsChanged(EventArgs.Empty);
             }
             catch
             {
@@ -98,6 +111,7 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 _currentItem.Name = NameTextBox.Text;
                 NameTextBox.BackColor = AppColors.BaseInput;
+                OnItemsChanged(EventArgs.Empty);
             }
             catch
             {
@@ -114,6 +128,7 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 _currentItem.Information = DescriptionTextBox.Text;
                 DescriptionTextBox.BackColor = AppColors.BaseInput;
+                OnItemsChanged(EventArgs.Empty);
             }
             catch
             {
@@ -129,6 +144,7 @@ namespace ObjectOrientedPractics.View.Tabs
             if (new ItemsAddForm().ShowDialog() == DialogResult.OK)
             {
                 UpdateUI();
+                OnItemsChanged(EventArgs.Empty);
                 MessageBox.Show("Вы добавили новый товар!", "Успешно", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -150,6 +166,7 @@ namespace ObjectOrientedPractics.View.Tabs
                     CostTextBox.BackColor = AppColors.BaseInput;
                     DescriptionTextBox.BackColor = AppColors.BaseInput;
                     tableLayoutPanel4.Visible = false;
+                    OnItemsChanged(EventArgs.Empty);
                 }
             }
             else
@@ -170,6 +187,7 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             AppData.Items.Add(ItemFactory.CreateRandomItem());
             UpdateUI();
+            OnItemsChanged(EventArgs.Empty);
             MessageBox.Show("Вы добавили случайно сгенерированный товар!", "Успешно", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
@@ -177,7 +195,14 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Изменение категории товара.
         /// </summary>
-        private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e) => _currentItem.Category = (Category)CategoryComboBox.SelectedIndex;
+        private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_currentItem != null)
+            {
+                _currentItem.Category = (Category)CategoryComboBox.SelectedIndex;
+                OnItemsChanged(EventArgs.Empty);
+            }
+        }                 
 
         /// <summary>
         /// Обработчик изменения текста в поисковой строке.

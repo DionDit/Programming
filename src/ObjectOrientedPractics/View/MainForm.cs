@@ -1,6 +1,7 @@
 ﻿using ObjectOrientedPractics.Model;
 using ObjectOrientedPractics.Model.Enums;
 using ObjectOrientedPractics.Services;
+using ObjectOrientedPractics.View.Tabs;
 
 namespace ObjectOrientedPractics.View
 {
@@ -11,6 +12,21 @@ namespace ObjectOrientedPractics.View
             LoadData();
             InitializeComponent();
             ExitSaving.Checked = AppData.IsExitSaving;
+            itemsTabs1.ItemsChanged += OnItemsChanged;
+        }
+        
+        private void OnItemsChanged(object sender, EventArgs e)
+        {
+            RefreshTabs();
+        }
+
+        /// <summary>
+        /// Обновляет данные на других вкладках.
+        /// </summary>
+        private void RefreshTabs()
+        {
+            cartsTab1.UpdateUI();
+            ordersTab1.UpdateOrdersList(false);
         }
 
         private void LoadData()
@@ -25,7 +41,6 @@ namespace ObjectOrientedPractics.View
 
         private void CreateSampleData()
         {
-            // Тестовые данные
             AppData.Items.Add(ItemFactory.CreateRandomItem());
             AppData.Customers.Add(CustomerFactory.CreateRandomCustomer());
         }

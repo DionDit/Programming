@@ -30,6 +30,23 @@ namespace ObjectOrientedPractics.Model
         private double _cost;
         #endregion
 
+        #region Events
+        /// <summary>
+        /// Событие, возникающее при изменении названия товара.
+        /// </summary>
+        public event EventHandler<EventArgs> NameChanged;
+
+        /// <summary>
+        /// Событие, возникающее при изменении стоимости товара.
+        /// </summary>
+        public event EventHandler<EventArgs> CostChanged;
+
+        /// <summary>
+        /// Событие, возникающее при изменении описания товара.
+        /// </summary>
+        public event EventHandler<EventArgs> InfoChanged;
+        #endregion
+
         /// <summary>
         /// Создает экземпляр класса <see cref="Item"/>.
         /// </summary>
@@ -92,6 +109,7 @@ namespace ObjectOrientedPractics.Model
                 if (ValueValidator.AssertStringOnLength(value, 200, nameof(Name)))
                 {
                     _name = value;
+                    OnNameChanged(EventArgs.Empty);
                 }
             }
         }
@@ -110,6 +128,7 @@ namespace ObjectOrientedPractics.Model
                 if (ValueValidator.AssertStringOnLength(value, 1000, nameof(Information)))
                 {
                     _info = value;
+                    OnInfoChanged(EventArgs.Empty);
                 }
             }
         }
@@ -128,6 +147,7 @@ namespace ObjectOrientedPractics.Model
                 if (ValueValidator.AssertValueInRange(value, 0, 100000, nameof(Cost)))
                 {
                     _cost = value;
+                    OnCostChanged(EventArgs.Empty);
                 }
             }
         }
@@ -188,6 +208,21 @@ namespace ObjectOrientedPractics.Model
 
             return _cost.CompareTo(other._cost);
         }
+
+        /// <summary>
+        /// Вызывает событие NameChanged.
+        /// </summary>
+        protected virtual void OnNameChanged(EventArgs e) => NameChanged?.Invoke(this, e);
+
+        /// <summary>
+        /// Вызывает событие CostChanged.
+        /// </summary>
+        protected virtual void OnCostChanged(EventArgs e) => CostChanged?.Invoke(this, e);
+
+        /// <summary>
+        /// Вызывает событие InfoChanged.
+        /// </summary>
+        protected virtual void OnInfoChanged(EventArgs e) => InfoChanged?.Invoke(this, e);
 
         /// <summary>
         /// Метод переопределения ToString().

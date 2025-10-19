@@ -45,6 +45,13 @@ namespace ObjectOrientedPractics.Model
         private string _apartment;
         #endregion
 
+        #region Events
+        /// <summary>
+        /// Событие, возникающее при изменении любого из свойств адреса.
+        /// </summary>
+        public event EventHandler<EventArgs> AddressChanged;
+        #endregion
+
         [JsonConstructor]
         public Address(int index, string country, string city, string street, string building, string apartment)
         {
@@ -73,6 +80,7 @@ namespace ObjectOrientedPractics.Model
                 if (ValueValidator.AssertValueInRange(value, 111111, 999999, nameof(Index)))
                 {
                     _index = value;
+                    OnAddressChanged(EventArgs.Empty);
                 }
             }
         }
@@ -88,6 +96,7 @@ namespace ObjectOrientedPractics.Model
                 if (ValueValidator.AssertStringOnLength(value, 50, nameof(Country)))
                 {
                     _country = value;
+                    OnAddressChanged(EventArgs.Empty);
                 }
             }
         }
@@ -103,6 +112,7 @@ namespace ObjectOrientedPractics.Model
                 if (ValueValidator.AssertStringOnLength(value, 50, nameof(City)))
                 {
                     _city = value;
+                    OnAddressChanged(EventArgs.Empty);
                 }
             }
         }
@@ -118,6 +128,7 @@ namespace ObjectOrientedPractics.Model
                 if (ValueValidator.AssertStringOnLength(value, 100, nameof(Street)))
                 {
                     _street = value;
+                    OnAddressChanged(EventArgs.Empty);
                 }
             }
         }
@@ -133,6 +144,7 @@ namespace ObjectOrientedPractics.Model
                 if (ValueValidator.AssertStringOnLength(value, 10, nameof(Building)))
                 {
                     _building = value;
+                    OnAddressChanged(EventArgs.Empty);
                 }
             }
         }
@@ -148,6 +160,7 @@ namespace ObjectOrientedPractics.Model
                 if (ValueValidator.AssertStringOnLength(value, 10, nameof(Apartment)))
                 {
                     _apartment = value;
+                    OnAddressChanged(EventArgs.Empty);
                 }
             }
         }
@@ -194,6 +207,11 @@ namespace ObjectOrientedPractics.Model
                    _building == other._building &&
                    _apartment == other._apartment;
         }
+
+        /// <summary>
+        /// Вызывает событие AddressChanged.
+        /// </summary>
+        protected virtual void OnAddressChanged(EventArgs e) => AddressChanged?.Invoke(this, e);
 
         /// <summary>
         /// Определяет, равен ли указанный объект текущему объекту.
