@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Order</title>
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic|Source+Code+Pro:300,400,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="../assets/css/bootstrap.css">
+<link rel="stylesheet" href="../assets/css/jquery.bonsai.css">
+<link rel="stylesheet" href="../assets/css/main.css">
+<link rel="stylesheet" href="../assets/icon-font/icons.css">
+<script type="text/javascript" src="../assets/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript" src="../assets/js/bootstrap.js"></script>
+<script type="text/javascript" src="../assets/js/jquery.bonsai.js"></script>
+<script type="text/javascript" src="../assets/js/imageMapResizer.min.js"></script>
+
+  </head>
+  <body>
+    <div>
+
+      <!-- Name Title -->
+
+      <h1>Order</h1>
+
+      <!-- Type and Stereotype -->
+
+      <section style="margin-top: .5em;">
+        <span class="alert alert-info">
+          <span class="node-icon staruml-icon icon-UMLClass"></span>
+          UMLClass
+        </span>
+        
+      </section>
+
+      <!-- Path -->
+
+      <section style="margin-top: 10px">
+        
+        
+        
+          
+          <span class="label label-info"><a href='cf9c8b720f3815adeccaf3ef6e48c6c4.html'><span class='node-icon staruml-icon icon-Project'></span>Untitled</a></span>
+        
+          <span>::</span>
+          <span class="label label-info"><a href='594af663de577680f35b13183109d675.html'><span class='node-icon staruml-icon icon-UMLModel'></span>Model</a></span>
+        
+          <span>::</span>
+          <span class="label label-info"><a href='b76941dfbd736f8cf3184d4296b97144.html'><span class='node-icon staruml-icon icon-UMLClass'></span>Order</a></span>
+        
+      </section>
+
+      <!-- Diagram -->
+
+      
+
+      <!-- Description -->
+
+      
+      <section>
+        <h3>Description</h3>
+        <div>
+          
+            <span class="label label-info">none</span>
+          
+        </div>
+      </section>
+      
+
+      <!-- Specification -->
+
+      
+
+      <!-- Directed Relationship -->
+
+      
+
+      <!-- Undirected Relationship -->
+
+      
+
+      <!-- Classifier -->
+
+      
+        
+        
+
+
+        
+        
+
+
+        
+        
+
+
+        
+        
+
+
+        
+        
+
+      
+
+      <!-- Interface -->
+
+      
+
+      <!-- Component -->
+
+      
+
+      <!-- Node -->
+
+      
+
+      <!-- Actor -->
+
+      
+
+      <!-- Use Case -->
+
+      
+
+      <!-- Template Parameters -->
+
+      
+
+      <!-- Literals -->
+
+      
+
+      <!-- Attributes -->
+
+      
+      <section>
+        <h3>Attributes</h3>
+        <table class="table table-striped table-bordered">
+          <tr>
+            <th>Visibility</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
+          </tr>
+          
+          <tr>
+            <td>private</td>
+            <td><a href="7feb57361ff110296912af5beacc6645.html">_id</a></td>
+            <td>int {readonly} </td>
+            <td></td>
+          </tr>
+          
+          <tr>
+            <td>private</td>
+            <td><a href="ea33ca46af8d3d9e5e72dd8456b37249.html">_date</a></td>
+            <td>DateTime {readonly} </td>
+            <td></td>
+          </tr>
+          
+          <tr>
+            <td>private</td>
+            <td><a href="d07f2d1e95ecc4fc40aafe2aefef0f0b.html">_address</a></td>
+            <td><a href='7752b23922bc2d0525e422da35fda1e8.html'><span class='node-icon staruml-icon icon-UMLClass'></span>Address</a> </td>
+            <td></td>
+          </tr>
+          
+          <tr>
+            <td>private</td>
+            <td><a href="461e4b9efea654b735170796d3eeab36.html">_items</a></td>
+            <td>List&lt;Item&gt; </td>
+            <td></td>
+          </tr>
+          
+          <tr>
+            <td>private</td>
+            <td><a href="3165fdfa13c18e1a1888615f270b199e.html">_status</a></td>
+            <td>OrderStatus </td>
+            <td></td>
+          </tr>
+          
+          <tr>
+            <td>private</td>
+            <td><a href="57929f67d2c8bf263eb17da30fc53afe.html">_customer</a></td>
+            <td><a href='ed8d890318a37e6fa747143e6777cea1.html'><span class='node-icon staruml-icon icon-UMLClass'></span>Customer</a> </td>
+            <td></td>
+          </tr>
+          
+          <tr>
+            <td>private</td>
+            <td><a href="1948b0673f16c0d741ce56955f682625.html">_discountAmount</a></td>
+            <td>double </td>
+            <td></td>
+          </tr>
+          
+        </table>
+      </section>
+      
+
+      <!-- Operations -->
+
+      
+      <section>
+        <h3>Operations</h3>
+        <table class="table table-striped table-bordered">
+          <tr>
+            <th>Visibility</th>
+            <th>Name</th>
+            <th>Description</th>
+          </tr>
+          
+          <tr>
+            <td>public</td>
+            <td><a href="c444edb95296ee42285d0b02393b3c6d.html">Id(): int {get;}</a></td>
+            <td></td>
+          </tr>
+          
+          <tr>
+            <td>public</td>
+            <td><a href="29a53abb160a5913c784ab8c10bd4cf9.html">Date(): DateTime {get;}</a></td>
+            <td></td>
+          </tr>
+          
+          <tr>
+            <td>public</td>
+            <td><a href="064a821877319db3cb5babc4610539a3.html">Address(): Address {get; set;}</a></td>
+            <td></td>
+          </tr>
+          
+          <tr>
+            <td>public</td>
+            <td><a href="d048257db1a07c7f2ec241232699def9.html">Items(): List&lt;Item&gt; {get; set;}</a></td>
+            <td></td>
+          </tr>
+          
+          <tr>
+            <td>public</td>
+            <td><a href="a2aacd932f4cd9961dd62ed943d5f7ec.html">Status(): OrderStatus {get; set;}</a></td>
+            <td></td>
+          </tr>
+          
+          <tr>
+            <td>public</td>
+            <td><a href="7d1e690a8158851936e29e49785e333d.html">Customer(): Customer {get; set;}</a></td>
+            <td></td>
+          </tr>
+          
+          <tr>
+            <td>public</td>
+            <td><a href="99653b7bd9152d35fa7d91f747e98fac.html">Amount(): double {get;}</a></td>
+            <td></td>
+          </tr>
+          
+          <tr>
+            <td>public</td>
+            <td><a href="a155ad63dffeaaabfa39868e33a82133.html">DateString(): string {get;}</a></td>
+            <td></td>
+          </tr>
+          
+          <tr>
+            <td>public</td>
+            <td><a href="a5c394ad907a3a909bb2b37cbfb7161e.html">CustomerFullName(): string {get;}</a></td>
+            <td></td>
+          </tr>
+          
+          <tr>
+            <td>public</td>
+            <td><a href="8bccde38bf7683e98d73b71cd085dbc3.html">DeliveryAddressString(): string {get;}</a></td>
+            <td></td>
+          </tr>
+          
+          <tr>
+            <td>public</td>
+            <td><a href="4b797917ff9ac059c3958c14a80564bf.html">AmountString(): string {get;}</a></td>
+            <td></td>
+          </tr>
+          
+          <tr>
+            <td>public</td>
+            <td><a href="6907ca0cf21385f449e0acd30265f990.html">ToString(): string</a></td>
+            <td></td>
+          </tr>
+          
+          <tr>
+            <td>public</td>
+            <td><a href="38c17ad3df0763d60ecf9f733a35dcb7.html">OrderType(): string</a></td>
+            <td></td>
+          </tr>
+          
+          <tr>
+            <td>public</td>
+            <td><a href="339fe035f49e8930cd3d7f02784fb922.html">DeliveryTimeDisplay(): string</a></td>
+            <td></td>
+          </tr>
+          
+          <tr>
+            <td>public</td>
+            <td><a href="04fd8cdaafb7e7917e8d9d611f1879c0.html">DiscountAmount(): double {get set}</a></td>
+            <td></td>
+          </tr>
+          
+          <tr>
+            <td>public</td>
+            <td><a href="abfa945978966e5962f93ee86754ef51.html">Total(): double {get}</a></td>
+            <td></td>
+          </tr>
+          
+          <tr>
+            <td>public</td>
+            <td><a href="c854493a2ae7ce9a206753b255f9e3c4.html">TotalString(): string {get}</a></td>
+            <td></td>
+          </tr>
+          
+        </table>
+      </section>
+      
+
+      <!-- Receptions -->
+
+      
+
+      <!-- Extension Points -->
+
+      
+
+      <!-- Parameters -->
+
+      
+
+      <!-- Diagrams -->
+
+      
+      
+
+      <!-- Behavior -->
+
+      
+
+      <!-- Action -->
+
+      
+
+      <!-- Interaction -->
+
+      
+
+      <!-- CombinedFragment -->
+
+      
+
+      <!-- Activity -->
+
+      
+
+      <!-- State Machine -->
+
+      
+
+      <!-- State Machine -->
+
+      
+
+      <!-- State -->
+
+      
+
+      <!-- Vertex -->
+
+      
+
+      <!-- Transition -->
+
+      
+
+      <!-- Data Model (ERD) -->
+
+      
+
+      <!-- Columns (ERD) -->
+
+      
+
+      <!-- Related Entities (ERD) -->
+
+      
+
+      <!-- Data Flows (DFD) -->
+
+      
+
+      <!-- Flows (Flowchart) -->
+
+      
+
+      <!-- Properties -->
+
+      <section>
+        <h3>Properties</h3>
+        
+        <table class="table table-striped table-bordered">
+    <tr>
+        <th width="50%">Name</th>
+        <th width="50%">Value</th>
+    </tr>
+    
+    
+    
+    
+    
+    
+    
+    <tr>
+        <td>name</td>
+        <td>Order</td>
+    </tr>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <tr>
+        <td>stereotype</td>
+        <td><span class='label label-info'>null</span></td>
+    </tr>
+    
+    
+    
+    
+    
+    <tr>
+        <td>visibility</td>
+        <td>public</td>
+    </tr>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <tr>
+        <td>isAbstract</td>
+        <td><span class='label label-info'>false</span></td>
+    </tr>
+    
+    
+    
+    
+    
+    <tr>
+        <td>isFinalSpecialization</td>
+        <td><span class='label label-info'>false</span></td>
+    </tr>
+    
+    
+    
+    
+    
+    <tr>
+        <td>isLeaf</td>
+        <td><span class='label label-info'>false</span></td>
+    </tr>
+    
+    
+    
+    
+    
+    <tr>
+        <td>isActive</td>
+        <td><span class='label label-info'>false</span></td>
+    </tr>
+    
+    
+    
+</table>                
+
+      </section>
+
+      <!-- Tags -->
+
+      
+
+      <!-- Constraints, Dependencies, Dependants -->
+
+      
+        
+        
+
+
+        
+        
+<section class="element-list">
+    <h3>Dependencies</h3>
+    <ul class="nav nav-list">
+        
+        <li><a href='0f62ec475384004cb87a19da7adf12eb.html'><span class='node-icon staruml-icon icon-UMLClass'></span>IdGenerator</a></li>
+        
+        <li><a href='7752b23922bc2d0525e422da35fda1e8.html'><span class='node-icon staruml-icon icon-UMLClass'></span>Address</a></li>
+        
+    </ul>
+</section>
+
+
+
+        
+        
+
+      
+
+      <!-- Relationships -->
+
+      
+      
+<section class="element-list">
+    <h3>Relationships</h3>
+    <ul class="nav nav-list">
+        
+        <li><a href='0aeff276499e24dcb3a664e1ebf24d47.html'><span class='node-icon staruml-icon icon-UMLAssociation'></span>«contanis»(Order—AppData)</a></li>
+        
+        <li><a href='b2f558bd0e2d7656f2394c74ed6126b9.html'><span class='node-icon staruml-icon icon-UMLAssociation'></span>(Order—Customer)</a></li>
+        
+        <li><a href='eaa0a1c14303d55e651f4b0fcb81a410.html'><span class='node-icon staruml-icon icon-UMLAssociation'></span>(Order—Item)</a></li>
+        
+        <li><a href='ddbae2c31bdd6faa1b0e61934ba615da.html'><span class='node-icon staruml-icon icon-UMLAssociation'></span>«has history»(Order—Customer)</a></li>
+        
+        <li><a href='a5e76f80c49199f6e0a3b80824b4ecd2.html'><span class='node-icon staruml-icon icon-UMLAssociation'></span>(Item—Order)</a></li>
+        
+        <li><a href='a6ab0b2b00a400d8f46758de494d4812.html'><span class='node-icon staruml-icon icon-UMLAssociation'></span>(Address—Order)</a></li>
+        
+        <li><a href='81f0595b556242c1c367fcebe7954a79.html'><span class='node-icon staruml-icon icon-UMLDependency'></span>(Order→IdGenerator)</a></li>
+        
+        <li><a href='10fe9fbe5ccc87cb8e36b3f5613cb052.html'><span class='node-icon staruml-icon icon-UMLDependency'></span>(Order→Address)</a></li>
+        
+        <li><a href='e04adff6bcb9f38018289899bde25d0f.html'><span class='node-icon staruml-icon icon-UMLAssociation'></span>«has»(Order—OrderStatus)</a></li>
+        
+    </ul>
+</section>
+
+
+
+      <!-- Owned Elements -->
+
+      
+      
+<section class="element-list">
+    <h3>Owned Elements</h3>
+    <ul class="nav nav-list">
+        
+        <li><a href='0aeff276499e24dcb3a664e1ebf24d47.html'><span class='node-icon staruml-icon icon-UMLAssociation'></span>«contanis»(Order—AppData)</a></li>
+        
+        <li><a href='b2f558bd0e2d7656f2394c74ed6126b9.html'><span class='node-icon staruml-icon icon-UMLAssociation'></span>(Order—Customer)</a></li>
+        
+        <li><a href='eaa0a1c14303d55e651f4b0fcb81a410.html'><span class='node-icon staruml-icon icon-UMLAssociation'></span>(Order—Item)</a></li>
+        
+        <li><a href='ddbae2c31bdd6faa1b0e61934ba615da.html'><span class='node-icon staruml-icon icon-UMLAssociation'></span>«has history»(Order—Customer)</a></li>
+        
+        <li><a href='a5e76f80c49199f6e0a3b80824b4ecd2.html'><span class='node-icon staruml-icon icon-UMLAssociation'></span>(Item—Order)</a></li>
+        
+        <li><a href='a6ab0b2b00a400d8f46758de494d4812.html'><span class='node-icon staruml-icon icon-UMLAssociation'></span>(Address—Order)</a></li>
+        
+        <li><a href='81f0595b556242c1c367fcebe7954a79.html'><span class='node-icon staruml-icon icon-UMLDependency'></span>(Order→IdGenerator)</a></li>
+        
+        <li><a href='10fe9fbe5ccc87cb8e36b3f5613cb052.html'><span class='node-icon staruml-icon icon-UMLDependency'></span>(Order→Address)</a></li>
+        
+        <li><a href='e04adff6bcb9f38018289899bde25d0f.html'><span class='node-icon staruml-icon icon-UMLAssociation'></span>«has»(Order—OrderStatus)</a></li>
+        
+    </ul>
+</section>
+
+
+
+      <!-- Diagrams -->
+      
+      
+      
+<section class="element-list">
+    <h3>Diagrams</h3>
+    <ul class="nav nav-list">
+        
+        <li><a href='a74bf0e3699da3f8e58beeb19b53e20a.html'><span class='node-icon staruml-icon icon-UMLClassDiagram'></span>Main</a></li>
+        
+    </ul>
+</section>
+
+
+      
+      
+      <!-- Image Map Resizer (https://github.com/davidjbradshaw/image-map-resizer) -->
+      <script>
+      imageMapResize();
+      </script>
+    </div>
+  </body>
+</html>
