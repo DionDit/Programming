@@ -230,6 +230,9 @@ namespace ObjectOrientedPractics.Model
         /// <returns>Строку с информацией об предмете.</returns>
         public override string ToString() => $"{Name}";
 
+        /// <summary>
+        /// Тестовый метод для PR.
+        /// </summary>
         private static void TestMethodForPR()
         {
             MessageBox.Show("Этот метод добавлен для лабораторной работы по Pull Request");
