@@ -5,8 +5,120 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:View"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Icon="/ContactsApp_96x96.ico"
+        Title="Contacts" 
+        Height="400" 
+        Width="500">
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <GroupBox Grid.Column="0" 
+                      Header="Edit Сontact"
+                      Margin="0,0,10,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Vertical"
+                                Grid.Row="0" 
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2">
+                        <Label Content="Name:" />
+                        <TextBox x:Name="editName"
+                                 Text="Смирнов Юрий"
+                                 Margin="5,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical"
+                                Grid.Row="1" 
+                                Grid.Column="0" 
+                                Grid.ColumnSpan="2">
+                        <Label Content="Phone Number:"/>
+                        <TextBox x:Name="editPhone" 
+                                 Margin="5,0,0,10" 
+                                 Text="+7-913-111-22-33"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical"
+                                Grid.Row="2" 
+                                Grid.Column="0" 
+                                Grid.ColumnSpan="2">
+                        <Label Content="Email:" />
+                        <TextBox x:Name="editEmail"
+                                 Margin="5,0,0,0" 
+                                 Text="yuri.smirnov@no.mail"/>
+                    </StackPanel>
+                </Grid>
+            </GroupBox>
+            <GroupBox Grid.Column="1" 
+                      Header="Read Contact" 
+                      Margin="10,0,0,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Vertical"
+                                Grid.Row="0" 
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2">
+                        <Label Content="Name:"/>
+                        <Label Content="Смирнов Юрий"
+                               FontWeight="Bold"
+                               Margin="0,-5,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical"
+                                Grid.Row="1" 
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2">
+                        <Label Content="Phone number:"/>
+                        <Label Content="+7-913-111-22-33"
+                               FontWeight="Bold"
+                               Margin="0,-5,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical"
+                                Grid.Row="2" 
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2">
+                        <Label Content="Email:"/>
+                        <Label Content="yuri.smirnov@no.mail"
+                               FontWeight="Bold"
+                               Margin="0,-5,0,0"/>
+                    </StackPanel>
+                </Grid>
+            </GroupBox>
+        </Grid>
 
+        <StackPanel Grid.Row="2" 
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Margin="0,20,0,0">
+            <Button x:Name="SaveButton"
+                    Content="Save" 
+                    Width="72" 
+                    Height="25" 
+                    Margin="0,0,10,0"/>
+            <Button x:Name="LoadButton" 
+                    Content="Load" 
+                    Width="72" 
+                    Height="25"/>
+        </StackPanel>
     </Grid>
 </Window>
