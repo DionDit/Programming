@@ -37,16 +37,7 @@ namespace View.ViewModels
         public Contact Contact
         {
             get => _contact;
-            set
-            {
-                _contact = value;
-                OnPropertyChanged();
-
-                // Уведомляем об изменении всех свойств, так как контакт мог полностью измениться
-                OnPropertyChanged(nameof(Name));
-                OnPropertyChanged(nameof(PhoneNumber));
-                OnPropertyChanged(nameof(Email));
-            }
+            set => Set(ref _contact, value);
         }
 
         /// <summary>
@@ -57,7 +48,7 @@ namespace View.ViewModels
             get => _contact?.Name ?? string.Empty;
             set
             {
-                if (_contact == null)
+                if (_contact == null) 
                 {
                     _contact = new Contact(value, string.Empty, string.Empty);
                 }
