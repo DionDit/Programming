@@ -8,12 +8,12 @@ namespace View.Models.Commands
     public class DelegateCommand : Command
     {
         /// <summary>
-        /// Выполнение команды.
+        /// Делегат, содержащий логику выполнения команды.
         /// </summary>
         private readonly Action<object> _execute;
 
         /// <summary>
-        /// Выполнение команды с условием.
+        /// Делегат, определяющий возможность выполнения команды.
         /// </summary>
         private readonly Func<object, bool> _canExecute;
 

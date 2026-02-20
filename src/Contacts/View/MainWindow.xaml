@@ -4,11 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:View"
+        xmlns:VM="clr-namespace:View.ViewModels"
         mc:Ignorable="d"
         Icon="/ContactsApp_96x96.ico"
         Title="Contacts" 
         Height="400" 
         Width="500">
+    <Window.DataContext>
+        <VM:MainWindowViewModel/>
+    </Window.DataContext>
     <Grid Margin="15">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -39,7 +43,7 @@
                                 Grid.ColumnSpan="2">
                         <Label Content="Name:" />
                         <TextBox x:Name="editName"
-                                 Text="Смирнов Юрий"
+                                 Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
                                  Margin="5,0,0,0"/>
                     </StackPanel>
                     <StackPanel Orientation="Vertical"
@@ -49,7 +53,7 @@
                         <Label Content="Phone Number:"/>
                         <TextBox x:Name="editPhone" 
                                  Margin="5,0,0,10" 
-                                 Text="+7-913-111-22-33"/>
+                                 Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
                     <StackPanel Orientation="Vertical"
                                 Grid.Row="2" 
@@ -58,7 +62,7 @@
                         <Label Content="Email:" />
                         <TextBox x:Name="editEmail"
                                  Margin="5,0,0,0" 
-                                 Text="yuri.smirnov@no.mail"/>
+                                 Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
                 </Grid>
             </GroupBox>
@@ -80,7 +84,7 @@
                                 Grid.Column="0"
                                 Grid.ColumnSpan="2">
                         <Label Content="Name:"/>
-                        <Label Content="Смирнов Юрий"
+                        <Label Content="{Binding Name}"
                                FontWeight="Bold"
                                Margin="0,-5,0,0"/>
                     </StackPanel>
@@ -89,7 +93,7 @@
                                 Grid.Column="0"
                                 Grid.ColumnSpan="2">
                         <Label Content="Phone number:"/>
-                        <Label Content="+7-913-111-22-33"
+                        <Label Content="{Binding PhoneNumber}"
                                FontWeight="Bold"
                                Margin="0,-5,0,0"/>
                     </StackPanel>
@@ -98,14 +102,13 @@
                                 Grid.Column="0"
                                 Grid.ColumnSpan="2">
                         <Label Content="Email:"/>
-                        <Label Content="yuri.smirnov@no.mail"
+                        <Label Content="{Binding Email}"
                                FontWeight="Bold"
                                Margin="0,-5,0,0"/>
                     </StackPanel>
                 </Grid>
             </GroupBox>
         </Grid>
-
         <StackPanel Grid.Row="2" 
                     Orientation="Horizontal"
                     HorizontalAlignment="Right"
@@ -114,10 +117,12 @@
                     Content="Save" 
                     Width="72" 
                     Height="25" 
+                    Command="{Binding SaveCommand}"
                     Margin="0,0,10,0"/>
             <Button x:Name="LoadButton" 
                     Content="Load" 
                     Width="72" 
+                    Command="{Binding LoadCommand}"
                     Height="25"/>
         </StackPanel>
     </Grid>

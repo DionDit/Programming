@@ -21,7 +21,6 @@ namespace View.ViewModels.Base
         /// </summary>
         public virtual void OnPropertyChanged([CallerMemberName] string PropertyName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
 
-
         /// <summary>
         /// Изменение данных.
         /// </summary>
