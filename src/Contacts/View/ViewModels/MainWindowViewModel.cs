@@ -29,7 +29,7 @@ namespace View.ViewModels
         {
             _contact = new Contact(string.Empty, string.Empty, string.Empty);
             _contactSerializer = new ContactSerializer();
-        }
+        } 
 
         /// <summary>
         /// Контакт, хранящий актуальную информацию из UI
@@ -37,7 +37,15 @@ namespace View.ViewModels
         public Contact Contact
         {
             get => _contact;
-            set => Set(ref _contact, value);
+            set
+            {
+                _contact = value;
+                OnPropertyChanged();
+
+                OnPropertyChanged(nameof(Name));
+                OnPropertyChanged(nameof(PhoneNumber));
+                OnPropertyChanged(nameof(Email));
+            }
         }
 
         /// <summary>
