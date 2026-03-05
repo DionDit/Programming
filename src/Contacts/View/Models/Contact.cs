@@ -25,16 +25,22 @@ namespace View.Models
         public string Email { get; set; }
 
         /// <summary>
+        /// Фото контакта в виде массива байт.
+        /// </summary>
+        public byte[] PhotoBytes { get; set; }
+
+        /// <summary>
         /// Конструктор с параметрами для инициализации всех свойств.
         /// </summary>
         /// <param name="name">Имя контакта.</param>
         /// <param name="phoneNumber">Номер телефона.</param>
         /// <param name="email">Электронная почта.</param>
-        public Contact(string name, string phoneNumber, string email)
+        public Contact(string name, string phoneNumber, string email, byte[] photoBytes)
         {
             Name = name ?? string.Empty;
             PhoneNumber = phoneNumber ?? string.Empty;
             Email = email ?? string.Empty;
+            PhotoBytes = photoBytes;
         }
 
         /// <summary>
