@@ -42,18 +42,16 @@ namespace View.Services
         /// Сохраняет контакт в файл
         /// </summary>
         /// <param name="contact">Контакт для сохранения</param>
-        public bool Save(Contact contact)
+        public bool Save(List<Contact> contacts)
         {
             try
             {
-                EnsureDirectoryExists();
-                string json = JsonConvert.SerializeObject(contact, Formatting.Indented);
+                string json = JsonConvert.SerializeObject(contacts, Formatting.Indented);
                 File.WriteAllText(FilePath, json);
                 return true;
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show($"Ошибка сохранения: {ex.Message}","Ошибка",MessageBoxButton.OK,MessageBoxImage.Error);
                 return false;
             }
         }
@@ -61,22 +59,21 @@ namespace View.Services
         /// <summary>
         /// Загружает контакт из файла
         /// </summary>
-        public Contact Load()
+        public List<Contact> Load()
         {
             try
             {
                 if (!File.Exists(FilePath))
                 {
-                    return new Contact(string.Empty, string.Empty, string.Empty);
+                    return new List<Contact>();
                 }
 
                 string json = File.ReadAllText(FilePath);
-                return JsonConvert.DeserializeObject<Contact>(json) ?? new Contact(string.Empty, string.Empty, string.Empty);
+                return JsonConvert.DeserializeObject<List<Contact>>(json) ?? new List<Contact>();
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show($"Ошибка загрузки: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                return new Contact(string.Empty, string.Empty, string.Empty);
+                return new List<Contact>();
             }
         }
     }
