@@ -14,6 +14,7 @@
 ## ТЕХ.ЗАДАНИЕ
 Тех.задание 2 семестра можно прочитать по [этой ссылке](https://github.com/DionDit/Programming/tree/develop/doc/Программирование%202%20семестр).  
 Тех.задание 3 семестра можно прочитать по [этой ссылке](https://github.com/DionDit/Programming/tree/develop/doc/ООП%203%20семестр).
+</br>
 Тех.задание 4 семестра можно прочитать по [этой ссылке](https://github.com/DionDit/Programming/tree/develop/doc/ООАиП%204%20семестр).
 
 
