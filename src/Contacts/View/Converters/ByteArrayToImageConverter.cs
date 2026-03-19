@@ -8,8 +8,14 @@ using System.Windows.Media.Imaging;
 
 namespace View.Converters
 {
+    /// <summary>
+    /// Конвертер для преобразования массива байт в изображение.
+    /// </summary>
     public class ByteArrayToImageConverter : IValueConverter
     {
+        /// <summary>
+        /// Конвертирует массив байт в объект BitmapImage для отображения в Image.
+        /// </summary>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is byte[] bytes && bytes.Length > 0)
@@ -38,9 +44,9 @@ namespace View.Converters
             }
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
+        /// <summary>
+        /// Обратное преобразование не поддерживается.
+        /// </summary>
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => throw new NotImplementedException();
     }
 }

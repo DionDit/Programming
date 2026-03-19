@@ -1,15 +1,17 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Windows;
 using View.Models;
+using View.ViewModels;
 
 namespace View.Services
 {
     /// <summary>
-    /// Предоставляет методы для сериализации и десериализации контактов в JSON-файл.
+    /// Cериализация и десериализация контактов в JSON-файл.
     /// </summary>
     public class ContactSerializer
     {
@@ -39,14 +41,18 @@ namespace View.Services
         }
 
         /// <summary>
-        /// Сохраняет контакт в файл
+        /// Сохраняет контакты в файл.
         /// </summary>
-        /// <param name="contact">Контакт для сохранения</param>
-        public bool Save(List<Contact> contacts)
+        public bool Save(List<ContactViewModel> contacts)
         {
             try
             {
-                string json = JsonConvert.SerializeObject(contacts, Formatting.Indented);
+                var settings = new JsonSerializerSettings
+                {
+                    Formatting = Formatting.Indented,
+                    ContractResolver = new CamelCasePropertyNamesContractResolver()
+                };
+                string json = JsonConvert.SerializeObject(contacts, settings);
                 File.WriteAllText(FilePath, json);
                 return true;
             }
@@ -57,23 +63,38 @@ namespace View.Services
         }
 
         /// <summary>
-        /// Загружает контакт из файла
+        /// Загружает контакт из файла.
         /// </summary>
-        public List<Contact> Load()
+        public List<ContactViewModel> Load()
         {
             try
             {
                 if (!File.Exists(FilePath))
                 {
-                    return new List<Contact>();
+                    return new List<ContactViewModel>();
                 }
-
                 string json = File.ReadAllText(FilePath);
-                return JsonConvert.DeserializeObject<List<Contact>>(json) ?? new List<Contact>();
+                var contacts = JsonConvert.DeserializeObject<List<ContactViewModel>>(json) ?? new List<ContactViewModel>();
+                foreach (var contact in contacts)
+                {
+                    if (contact.Name == null)
+                    {
+                        contact.GetType().GetProperty("Name")?.SetValue(contact, string.Empty);
+                    }
+                    if (contact.PhoneNumber == null)
+                    {
+                        contact.GetType().GetProperty("PhoneNumber")?.SetValue(contact, string.Empty);
+                    }
+                    if (contact.Email == null)
+                    {
+                        contact.GetType().GetProperty("Email")?.SetValue(contact, string.Empty);
+                    }
+                }
+                return contacts;
             }
             catch
             {
-                return new List<Contact>();
+                return new List<ContactViewModel>();
             }
         }
     }

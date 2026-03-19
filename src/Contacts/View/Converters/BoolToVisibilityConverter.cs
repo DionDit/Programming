@@ -7,23 +7,30 @@ using System.Windows.Data;
 
 namespace View.Converters
 {
+    /// <summary>
+    /// Конвертер для преобразования булевого значения в Visibility.
+    /// </summary>
     public class BoolToVisibilityConverter : IValueConverter
     {
+        /// <summary>
+        /// Конвертирует булевое значение в Visibility.
+        /// </summary>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            bool invert = parameter?.ToString() == "invert";
-            bool boolValue = value is bool b && b;
-
-            if (invert)
+            if (value is bool boolValue)
             {
-                return boolValue ? Visibility.Collapsed : Visibility.Visible;
+                if (parameter?.ToString()?.ToLower() == "invert")
+                {
+                    boolValue = !boolValue;
+                }
+                return boolValue ? Visibility.Visible : Visibility.Collapsed;
             }
-            return boolValue ? Visibility.Visible : Visibility.Collapsed;
+            return Visibility.Collapsed;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
+        /// <summary>
+        /// Обратное преобразование не поддерживается.
+        /// </summary>
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => throw new NotImplementedException();
     }
 }
