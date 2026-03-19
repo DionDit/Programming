@@ -1,9 +1,12 @@
 ﻿using Microsoft.Win32;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
 using System.Xml.Linq;
@@ -14,22 +17,25 @@ using View.ViewModels.Base;
 
 namespace View.ViewModels
 {
+    /// <summary>
+    /// ViewModel главного окна.
+    /// </summary>
     public class MainWindowViewModel : ViewModel
     {
         /// <summary>
-        /// Коллекция контактов.
+        /// Список контактов.
         /// </summary>
-        private ObservableCollection<Contact> _contacts;
+        private ObservableCollection<ContactViewModel> _contacts;
 
         /// <summary>
         /// Выбранный контакт.
         /// </summary>
-        private Contact _selectedContact;
+        private ContactViewModel _selectedContact;
 
         /// <summary>
-        /// Редактируемый контакт (для временного хранения).
+        /// Редактируемый контакт.
         /// </summary>
-        private Contact _editableContact;
+        private ContactViewModel _editableContact;
 
         /// <summary>
         /// Флаг режима добавления.
@@ -42,55 +48,52 @@ namespace View.ViewModels
         private bool _isEditing;
 
         /// <summary>
-        /// Текст для поиска.
+        /// Текст поиска.
         /// </summary>
-        private string _searchText;
+        private string _searchText = string.Empty;
 
         /// <summary>
-        /// Отфильтрованная коллекция контактов.
+        /// Отфильтрованный список контактов.
         /// </summary>
-        private ObservableCollection<Contact> _filteredContacts;
+        private ObservableCollection<ContactViewModel> _filteredContacts;
 
         /// <summary>
-        /// Серилизатор контактов.
+        /// Сериализатор контактов.
         /// </summary>
         private readonly ContactSerializer _contactSerializer;
 
         /// <summary>
-        /// Конструктор по умолчанию.
+        /// Конструктор ViewModel главного окна.
         /// </summary>
         public MainWindowViewModel()
         {
             _contactSerializer = new ContactSerializer();
-            _contacts = new ObservableCollection<Contact>();
-            _editableContact = new Contact(string.Empty, string.Empty, string.Empty, null);
-            _filteredContacts = new ObservableCollection<Contact>();
-
-
+            _contacts = new ObservableCollection<ContactViewModel>();
+            _filteredContacts = new ObservableCollection<ContactViewModel>();
+            _editableContact = new ContactViewModel(string.Empty, string.Empty, string.Empty, null);
             LoadContacts();
         }
 
         /// <summary>
-        /// Коллекция контактов.
+        /// Список контактов.
         /// </summary>
-        public ObservableCollection<Contact> Contacts { get => _contacts; set => Set(ref _contacts, value); }
+        public ObservableCollection<ContactViewModel> Contacts
+        {
+            get => _contacts;
+            set => Set(ref _contacts, value);
+        }
 
         /// <summary>
         /// Выбранный контакт.
         /// </summary>
-        public Contact SelectedContact
+        public ContactViewModel SelectedContact
         {
             get => _selectedContact;
             set
             {
                 if (Set(ref _selectedContact, value) && value != null && !IsAdding && !IsEditing)
                 {
-                    EditableContact = value;
-                    OnPropertyChanged(nameof(Name));
-                    OnPropertyChanged(nameof(PhoneNumber));
-                    OnPropertyChanged(nameof(Email));
-                    OnPropertyChanged(nameof(PhotoBytes));
-                    OnPropertyChanged(nameof(HasPhoto));
+                    EditableContact = value.Clone();
                 }
             }
         }
@@ -98,75 +101,17 @@ namespace View.ViewModels
         /// <summary>
         /// Редактируемый контакт.
         /// </summary>
-        public Contact EditableContact { get => _editableContact; set => Set(ref _editableContact, value); }
-
-        /// <summary>
-        /// Имя для отображения.
-        /// </summary>
-        public string Name
+        public ContactViewModel EditableContact
         {
-            get => _editableContact?.Name ?? string.Empty;
+            get => _editableContact;
             set
             {
-                if (_editableContact != null)
-                {
-                    _editableContact.Name = value;
-                    OnPropertyChanged();
-                }
+                Set(ref _editableContact, value);
             }
         }
 
         /// <summary>
-        /// Телефон для отображения.
-        /// </summary>
-        public string PhoneNumber
-        {
-            get => _editableContact?.PhoneNumber ?? string.Empty;
-            set
-            {
-                if (_editableContact != null)
-                {
-                    _editableContact.PhoneNumber = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        /// <summary>
-        /// Email для отображения.
-        /// </summary>
-        public string Email
-        {
-            get => _editableContact?.Email ?? string.Empty;
-            set
-            {
-                if (_editableContact != null)
-                {
-                    _editableContact.Email = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        /// <summary>
-        /// Фото в виде байт для отображения.
-        /// </summary>
-        public byte[] PhotoBytes
-        {
-            get => _editableContact?.PhotoBytes;
-            set
-            {
-                if (_editableContact != null)
-                {
-                    _editableContact.PhotoBytes = value;
-                    OnPropertyChanged();
-                    OnPropertyChanged(nameof(HasPhoto));
-                }
-            }
-        }
-
-        /// <summary>
-        /// Текст для поиска.
+        /// Текст поиска.
         /// </summary>
         public string SearchText
         {
@@ -179,18 +124,15 @@ namespace View.ViewModels
                 }
             }
         }
+
         /// <summary>
-        /// Отфильтрованная коллекция контактов.
+        /// Отфильтрованный список контактов.
         /// </summary>
-        public ObservableCollection<Contact> FilteredContacts
+        public ObservableCollection<ContactViewModel> FilteredContacts
         {
             get => _filteredContacts;
             set => Set(ref _filteredContacts, value);
         }
-        /// <summary>
-        /// Есть ли фото.
-        /// </summary>
-        public bool HasPhoto => PhotoBytes != null && PhotoBytes.Length > 0;
 
         /// <summary>
         /// Флаг режима добавления.
@@ -202,10 +144,13 @@ namespace View.ViewModels
             {
                 if (Set(ref _isAdding, value))
                 {
-                    OnPropertyChanged(nameof(IsReadOnly));
                     OnPropertyChanged(nameof(IsApplyVisible));
+                    OnPropertyChanged(nameof(IsEditingEnabled));
                     OnPropertyChanged(nameof(CanEditRemove));
-
+                    if (value)
+                    {
+                        EditableContact?.ValidateAll();
+                    }
                     CommandManager.InvalidateRequerySuggested();
                 }
             }
@@ -221,22 +166,20 @@ namespace View.ViewModels
             {
                 if (Set(ref _isEditing, value))
                 {
-                    OnPropertyChanged(nameof(IsReadOnly));
                     OnPropertyChanged(nameof(IsApplyVisible));
+                    OnPropertyChanged(nameof(IsEditingEnabled));
                     OnPropertyChanged(nameof(CanEditRemove));
-
+                    if (value && EditableContact != null)
+                    {
+                        EditableContact.ValidateAll();
+                    }
                     CommandManager.InvalidateRequerySuggested();
                 }
             }
         }
 
         /// <summary>
-        /// Режим только для чтения.
-        /// </summary>
-        public bool IsReadOnly => !IsAdding && !IsEditing;
-
-        /// <summary>
-        /// Видимость кнопки Apply.
+        /// Видимость кнопок.
         /// </summary>
         public bool IsApplyVisible => IsAdding || IsEditing;
 
@@ -246,232 +189,226 @@ namespace View.ViewModels
         public bool CanEditRemove => SelectedContact != null && !IsAdding && !IsEditing;
 
         /// <summary>
+        /// Доступность редактирования.
+        /// </summary>
+        public bool IsEditingEnabled => IsAdding || IsEditing;
+
+        /// <summary>
         /// Команда добавления контакта.
         /// </summary>
-        public ICommand AddCommand
+        public ICommand AddCommand => new DelegateCommand((obj) =>
         {
-            get => new DelegateCommand((obj) =>
+            try
             {
-                try
-                {
-                    SelectedContact = null;
-                    EditableContact = new Contact(string.Empty, string.Empty, string.Empty, null);
-                    IsAdding = true;
-
-                    OnPropertyChanged(nameof(Name));
-                    OnPropertyChanged(nameof(PhoneNumber));
-                    OnPropertyChanged(nameof(Email));
-                    OnPropertyChanged(nameof(PhotoBytes));
-                    OnPropertyChanged(nameof(HasPhoto));
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }, (obj) => !IsAdding && !IsEditing);
-        }
+                SelectedContact = null;
+                EditableContact = new ContactViewModel(string.Empty, string.Empty, string.Empty, null);
+                IsAdding = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }, (obj) => !IsAdding && !IsEditing);
 
         /// <summary>
         /// Команда редактирования контакта.
         /// </summary>
-        public ICommand EditCommand
+        public ICommand EditCommand => new DelegateCommand((obj) =>
         {
-            get => new DelegateCommand((obj) =>
+            try
             {
-                try
+                if (SelectedContact != null)
                 {
-                    if (SelectedContact != null)
-                    {
-                        EditableContact = SelectedContact;
-                        IsEditing = true;
-                    }
+                    EditableContact = SelectedContact.Clone();
+                    IsEditing = true;
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }, (obj) => SelectedContact != null && !IsAdding && !IsEditing);
-        }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }, (obj) => SelectedContact != null && !IsAdding && !IsEditing);
 
         /// <summary>
         /// Команда удаления контакта.
         /// </summary>
-        public ICommand RemoveCommand
+        public ICommand RemoveCommand => new DelegateCommand((obj) =>
         {
-            get => new DelegateCommand((obj) =>
+            try
             {
-                try
+                if (SelectedContact != null)
                 {
-                    if (SelectedContact != null)
+                    var contactToRemove = SelectedContact;
+                    int index = _contacts.IndexOf(contactToRemove);
+                    _contacts.Remove(contactToRemove);
+                    FilterContacts();
+                    if (FilteredContacts.Count > 0)
                     {
-                        var contactToRemove = SelectedContact;
-                        int index = _contacts.IndexOf(contactToRemove);
-
-                        _contacts.Remove(contactToRemove);
-                        FilterContacts();
-
-                        if (FilteredContacts.Count > 0)
+                        if (index < FilteredContacts.Count)
                         {
-                            if (index < FilteredContacts.Count)
-                            {
-                                SelectedContact = FilteredContacts[index];
-                            }
-                            else
-                            {
-                                SelectedContact = FilteredContacts[FilteredContacts.Count - 1];
-                            }
+                            SelectedContact = FilteredContacts[index];
                         }
                         else
                         {
-                            SelectedContact = null;
-                            EditableContact = new Contact(string.Empty, string.Empty, string.Empty, null);
+                            SelectedContact = FilteredContacts[FilteredContacts.Count - 1];
                         }
-
-                        SaveContacts();
-                        MessageBox.Show("Контакт успешно удален!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
+                    else
+                    {
+                        SelectedContact = null;
+                        EditableContact = new ContactViewModel(string.Empty, string.Empty, string.Empty, null);
+                    }
+
+                    SaveContacts();
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Ошибка при удалении контакта: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }, (obj) => SelectedContact != null && !IsAdding && !IsEditing);
-        }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при удалении контакта: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }, (obj) => SelectedContact != null && !IsAdding && !IsEditing);
 
         /// <summary>
         /// Команда применения изменений.
         /// </summary>
-        public ICommand ApplyCommand
+        public ICommand ApplyCommand => new DelegateCommand((obj) =>
         {
-            get => new DelegateCommand((obj) =>
+            try
             {
-                try
+                if (EditableContact?.HasErrors == true)
                 {
-                    if (IsAdding)
-                    {
-                        var newContact = new Contact(EditableContact.Name, EditableContact.PhoneNumber, EditableContact.Email, EditableContact.PhotoBytes);
-                        _contacts.Add(newContact);
-                        FilterContacts();
-
-                        var addedInFiltered = FilteredContacts.FirstOrDefault(c => c == newContact);
-                        if (addedInFiltered != null)
-                        {
-                            SelectedContact = addedInFiltered;
-                        }
-
-                        IsAdding = false;
-                        MessageBox.Show("Контакт успешно добавлен!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
-                    }
-                    if (IsEditing && SelectedContact != null)
-                    {
-                        SelectedContact.Name = EditableContact.Name;
-                        SelectedContact.PhoneNumber = EditableContact.PhoneNumber;
-                        SelectedContact.Email = EditableContact.Email;
-                        SelectedContact.PhotoBytes = EditableContact.PhotoBytes;
-
-                        FilterContacts();
-
-                        IsEditing = false;
-                        MessageBox.Show("Изменения успешно сохранены!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
-                    }
-                    SaveContacts();
+                    MessageBox.Show("Исправьте ошибки перед сохранением!", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
                 }
-                catch (Exception ex)
+
+                if (IsAdding)
                 {
-                    MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    var newContact = EditableContact.Clone();
+                    _contacts.Add(newContact);
+                    FilterContacts();
+                    SelectedContact = newContact;
+                    IsAdding = false;
                 }
-            }, (obj) => IsAdding || IsEditing);
-        }
+                else if (IsEditing && SelectedContact != null && EditableContact != null)
+                {
+                    SelectedContact.CopyFrom(EditableContact);
+
+                    int index = _contacts.IndexOf(SelectedContact);
+                    if (index >= 0)
+                    {
+                        _contacts[index] = SelectedContact;
+                    }
+                    FilterContacts();
+                    IsEditing = false;
+                }
+
+                SaveContacts();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }, (obj) => (IsAdding || IsEditing) && EditableContact != null && !EditableContact.HasErrors);
 
         /// <summary>
         /// Команда выбора фото.
         /// </summary>
-        public ICommand SelectPhotoCommand
+        public ICommand SelectPhotoCommand => new DelegateCommand((obj) =>
         {
-            get => new DelegateCommand((obj) =>
+            try
             {
-                try
+                if (EditableContact == null)
                 {
-                    var dialog = new OpenFileDialog();
-                    dialog.Filter = "Image files (*.jpg;*.jpeg;*.png;*.bmp)|*.jpg;*.jpeg;*.png;*.bmp|All files (*.*)|*.*";
-                    dialog.Title = "Выберите фото контакта";
-
-                    if (dialog.ShowDialog() == true)
-                    {
-                        PhotoBytes = File.ReadAllBytes(dialog.FileName);
-                    }
+                    return;
                 }
-                catch (Exception ex)
+                var dialog = new OpenFileDialog
                 {
-                    MessageBox.Show($"Ошибка при загрузке фото: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    Filter = "Image files (*.jpg;*.jpeg;*.png;*.bmp)|*.jpg;*.jpeg;*.png;*.bmp|All files (*.*)|*.*",
+                    Title = "Выберите фото контакта"
+                };
+                if (dialog.ShowDialog() == true)
+                {
+                    byte[] bytes = File.ReadAllBytes(dialog.FileName);
+                    EditableContact.PhotoBytes = bytes;
                 }
-            }, (obj) => IsAdding || IsEditing);
-        }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка: {ex.Message}");
+            }
+        }, (obj) => IsAdding || IsEditing);
 
         /// <summary>
         /// Команда очистки фото.
         /// </summary>
-        public ICommand ClearPhotoCommand
+        public ICommand ClearPhotoCommand => new DelegateCommand((obj) =>
         {
-            get => new DelegateCommand((obj) =>
+            if (EditableContact != null)
             {
-                try
-                {
-                    PhotoBytes = null;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }, (obj) => IsAdding || IsEditing);
-        }
+                EditableContact.PhotoBytes = null;
+            }
+        }, (obj) => IsAdding || IsEditing);
 
         /// <summary>
         /// Команда добавления случайного контакта.
         /// </summary>
-        public ICommand AddRandomCommand
+        public ICommand AddRandomCommand => new DelegateCommand((obj) =>
         {
-            get => new DelegateCommand((obj) =>
+            try
             {
-                try
-                {
-                    var random = new Random();
-                    List<string> firstNames = new List<string>() { "Иван", "Петр", "Сергей", "Анна", "Мария", "Елена", "Дмитрий", "Алексей" };
-                    List<string> lastNames = new List<string>() { "Иванов", "Петров", "Сидоров", "Смирнов", "Кузнецов", "Попов", "Лебедев", "Козлов" };
-                    List<string> domains = new List<string>() { "gmail.com", "yandex.ru", "mail.ru", "outlook.com" };
+                var random = new Random();
+                List<string> firstNames = new() { "Иван", "Петр", "Сергей", "Анна", "Мария", "Елена" };
+                List<string> lastNames = new() { "Иванов", "Петров", "Сидоров", "Смирнова", "Кузнецова" };
+                List<string> domains = new() { "gmail.com", "yandex.ru", "mail.ru" };
 
-                    string firstName = firstNames[random.Next(firstNames.Count)];
-                    string lastName = lastNames[random.Next(lastNames.Count)];
-                    string name = $"{firstName} {lastName}";
+                string firstName = firstNames[random.Next(firstNames.Count)];
+                string lastName = lastNames[random.Next(lastNames.Count)];
+                string name = $"{firstName} {lastName}";
 
-                    string phone = $"+7 ({random.Next(900, 999)}) {random.Next(100, 999)}-{random.Next(10, 99)}-{random.Next(10, 99)}";
+                string phone = $"+7({random.Next(900, 999)}){random.Next(100, 999)}-{random.Next(10, 99)}-{random.Next(10, 99)}";
+                string email = $"{firstName.ToLower()}.{lastName.ToLower()}@{domains[random.Next(domains.Count)]}";
 
-                    string email = $"{firstName.ToLower()}.{lastName.ToLower()}@{domains[random.Next(domains.Count)]}";
-
-                    var newContact = new Contact(name, phone, email, null);
-
-                    Contacts.Add(newContact);
-                    FilterContacts();
-
-                    var addedInFiltered = FilteredContacts.FirstOrDefault(c => c == newContact);
-                    if (addedInFiltered != null)
-                    {
-                        SelectedContact = addedInFiltered;
-                    }
-
-                    SaveContacts();
-
-                    MessageBox.Show("Случайный контакт успешно добавлен!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Ошибка при добавлении случайного контакта: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            });
-        }
+                var newContact = new ContactViewModel(name, phone, email, null);
+                Contacts.Add(newContact);
+                FilterContacts();
+                SelectedContact = newContact;
+                SaveContacts();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        });
 
         /// <summary>
-        /// Загрузка контактов из файла.
+        /// Команда отмены.
+        /// </summary>
+        public ICommand CancelCommand => new DelegateCommand((obj) =>
+        {
+            try
+            {
+                if (IsAdding)
+                {
+                    IsAdding = false;
+                    EditableContact = new ContactViewModel(string.Empty, string.Empty, string.Empty, null);
+                }
+                else if (IsEditing)
+                {
+                    IsEditing = false;
+                    if (SelectedContact != null)
+                    {
+                        EditableContact = SelectedContact.Clone();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }, (obj) => IsAdding || IsEditing);
+
+        /// <summary>
+        /// Загрузка контактов.
         /// </summary>
         private void LoadContacts()
         {
@@ -480,19 +417,12 @@ namespace View.ViewModels
                 var loadedContacts = _contactSerializer.Load();
                 if (loadedContacts != null)
                 {
-                    _contacts = new ObservableCollection<Contact>(loadedContacts);
+                    _contacts = new ObservableCollection<ContactViewModel>(loadedContacts);
                     FilterContacts();
-
                     if (FilteredContacts.Count > 0)
                     {
                         SelectedContact = FilteredContacts[0];
                     }
-
-                    MessageBox.Show("Контакты успешно загружены!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
-                }
-                else
-                {
-                    MessageBox.Show("Файл с контактами не найден или произошла ошибка при загрузке!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
             catch (Exception ex)
@@ -502,31 +432,34 @@ namespace View.ViewModels
         }
 
         /// <summary>
-        /// Фильтрация контактов по поисковому запросу.
+        /// Фильтрация контактов.
         /// </summary>
         private void FilterContacts()
         {
             if (string.IsNullOrWhiteSpace(_searchText))
             {
-                FilteredContacts = new ObservableCollection<Contact>(_contacts);
+                FilteredContacts = new ObservableCollection<ContactViewModel>(_contacts);
             }
             else
             {
-                var filtered = _contacts.Where(c => c.Name?.IndexOf(_searchText, StringComparison.OrdinalIgnoreCase) >= 0);
-                FilteredContacts = new ObservableCollection<Contact>(filtered);
+                var filtered = _contacts.Where(c =>
+                            (c.Name?.IndexOf(_searchText, StringComparison.OrdinalIgnoreCase) >= 0) ||
+                            (c.PhoneNumber?.IndexOf(_searchText, StringComparison.OrdinalIgnoreCase) >= 0) ||
+                            (c.Email?.IndexOf(_searchText, StringComparison.OrdinalIgnoreCase) >= 0));
+                FilteredContacts = new ObservableCollection<ContactViewModel>(filtered);
             }
             if (FilteredContacts.Count > 0 && !FilteredContacts.Contains(SelectedContact))
             {
                 SelectedContact = FilteredContacts[0];
             }
-            if (FilteredContacts.Count == 0)
+            else if (FilteredContacts.Count == 0)
             {
                 SelectedContact = null;
             }
         }
 
         /// <summary>
-        /// Сохранение контактов в файл.
+        /// Сохранение контактов.
         /// </summary>
         private void SaveContacts()
         {

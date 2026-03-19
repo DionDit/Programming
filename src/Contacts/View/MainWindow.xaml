@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:View"
         xmlns:VM="clr-namespace:View.ViewModels"
         xmlns:converters="clr-namespace:View.Converters"
+        xmlns:controls="clr-namespace:View.UserControls"
         mc:Ignorable="d"
         Icon="/ContactsApp_96x96.ico"
         Title="Contacts" 
@@ -19,6 +20,7 @@
     <Window.Resources>
         <converters:ByteArrayToImageConverter x:Key="ByteArrayToImageConverter"/>
         <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+        <BitmapImage x:Key="DefaultPhoto" UriSource="/photo_placeholder_100x100.png"/>
     </Window.Resources>
     <Grid>
         <Grid Margin="15">
@@ -55,8 +57,43 @@
                         <ListBox Grid.Row="1" 
                                  Margin="0,0,0,8"
                                  ItemsSource="{Binding FilteredContacts}"
-                                 SelectedItem="{Binding SelectedContact}"
-                                 DisplayMemberPath="Name"/>
+                                 SelectedItem="{Binding SelectedContact}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BorderBrush="Black" 
+                                            Padding="5">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="60"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Border Grid.Column="0" 
+                                                    Width="50" 
+                                                    Height="50" 
+                                                    CornerRadius="0"
+                                                    Background="#f0f0f0"
+                                                    Margin="0,0,5,0">
+                                                <Image Source="{Binding PhotoBytes, 
+                                                    Converter={StaticResource ByteArrayToImageConverter},
+                                                    TargetNullValue={StaticResource DefaultPhoto},
+                                                    FallbackValue={StaticResource DefaultPhoto}}"
+                                                       Width="50" 
+                                                       Height="50"
+                                                       Stretch="UniformToFill"/>
+                                            </Border>
+                                            <StackPanel Grid.Column="1">
+                                                <TextBlock Text="{Binding Name}" 
+                                                           FontWeight="SemiBold"
+                                                           FontSize="12"/>
+                                                <TextBlock Text="{Binding PhoneNumber}" 
+                                                           FontSize="10"
+                                                           Foreground="Gray"/>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
                         <Grid Grid.Row="2">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -99,67 +136,31 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Grid Grid.Row="0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Border Grid.Column="0"
-                                    Width="100"
-                                    Height="100"
-                                    Margin="0,18,10,0"
+                        <controls:ContactUserControl Grid.Row="0" DataContext="{Binding EditableContact}"/>
+                        <StackPanel Grid.Row="1" 
+                                    Orientation="Horizontal"
                                     VerticalAlignment="Top"
-                                    Cursor="Hand"
-                                    ToolTip="Нажмите для выбора фото">
-                                <Border.InputBindings>
-                                    <MouseBinding Gesture="LeftClick" Command="{Binding SelectPhotoCommand}"/>
-                                </Border.InputBindings>
-                                <Grid>
-                                    <Image Source="{Binding PhotoBytes, Converter={StaticResource ByteArrayToImageConverter}}"
-                                           Width="100"
-                                           Height="100"
-                                           Stretch="UniformToFill"
-                                           Visibility="{Binding HasPhoto, Converter={StaticResource BoolToVisibilityConverter}}"/>
-
-                                    <Image Source="/photo_placeholder_100x100.png"
-                                           Width="100"
-                                           Height="100"
-                                           Stretch="UniformToFill"
-                                           Visibility="{Binding HasPhoto, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=invert}"/>
-                                </Grid>
-                            </Border>
-                            <StackPanel Grid.Column="1" 
-                                        VerticalAlignment="Top">
-                                <Label Content="Name:" 
-                                       Padding="0,0,0,2"/>
-                                <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
-                                         IsReadOnly="{Binding IsReadOnly}"
-                                         Margin="0,0,0,8"/>
-                                <Label Content="Phone Number:" 
-                                       Padding="0,0,0,2"/>
-                                <TextBox Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}"
-                                         IsReadOnly="{Binding IsReadOnly}"
-                                         Margin="0,0,0,8"/>
-                                <Label Content="Email:" Padding="0,0,0,2"/>
-                                <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"
-                                         IsReadOnly="{Binding IsReadOnly}"
-                                         Margin="0,0,0,0"/>
-                                <Button Content="Apply" 
-                                        Width="75" 
-                                        Height="25"
-                                        HorizontalAlignment="Left"
-                                        Margin="0,50,0,0"
-                                        Command="{Binding ApplyCommand}"
-                                        Visibility="{Binding IsApplyVisible, Converter={StaticResource BoolToVisibilityConverter}}"/>
-                                <Button Content="Clear Photo" 
-                                        Width="75" 
-                                        Height="25"
-                                        HorizontalAlignment="Left"
-                                        Margin="0,5,0,0"
-                                        Command="{Binding ClearPhotoCommand}"
-                                        Visibility="{Binding IsApplyVisible, Converter={StaticResource BoolToVisibilityConverter}}"/>
-                            </StackPanel>
-                        </Grid>
+                                    HorizontalAlignment="Left"
+                                    Margin="5">
+                            <Button Content="Clear Photo" 
+                                    Width="75" 
+                                    Height="25"
+                                    Margin="0,0,10,0"
+                                    Command="{Binding ClearPhotoCommand}"
+                                    Visibility="{Binding IsApplyVisible, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                            <Button Content="Cancel" 
+                                    Width="75" 
+                                    Height="25"
+                                    Margin="0,0,10,0"
+                                    Command="{Binding CancelCommand}"
+                                    Visibility="{Binding IsApplyVisible, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                            <Button Content="Apply" 
+                                    Width="75" 
+                                    Height="25"
+                                    Margin="0,0,10,0"
+                                    Command="{Binding ApplyCommand}"
+                                    Visibility="{Binding IsApplyVisible, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                        </StackPanel>
                     </Grid>
                 </Grid>
             </Grid>
