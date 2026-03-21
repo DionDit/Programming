@@ -1,33 +1,30 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Model.Models;
 using System.Collections;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
 using System.Text.RegularExpressions;
-using View.Models;
-using View.ViewModels.Base;
 
-namespace View.ViewModels
+namespace ViewModel.ViewModels
 {
     /// <summary>
     /// ViewModel для контакта.
     /// </summary>
-    public class ContactViewModel: ViewModel, INotifyDataErrorInfo
+    public partial class ContactViewModel : ObservableObject, INotifyDataErrorInfo
     {
         /// <summary>
         /// Имя контакта.
         /// </summary>
-        private string _name;
+        private string _name = string.Empty;
 
         /// <summary>
         /// Номер телефона контакта.
         /// </summary>
-        private string _phoneNumber;
+        private string _phoneNumber = string.Empty;
 
         /// <summary>
         /// Email контакта.
         /// </summary>
-        private string _email;
+        private string _email = string.Empty;
 
         /// <summary>
         /// Фото контакта.
@@ -52,7 +49,7 @@ namespace View.ViewModels
             get => _name;
             set
             {
-                if (Set(ref _name, value ?? string.Empty))
+                if (SetProperty(ref _name, value ?? string.Empty))
                 {
                     ValidateName();
                 }
@@ -67,7 +64,7 @@ namespace View.ViewModels
             get => _phoneNumber;
             set
             {
-                if (Set(ref _phoneNumber, value ?? string.Empty))
+                if (SetProperty(ref _phoneNumber, value ?? string.Empty))
                 {
                     ValidatePhoneNumber();
                 }
@@ -82,7 +79,7 @@ namespace View.ViewModels
             get => _email;
             set
             {
-                if (Set(ref _email, value ?? string.Empty))
+                if (SetProperty(ref _email, value ?? string.Empty))
                 {
                     ValidateEmail();
                 }
@@ -97,7 +94,7 @@ namespace View.ViewModels
             get => _photoBytes;
             set
             {
-                if (Set(ref _photoBytes, value))
+                if (SetProperty(ref _photoBytes, value))
                 {
                     OnPropertyChanged(nameof(HasPhoto));
                 }
@@ -114,14 +111,15 @@ namespace View.ViewModels
         /// </summary>
         public ContactViewModel()
         {
-            _name = string.Empty;
-            _phoneNumber = string.Empty;
-            _email = string.Empty;
         }
 
         /// <summary>
         /// Конструктор с параметрами.
         /// </summary>
+        /// <param name="name">Имя контакта.</param>
+        /// <param name="phoneNumber">Номер телефона.</param>
+        /// <param name="email">Email.</param>
+        /// <param name="photoBytes">Фото контакта.</param>
         public ContactViewModel(string name, string phoneNumber, string email, byte[] photoBytes = null)
         {
             _name = name ?? string.Empty;
@@ -133,6 +131,7 @@ namespace View.ViewModels
         /// <summary>
         /// Клонирование контакта.
         /// </summary>
+        /// <returns>Копия контакта.</returns>
         public ContactViewModel Clone()
         {
             return new ContactViewModel
@@ -147,19 +146,18 @@ namespace View.ViewModels
         /// <summary>
         /// Копирование данных из другого контакта.
         /// </summary>
+        /// <param name="other">Контакт-источник.</param>
         public void CopyFrom(ContactViewModel other)
         {
             if (other == null)
             {
                 return;
             }
-            else
-            {
-                Name = other.Name;
-                PhoneNumber = other.PhoneNumber;
-                Email = other.Email;
-                PhotoBytes = other.PhotoBytes?.ToArray();
-            }
+
+            Name = other.Name;
+            PhoneNumber = other.PhoneNumber;
+            Email = other.Email;
+            PhotoBytes = other.PhotoBytes?.ToArray();
         }
 
         /// <summary>
@@ -170,11 +168,13 @@ namespace View.ViewModels
         /// <summary>
         /// Получение ошибок валидации.
         /// </summary>
+        /// <param name="propertyName">Имя свойства.</param>
+        /// <returns>Ошибки валидации.</returns>
         public IEnumerable GetErrors(string propertyName)
         {
-            if (propertyName != null && _errors.ContainsKey(propertyName))
+            if (propertyName != null && _errors.TryGetValue(propertyName, out var errors))
             {
-                return _errors[propertyName];
+                return errors;
             }
             return Enumerable.Empty<string>();
         }
@@ -195,14 +195,16 @@ namespace View.ViewModels
         private void ValidateName()
         {
             var errors = new List<string>();
+
             if (string.IsNullOrWhiteSpace(_name))
             {
                 errors.Add("Имя обязательно для заполнения");
             }
-            if (_name.Length > 100)
+            else if (_name.Length > 100)
             {
                 errors.Add("Имя не должно превышать 100 символов");
             }
+
             UpdateErrors(nameof(Name), errors);
         }
 
@@ -212,21 +214,20 @@ namespace View.ViewModels
         private void ValidatePhoneNumber()
         {
             var errors = new List<string>();
+
             if (string.IsNullOrWhiteSpace(_phoneNumber))
             {
                 errors.Add("Номер телефона обязателен для заполнения");
             }
-            if (_phoneNumber.Length > 100)
+            else if (_phoneNumber.Length > 100)
             {
                 errors.Add("Номер телефона не должен превышать 100 символов");
             }
-            if (!string.IsNullOrEmpty(_phoneNumber))
+            else if (!Regex.IsMatch(_phoneNumber, @"^[0-9+\-\(\)\s]+$"))
             {
-                if (!Regex.IsMatch(_phoneNumber, @"^[0-9+\-\(\)\s]+$"))
-                {
-                    errors.Add("Номер телефона может содержать только цифры и символы + - ( )");
-                }
+                errors.Add("Номер телефона может содержать только цифры и символы + - ( )");
             }
+
             UpdateErrors(nameof(PhoneNumber), errors);
         }
 
@@ -236,24 +237,52 @@ namespace View.ViewModels
         private void ValidateEmail()
         {
             var errors = new List<string>();
+
             if (string.IsNullOrWhiteSpace(_email))
             {
                 errors.Add("Email обязателен для заполнения");
             }
-            if (_email.Length > 100)
+            else if (_email.Length > 100)
             {
                 errors.Add("Email не должен превышать 100 символов");
             }
-            if (!string.IsNullOrEmpty(_email) && !_email.Contains('@'))
+            else if (!_email.Contains('@'))
             {
                 errors.Add("Email должен содержать символ @");
             }
+            else
+            {
+                string[] parts = _email.Split('@');
+                if (parts.Length != 2)
+                {
+                    errors.Add("Неверный формат email");
+                }
+                else if (string.IsNullOrWhiteSpace(parts[0]))
+                {
+                    errors.Add("Отсутствует имя пользователя перед @");
+                }
+                else if (string.IsNullOrWhiteSpace(parts[1]))
+                {
+                    errors.Add("Отсутствует домен после @");
+                }
+                else if (!parts[1].Contains('.'))
+                {
+                    errors.Add("Домен должен содержать точку (например, gmail.com)");
+                }
+                else if (parts[1].EndsWith('.'))
+                {
+                    errors.Add("Домен не может заканчиваться на точку");
+                }
+            }
+
             UpdateErrors(nameof(Email), errors);
         }
 
         /// <summary>
-        /// Обновление ошибок для свойства
+        /// Обновление ошибок для свойства.
         /// </summary>
+        /// <param name="propertyName">Имя свойства.</param>
+        /// <param name="errors">Список ошибок.</param>
         private void UpdateErrors(string propertyName, List<string> errors)
         {
             if (errors.Any())
@@ -264,8 +293,32 @@ namespace View.ViewModels
             {
                 _errors.Remove(propertyName);
             }
+
             ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
             OnPropertyChanged(nameof(HasErrors));
         }
+
+        /// <summary>
+        /// Преобразование из Model в ViewModel.
+        /// </summary>
+        /// <param name="contact">Модель контакта.</param>
+        /// <returns>ViewModel контакта.</returns>
+        public static ContactViewModel FromModel(Contact contact)
+        {
+            if (contact == null)
+            {
+                return new ContactViewModel();
+            }
+            else
+            {
+                return new ContactViewModel(contact.Name, contact.PhoneNumber, contact.Email, contact.PhotoBytes);
+            }
+        }
+
+        /// <summary>
+        /// Преобразование из ViewModel в Model.
+        /// </summary>
+        /// <returns>Модель контакта.</returns>
+        public Contact ToModel() => new Contact(this.Name, this.PhoneNumber, this.Email, this.PhotoBytes?.ToArray());
     }
 }
