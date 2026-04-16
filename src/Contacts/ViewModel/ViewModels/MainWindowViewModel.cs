@@ -22,6 +22,9 @@ namespace ViewModel.ViewModels
         /// </summary>
         private ContactViewModel _selectedContact;
 
+        // TODO: дописать в комментарии, чем редактируемый контакт отличается от выбранного.
+        // Потому что по идее это должно быть одно и то же. А если есть отличие, но надо
+        // объяснить сокомандникам в чем нюанс.
         /// <summary>
         /// Редактируемый контакт.
         /// </summary>
@@ -162,6 +165,11 @@ namespace ViewModel.ViewModels
                     {
                         EditableContact.ValidateAll();
                     }
+                    
+                    // TODO: ты вручную начинаешь обновлять состояния кнопочек,
+                    // хотя для этого в MVVM Toolkit уже есть готовый механизм.
+                    // Попробуй атрибут [RelayCommand] или другие механизмы,
+                    // но такого перечня обновления состояний быть не должно
                     AddCommand.NotifyCanExecuteChanged();
                     EditCommand.NotifyCanExecuteChanged();
                     RemoveCommand.NotifyCanExecuteChanged();
@@ -321,6 +329,9 @@ namespace ViewModel.ViewModels
                 {
                     if (EditableContact == null) return;
 
+                    // TODO: обращаешься к экземплярам View - нарушение MVVM.
+                    // Переделать на DI
+                    // TODO: логику сервисных окон лучше выносить в отдельный класс
                     var dialog = new OpenFileDialog
                     {
                         Filter = "Image files (*.jpg;*.jpeg;*.png;*.bmp)|*.jpg;*.jpeg;*.png;*.bmp|All files (*.*)|*.*",
@@ -361,6 +372,7 @@ namespace ViewModel.ViewModels
         {
             try
             {
+                // TODO: вынести в отдельный класс. В продакте не должно быть кода по генерации фейков
                 var random = new Random();
                 List<string> firstNames = new() { "Иван", "Петр", "Сергей", "Анна", "Мария", "Елена" };
                 List<string> lastNames = new() { "Иванов", "Петров", "Сидоров", "Смирнова", "Кузнецова" };
@@ -452,6 +464,8 @@ namespace ViewModel.ViewModels
             }
             else
             {
+                // TODO: вынеси string?.IndexOf(_searchText, StringComparison.OrdinalIgnoreCase) в inline-метод,
+                // или сам принцип обхода и поиска по всем полям в отдельный метод
                 var filtered = _contacts.Where(c =>
                             (c.Name?.IndexOf(_searchText, StringComparison.OrdinalIgnoreCase) >= 0) ||
                             (c.PhoneNumber?.IndexOf(_searchText, StringComparison.OrdinalIgnoreCase) >= 0) ||
@@ -481,6 +495,7 @@ namespace ViewModel.ViewModels
             }
             catch (Exception ex)
             {
+                // TODO: в VM не должно быть вызовов MessageBox - это нарушение паттерна MVVM. Исправить
                 MessageBox.Show($"Ошибка при сохранении контактов: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }

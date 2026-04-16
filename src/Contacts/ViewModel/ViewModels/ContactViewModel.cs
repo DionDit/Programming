@@ -6,6 +6,8 @@ using System.Text.RegularExpressions;
 
 namespace ViewModel.ViewModels
 {
+    // TODO: для классов ViewModel в названии лучше использовать
+    // аббревиатуру VM вместо полного написания. Исправить в обоих классах и именах переменных.
     /// <summary>
     /// ViewModel для контакта.
     /// </summary>
@@ -128,6 +130,9 @@ namespace ViewModel.ViewModels
             _photoBytes = photoBytes;
         }
 
+        // Метод Clone() предполагает, что это метод интерфейса ICloneable.
+        // Или сделать реализацию интерфейса ICloneable и метод должен возвращать object;
+        // или сделать конструктор копирования, который как раз возвращает конкретный тип данных
         /// <summary>
         /// Клонирование контакта.
         /// </summary>

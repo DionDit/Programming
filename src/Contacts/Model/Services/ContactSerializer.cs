@@ -10,6 +10,7 @@ namespace Model.Services
     /// </summary>
     public class ContactSerializer
     {
+        // TODO: не должно быть строчек длиннее 100 символов. Исправить во всем решении
         /// <summary>
         /// Текущий путь к файлу.
         /// </summary>
