@@ -6,12 +6,10 @@ using System.Text.RegularExpressions;
 
 namespace ViewModel.ViewModels
 {
-    // TODO: для классов ViewModel в названии лучше использовать
-    // аббревиатуру VM вместо полного написания. Исправить в обоих классах и именах переменных.
     /// <summary>
     /// ViewModel для контакта.
     /// </summary>
-    public partial class ContactViewModel : ObservableObject, INotifyDataErrorInfo
+    public partial class ContactVM : ObservableObject, INotifyDataErrorInfo
     {
         /// <summary>
         /// Имя контакта.
@@ -111,7 +109,7 @@ namespace ViewModel.ViewModels
         /// <summary>
         /// Конструктор по умолчанию.
         /// </summary>
-        public ContactViewModel()
+        public ContactVM()
         {
         }
 
@@ -122,7 +120,7 @@ namespace ViewModel.ViewModels
         /// <param name="phoneNumber">Номер телефона.</param>
         /// <param name="email">Email.</param>
         /// <param name="photoBytes">Фото контакта.</param>
-        public ContactViewModel(string name, string phoneNumber, string email, byte[] photoBytes = null)
+        public ContactVM(string name, string phoneNumber, string email, byte[] photoBytes = null)
         {
             _name = name ?? string.Empty;
             _phoneNumber = phoneNumber ?? string.Empty;
@@ -130,29 +128,27 @@ namespace ViewModel.ViewModels
             _photoBytes = photoBytes;
         }
 
-        // Метод Clone() предполагает, что это метод интерфейса ICloneable.
-        // Или сделать реализацию интерфейса ICloneable и метод должен возвращать object;
-        // или сделать конструктор копирования, который как раз возвращает конкретный тип данных
         /// <summary>
-        /// Клонирование контакта.
+        /// Конструктор копирования.
         /// </summary>
-        /// <returns>Копия контакта.</returns>
-        public ContactViewModel Clone()
+        /// <param name="other">Копируемый контакт.</param>
+        public ContactVM(ContactVM other)
         {
-            return new ContactViewModel
+            if (other == null)
             {
-                Name = this.Name,
-                PhoneNumber = this.PhoneNumber,
-                Email = this.Email,
-                PhotoBytes = this.PhotoBytes?.ToArray()
-            };
+                throw new ArgumentNullException(nameof(other));
+            }
+            _name = other._name;
+            _phoneNumber = other._phoneNumber;
+            _email = other._email;
+            _photoBytes = other._photoBytes?.ToArray();
         }
 
         /// <summary>
         /// Копирование данных из другого контакта.
         /// </summary>
         /// <param name="other">Контакт-источник.</param>
-        public void CopyFrom(ContactViewModel other)
+        public void CopyFrom(ContactVM other)
         {
             if (other == null)
             {
@@ -308,15 +304,15 @@ namespace ViewModel.ViewModels
         /// </summary>
         /// <param name="contact">Модель контакта.</param>
         /// <returns>ViewModel контакта.</returns>
-        public static ContactViewModel FromModel(Contact contact)
+        public static ContactVM FromModel(Contact contact)
         {
             if (contact == null)
             {
-                return new ContactViewModel();
+                return new ContactVM();
             }
             else
             {
-                return new ContactViewModel(contact.Name, contact.PhoneNumber, contact.Email, contact.PhotoBytes);
+                return new ContactVM(contact.Name, contact.PhoneNumber, contact.Email, contact.PhotoBytes);
             }
         }
 

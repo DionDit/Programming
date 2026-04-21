@@ -47,7 +47,7 @@ namespace View.UserControls
         /// </summary>
         private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            var viewModel = Window.GetWindow(this)?.DataContext as MainWindowViewModel;
+            var viewModel = Window.GetWindow(this)?.DataContext as MainWindowVM;
 
             if (viewModel?.SelectPhotoCommand?.CanExecute(null) == true)
             {

@@ -10,14 +10,21 @@ namespace Model.Services
     /// </summary>
     public class ContactSerializer
     {
-        // TODO: не должно быть строчек длиннее 100 символов. Исправить во всем решении
         /// <summary>
         /// Текущий путь к файлу.
         /// </summary>
-        public string FilePath { get; } = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Contacts", "contacts.json");
+        public string FilePath { get; } = GetDefaultFilePath();
 
         /// <summary>
-        /// Конструктор класса <see cref="ContactSerializer"./>
+        /// Возвращает путь к файлу с контактами по умолчанию.
+        /// </summary>
+        private static string GetDefaultFilePath()
+        {
+            string documentsFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            return Path.Combine(documentsFolder, "Contacts", "contacts.json");
+        }
+        /// <summary>
+        /// Конструктор класса <see cref="ContactSerializer"/>.
         /// </summary>
         public ContactSerializer()
         {
