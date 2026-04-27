@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:View"
-        xmlns:VM="clr-namespace:ViewModel.ViewModels;assembly=ViewModel"
         xmlns:converters="clr-namespace:View.Converters"
         xmlns:controls="clr-namespace:View.UserControls"
         mc:Ignorable="d"
@@ -14,9 +13,6 @@
         Width="700"
         MinHeight="400"
         MinWidth="500">
-    <Window.DataContext>
-        <VM:MainWindowViewModel/>
-    </Window.DataContext>
     <Window.Resources>
         <converters:ByteArrayToImageConverter x:Key="ByteArrayToImageConverter"/>
         <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>

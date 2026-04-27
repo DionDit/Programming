@@ -1,7 +1,7 @@
 ﻿namespace Model.Models
 {
     /// <summary>
-    /// Длә сериализации контактов.
+    /// Для сериализации контактов.
     /// </summary>
     public class Contact
     {
